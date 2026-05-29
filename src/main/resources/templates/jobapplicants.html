@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" 
+      lang="en">
+    <head>
+        <title>Job Portal | Apply to Job </title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+                    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>-->
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>            
+                    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">-->
+                    <!--<link rel="stylesheet" type="text/css" href="asset/css/font-awesome.min.css"/>-->
+                    <style>
+                        input[type=text].parsley-error,input[type=email].parsley-error,input.parsley-error, select.parsley-error, textarea.parsley-error {
+                            color: #B94A48;
+                            background-color: #F2DEDE;
+                            border: 1px solid #EED3D7;
+                        }
+                        input[type=text].parsley-success,input.parsley-success, select.parsley-success, textarea.parsley-success {
+                            color: #468847;
+                            background-color: #DFF0D8;
+                            border: 1px solid #D6E9C6;
+                        }
+                        .parsley-errors-list{
+                            display: none;
+                        }
+                    </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <div class="row" style="text-align: center;">
+                                <!--<h3><img src="/asset/images/TCLogo.png"></h3>-->
+                                <h4>TC INTERVIEW FORM</h4>
+                            </div><br>
+                                <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h4>Applicant Details</h4>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <!-- <button class="btn btn-primary pull-right">Add</button> -->
+                                    </div>
+                                </div>   <br>
+
+                                    <!--Applicant Form-->
+                                    <form onsubmit="return false" id="applicant" data-parsley-validate="" autocomplete="off" enctype="multipart/form-data">
+                                        <div class="row" id="applicant1" >
+
+                                            <!--<input type="text" name="" th:value="" hidden/>-->    
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Application for the Post</label>
+                                                    <!--<input type="text" class="form-control" name="jobappConsultancyWalkinName" id="jobappConsultancyWalkinName" required/>-->
+                                                    <select class="form-control" name="jobappConsultancyWalkinName" id="jobappConsultancyWalkinName" required>
+                                                        <option value="">Select Post</option>
+                                                        <option  value="Bussiness Proccess Associate">Bussiness Proccess Associate</option>
+                                                        <option  value="Customer Service Executive">Customer Service Executive</option>
+                                                        <option  value="Assistant Team Leader">Assistant Team Leader</option>
+                                                        <option  value="MIS Executive">MIS Executive</option>
+                                                        <option  value="RTA">RTA</option>
+                                                        <option  value="Assistant Team Leader">Assistant Team Leader</option>
+                                                        <option  value="Team Leader">Team Leader</option>
+                                                        <option  value="Quality Analyst">Quality Analyst</option>
+                                                        <option  value="HR Executive">HR Executive</option>
+                                                        <option  value="Accountant">Accountant</option>
+                                                        <option  value="Admin Executive">Admin Executive</option>
+                                                        <option  value="Desktop Support Engineer">Desktop Support Engineer</option>
+                                                        <option  value="Assistant Manager">Assistant Manager</option>
+                                                        <option  value="Operations Manager">Operations Manager</option>
+                                                        <option  value="S/W. DEVELOPER">S/W. DEVELOPER</option>
+                                                    </select>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">   
+                                                <div class="form-group">
+                                                    <label>Inteview Venue</label>
+                                                    <!--<input type="text" class="form-control" name="jobappInteviewVenue" id="jobappInteviewVenue"  required/>-->
+                                                    <select class="form-control" name="jobappInteviewVenue" id="jobappInteviewVenue" required>
+                                                        <option value="">Select Venue</option>
+                                                        <option  value="Ahmedabad">Ahmedabad Branch</option>
+                                                        <option  value="Mumbai">Mumbai Branch</option>
+                                                        <option  value="Swargate, Pune">Swargate, Pune</option>
+                                                        <option value="Camp Office, Pune">Camp Office, Pune</option>
+                                                        <option value="Bangalore">Bangalore Branch</option>
+                                                        <option  value="Online">Online</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Reffered By Name</label>
+                                                    <input type="text" class="form-control" name="jobappRefferedByName" id="jobappRefferedByName"  required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4 " >                     
+                                                <div class="form-group">
+                                                    <label>Applicant Name</label>
+                                                    <input type="text" class="form-control" name="jobappInterviewerName" id="jobappInterviewerName"  required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4" >                     
+                                                <div class="form-group">
+                                                    <label>Birth Date</label>
+                                                    <input type="date" class="form-control" name="jobappBirthdate" id="jobappBirthdate"  required onchange="getAge(this.value)"/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4" style="display: none">                     
+                                                <div class="form-group">
+                                                    <label>Birth Place</label>
+                                                    <input type="text" class="form-control" name="jobappBirthplace" id="jobappBirthplace"  value="NA" />
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4" style="display: none">                     
+                                                <div class="form-group">
+                                                    <label>Age</label>
+                                                    <input type="text" class="form-control" name="jobappAge" id="jobappAge"  required readonly/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Gender</label>
+                                                    <!--<input type="text" class="form-control" name="jobappGender" required/>-->
+                                                    <select class="form-control" name="jobappGender" id="jobappGender" required>
+                                                        <option value="">Select Gender</option>
+                                                        <option  value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Marital Status</label>
+                                                    <!--<input type="text" class="form-control" name="jobappMaritalStatus"required/>-->
+                                                    <select class="form-control" name="jobappMaritalStatus" id="jobappMaritalStatus" required>
+                                                        <option value="">Marital Status</option>
+                                                        <option  value="Single">Single</option>
+                                                        <option value="Married">Married</option>
+                                                    </select>
+                                                </div>
+                                            </div>        
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" name="jobappEmail" id="jobappEmail"  required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                   
+                                                <!--<div class="row">-->
+                                                <div class="form-group "> <!--col-lg-5-->
+
+                                                    <label>Phone No.</label>
+                                                    <input type="text" class="form-control" name="jobappPhone" id="phoneno" onkeypress="return onlyNumberKey(event)" autocomplete="off"
+                                                           pattern="^((\+91)?|91)?[6789][0-9]{9}" required/>
+                                                </div>
+                                                <!--                                                    <div class="form-group col-lg-3">
+                                                                                                        <label>OTP</label>
+                                                                                                        <input type="text" class="form-control" onkeypress="return onlyNumberKey(event)" name="jobappOtp" id='otp' required/>
+                                                                                                    </div>
+                                                                                                    <div class="form-group col-lg-4" id='getotp' style='display: block;'>
+                                                                                                        <input type="text" class="form-control" name="jobappPhone"required/>
+                                                                                                        <label>&nbsp;</label>
+                                                                                                        <a class="btn btn-primary form-control" onclick="getOtp()">Get Otp</a>
+                                                                                                    </div>
+                                                                                                    <div class="form-group col-lg-4" id='verify' style='display: none;'>
+                                                                                                        <input type="text" class="form-control" name="jobappPhone"required/>
+                                                                                                        <label>&nbsp;</label>
+                                                                                                        <a class="btn btn-primary form-control" onclick="verifyOtp()">Verify</a>
+                                                                                                    </div>
+                                                                                                    <div class="form-group col-lg-4" id='verified' style='display: none;'>
+                                                                                                        <input type="text" class="form-control" name="jobappPhone"required/>
+                                                                                                        <label>&nbsp;</label>
+                                                                                                        <button class="btn btn-success form-control" disabled>Verifed</button>
+                                                                                                    </div>-->
+                                                <!--</div>-->   
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Alternate Phone No.</label>
+                                                    <input type="text" class="form-control" name="jobappAltPhone" data-parsley-pattern="^((\+91)?|91)?[6789][0-9]{9}" onkeypress="return onlyNumberKey(event)" id="jobappAltPhone"  required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Languages Known (Multi Select)</label>
+                                                    <select  class="form-control langKnown" name="jobappLanguagesKnown" id="jobappLanguagesKnown"  required  multiple>
+                                                        <!--<option>-Select-</option>-->
+                                                        <option value="English">English</option>
+                                                        <option value="Hindi">Hindi</option>
+                                                        <option value="Marathi">Marathi</option>
+                                                        <option value="Tamil">Tamil</option>
+                                                        <option value="Telagu">Telagu</option>
+                                                        <option value="Kannada">Kannada</option>
+                                                        <option value="Malayalam">Malayalam</option>
+                                                        <option value="Gujarati">Gujarati</option>
+                                                        <option value="Bengali">Bengali</option>
+                                                        <option value="Oriya">Oriya</option>
+                                                    </select>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4" style="display: none">                     
+                                                <div class="form-group">
+                                                    <label>Nationality</label>
+                                                    <input type="text" class="form-control" name="jobappNationality" id="jobappNationality" value="INDIAN" required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Correspondance Address 1</label>
+                                                    <input type="text" class="form-control" name="jobappAddressForCorrespondance1" id="jobappAddressForCorrespondance1"  required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4" style="display: none">                     
+                                                <div class="form-group">
+                                                    <label>Correspondance Address 2</label>
+                                                    <input type="text" class="form-control" name="jobappAddressForCorrespondance2" id="jobappAddressForCorrespondance2"  value="NA"/>
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>State</label>
+                                                    <!--<input type="text" class="form-control" name="jobappState" id="jobappState" value="test" required/>-->
+                                                    <select class="form-control" id="jobappState" name="jobappState" required onchange="getCityList(this.id)">
+                                                        <option value="">Select State</option>
+                                                        <option th:each="slist : ${slist}" th:id="${slist.id}" th:value="${slist.name}" th:text="${slist.name}"></option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <!--<input type="text" class="form-control" name="jobappCity" id="jobappCity" value="test" required/>-->
+                                                    <select class="form-control" name="jobappCity" id="jobappCity"  required>
+                                                        <option value="">Select City</option>
+                                                        <!--                                                        <option th:each="clist : ${clist}" th:value="${clist.name}" th:text="${clist.name}"></option>-->
+                                                    </select>
+                                                </div>
+                                            </div>   
+
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Postal Code</label>
+                                                    <input type="text" class="form-control" name="jobappPostalCode" minlength="6" maxlength="6" pattern=".{6,}" onkeypress="return onlyNumberKey(event)" id="jobappPostalCode" required/>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Joining Date If Selected</label>
+                                                    <input type="date" class="form-control" name="jobappTimeRequiredForJoiningIfSelect" id="jobappTimeRequiredForJoiningIfSelect" required/>
+                                                </div>
+
+                                            </div>  
+                                            <!--</form>-->
+                                        </div> 
+
+                                        <!--End-->
+
+                                        <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                            <div class="col-lg-10">
+                                                <h4>Applicant Qualification</h4>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <!--<button class="btn btn-primary pull-right">Add</button>-->
+                                            </div>
+                                        </div> <br>
+
+                                            <!--Applicant Qualification-->
+
+
+                                            <div class="row" id="applicant2">
+                                                <div class="col-lg-4">                     
+                                                    <div class="form-group">
+                                                        <label>Qualification</label>
+                                                        <input type="text" class="form-control" name="skillQualification" id="skillQualification"  required/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">                     
+                                                    <div class="form-group">
+                                                        <label>College/University Name</label>
+                                                        <input type="text" class="form-control" name="skillCollegeUniInstituteName" id="skillCollegeUniInstituteName"  required/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">                     
+                                                    <div class="form-group">
+                                                        <label>Examination</label>
+                                                        <!--<input type="text" class="form-control" name="skillExamination" id="skillExamination"  required/>-->
+                                                        <select class="form-control" name="skillExamination" id="skillExamination" required>
+                                                            <option value="">Select Examination</option>
+                                                            <option value="passed">Passed</option>
+                                                            <option value="appeared">Appeared</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">                     
+                                                    <div class="form-group">
+                                                        <label>Marks/Percentage</label>
+                                                        <input type="text" class="form-control" name="skillDivisionPercentageOfMarks" id="skillDivisionPercentageOfMarks"  required/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">                     
+                                                    <div class="form-group">
+                                                        <label>Year Of Passing</label>
+                                                        <input type="text" class="form-control" name="skillDivisionPercentageOfMarks" id="skillDivisionPercentageOfMarks"  required/>
+                                                    </div>
+                                                </div>
+
+
+                                                
+
+                                            </div>             
+
+                                            <!--End-->
+
+                                            <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                                <div class="col-lg-10">
+                                                    <h4>Applicant Experience </h4>
+
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <span style="color: blue;"><h5><input type="checkbox" id="checkbox" name="fresher" class="fresher" value="fresher"/><label class="table-head" title="Click here If You are fresher !!">Fresher</label></h5></span>
+                                                    <!--<button class="btn btn-primary pull-right">Add</button>-->
+                                                </div>
+                                                <!--                <div class="col-lg-1">
+                                                                    <button class="btn btn-primary pull-right">Edit</button>
+                                                                </div>-->
+                                            </div>  <br>
+
+                                                <!--Applicant Experiance-->
+
+                                                <div class="row" id="applicant3">
+                                                    <div class="col-lg-4">                     
+                                                        <div class="form-group">
+                                                            <label>Company Name</label>
+                                                            <input type="text" class="form-control experiance-div" name="expPreviousCompanyName" id="expPreviousCompanyName"  required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">                     
+                                                        <div class="form-group">
+                                                            <label>Designation</label>
+                                                            <input type="text" class="form-control experiance-div" name="expDesignation" id="expDesignation"  required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">                     
+                                                        <div class="form-group">
+                                                            <label>Previous Salary</label>
+                                                            <input type="text" class="form-control experiance-div" name="expSalaryOffered" id="expSalaryOffered"  required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">                     
+                                                        <div class="form-group">
+                                                            <label>Duration</label>
+                                                            <input type="text" class="form-control experiance-div" name="expDuration" id="expDuration"  required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">                     
+                                                        <div class="form-group">
+                                                            <label>Reason To Leave</label>
+                                                            <input type="text" class="form-control experiance-div" name="expReasonToLeaveCompany" id="expReasonToLeaveCompany"  required/>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    
+
+                                                <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                                    <div class="col-lg-10">
+                                                        <h4>Uplaod Resume File</h4>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <!--<button class="btn btn-primary pull-right">Add</button>-->
+                                                    </div>
+                                                  
+                                                </div><br>  
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>File name should be contain Candidate Name and Contact Number</label>
+                                                                <input type="file" id="fileUploader" name="resume" accept=".pdf,.jpg,.jpeg,.doc,.docx" required onchange="validateSize(this)"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                                        <div class="col-lg-10">
+                                                            <h4>Declaration</h4>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <!--<button class="btn btn-primary pull-right">Add</button>-->
+                                                        </div>
+                                                      
+                                                    </div>
+                                                    <div>
+                                                        <p>I declare that I am physically, mentally & psychologically fit for working at <strong>THE CONNECTIONS ITES BUSSINESS SERVICE PVT LTD</strong>.<br><br>
+                                                                    I declare that I have no criminal records.<br><br>
+                                                                            I hereby certify that the information provided above is to be true to the best of my knowledge and in case any information as above is found to be false or in-correct or suppressed at any stage,I understand that I liable to be terminated from the services of <strong>THE CONNECTIONS ITES BUSSINESS SERVICE PVT LTD</strong>.
+                                                                            forthwith without prejudice to any other legal and disciplinary action as deemed fit by the management.  </p>
+                                                                            </div>
+                                                                            <div class="form-group form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="agreeCheck">
+                                                                                    <label class="form-check-label" for="iAgree" style="font-weight:bold;">I agree to all Terms & Conditions.</label>
+                                                                            </div>
+
+                                                                            <!--end-->
+                                                                            <div class="row">
+                                                                          
+                                                                                <div class="form-group col-lg-2 col-lg-offset-10" id="saveBtn" style="display: block;">
+                                                                                    <button class="btn btn-md btn-success pull-right" id="formSubmitBtn" type="submit" disabled>Submit</button>
+                                                                                    <!--onclick="submitForm()"-->
+                                                                                    <button id="loaderbtn" class="btn btn-primary" type="button" style="display: none" disabled>
+                                                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                        Loading...
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            </form>
+                                                                            <div class="col-md-9 offset-2 container-fluid" id="primeLoader" style="display:none;margin-top: -50%;text-align: center; height:100vh;background-color:rgba(13,13,13,0.3);position:absolute;">
+                                                                                <!--<div  class="col-md-offset-5  col-md-1" style="overflow: hidden;border-radius:25%;top:30%;background-color:#eee;padding:0;text-align: center">-->
+
+                                                                                <img src="/asset/images/3.gif" style="top:0;left:0;margin-top: 20%" />          
+                                                                                <!--</div>-->
+                                                                                <!--<img src="../static/asset/images/3.gif" alt=""/>-->
+                                                                            </div>
+                                                                            </div>
+
+                                                                            <!-- jQuery library -->
+                                                                            <script src="asset/js/jquery-3.6.1.min.js" type="text/javascript"></script>
+                                                                            <!--<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>-->
+
+                                                                            <!-- Latest compiled JavaScript -->
+                                                                            <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->    
+                                                                            <!--<script src="asset/js/sweetalert2.min.js" type="text/javascript"></script>-->
+                                                                            <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+                                                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+                                                                            <script src="asset/js/parsley.min.js" type="text/javascript"></script>
+                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js" type="text/javascript"></script>
+                                                                            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+                                                                            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                                                                            <script th:inline="javaScript">
+                                                                    $(document).ready(function () {
+                                                                        $('#jobappTimeRequiredForJoiningIfSelect').attr('min', new Date().toISOString().split('T')[0]);
+
+                                                                        $(".langKnown").select2({
+                                                                        });
+
+                                                                    });
+                                                                    function onlyNumberKey(evt) {
+                                                                        // Only ASCII character in that range allowed
+                                                                        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+                                                                        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                                                                            return false;
+                                                                        return true;
+                                                                    }
+
+//                                                                    var cnt = 1;
+//
+//                                                                    function nextPage() {
+//                                                                        $("#applicant" + cnt).hide();
+//                                                                        //                $("nxtBtn").css("display","none");
+//                                                                        if (cnt == 1) {
+//                                                                            submitForm();
+//                                                                        }
+//
+//                                                                        cnt++;
+//                                                                        $("#backBtn").show();
+//                                                                        $("#applicant" + cnt).show();
+//
+//                                                                        if (cnt == 4) {
+//                                                                            $("#nxtBtn").hide();
+//                                                                            $("#saveBtn").show();
+//                                                                        }
+//                                                                        console.log(cnt);
+//                                                                    }
+//
+//                                                                    function backPage() {
+//                                                                        $("#applicant" + cnt).hide();
+//                                                                        //                $("saveBtn").css("display","none");
+//                                                                        cnt--;
+//                                                                        $("#applicant" + cnt).show();
+//                                                                        if (cnt == 3) {
+//                                                                            $("#saveBtn").hide();
+//                                                                            $("#nxtBtn").show();
+//                                                                        }
+//                                                                        console.log(cnt);
+//                                                                    }
+
+                                                                    var otpIs;
+                                                                    function getOtp() {
+//                                                                      
+                                                                        var phoneNo = $("#phoneno").val();
+                                                                        var phonePattern = /^\d{10}$/;
+
+                                                                        if (phoneNo.match(phonePattern)) {
+                                                                            $("#getotp").hide();
+                                                                            $.ajax({
+                                                                                url: 'getOtp',
+                                                                                //                    dataType: '
+                                                                                type: 'post',
+                                                                                data: {
+                                                                                    'phoneNo': phoneNo,
+                                                                                },
+                                                                                success: function (result) {
+                                                                                    if (result === '' || result === null) {
+                                                                                        $.notify("Somthing Going to Wrorng!!!", "error");
+                                                                                        $("#getotp").show();
+                                                                                    } else {
+                                                                                        $.notify("OTP send Succussfully !!!", "success");
+                                                                                        $("#verify").show();
+                                                                                        console.log(result);
+                                                                                        otpIs = result;
+                                                                                        $("#otpId").val();
+                                                                                    }
+                                                                                },
+                                                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                                                    $.notify("Somthing Going to Wrorng!!!", "error");
+                                                                                }
+                                                                            });
+                                                                            return true;
+                                                                        } else {
+                                                                            $.notify("Mobile Number is Invalid", "error");
+                                                                            return false;
+                                                                        }
+
+
+                                                                    }
+                                                                    var verify = "";
+                                                                    function verifyOtp() {
+                                                                        var otp = $("#otp").val();
+
+                                                                        if (otp === otpIs) {
+                                                                            verify = "done";
+                                                                            $("#verified").show();
+                                                                            $("#verify").hide();
+//                                                                            $('#phoneno').attr('readonly');
+                                                                            $('#phoneno').attr('readonly', true);
+                                                                            $('#otp').attr('readonly', true);
+
+                                                                            $.notify("OTP Is Correct", "success");
+                                                                        } else {
+                                                                            verify = "notdone";
+                                                                            $.notify("OTP Is Incorrect", "error");
+                                                                        }
+                                                                    }
+
+                                                                    //            function submitForm(){
+                                                                    //                var applicant = $("#applicant").serialize();
+                                                                    //                
+                                                                    //                $.ajax({
+                                                                    //                    url : 'saveApplicant',
+                                                                    //                    type : 'post',
+                                                                    //                    data : applicant,
+                                                                    //                    success : function(result){
+                                                                    //                        console.log(result);
+                                                                    //                    }
+                                                                    //                })
+                                                                    //            }
+
+                                                                    function addQualification() {
+                                                                        $.ajax({
+                                                                            url: 'addQualification',
+                                                                            type: 'post',
+                                                                            data: $("#skills").serialize(),
+                                                                            success: function (result) {
+                                                                                console.log(result);
+                                                                                if (result === "Done") {
+                                                                                    alert("Details Saved");
+                                                                                    $(".skill-div").val("");
+                                                                                    $(".skill-select-div").val("-1");
+                                                                                } else {
+                                                                                    alert("Something went wrong");
+                                                                                }
+                                                                            }
+                                                                        })
+                                                                    }
+
+                                                                    function addExperiance() {
+
+                                                                        $.ajax({
+                                                                            url: 'addExperiance',
+                                                                            type: 'post',
+                                                                            data: $("#experiance").serialize(),
+                                                                            success: function (result) {
+                                                                                console.log(result);
+                                                                                if (result === "Done") {
+                                                                                    alert("Details Saved");
+                                                                                    $(".experiance-div").val("");
+                                                                                    //                            $(".skill-select-div").val("-1");
+                                                                                } else {
+                                                                                    alert("Something went wrong");
+                                                                                }
+                                                                            }
+                                                                        })
+                                                                    }
+
+                                                                    function addfamilyDetail() {
+
+                                                                        $.ajax({
+                                                                            url: ' addFamilyDetail',
+                                                                            type: 'post',
+                                                                            data: $("#familyDetail").serialize(),
+                                                                            success: function (result) {
+                                                                                console.log(result);
+                                                                                if (result === "Done") {
+                                                                                    alert("Details Saved");
+                                                                                    $(".familyDtl-div").val("");
+                                                                                    //                            $(".skill-select-div").val("-1");
+                                                                                } else {
+                                                                                    alert("Something went wrong");
+                                                                                }
+                                                                            }
+                                                                        })
+                                                                    }
+
+                                                                    var qcnt = 1, scnt = 1, fcnt = 1;
+                                                                    function addRow(name) {
+                                                                        //                console.log(name);
+                                                                        switch (name) {
+                                                                            case "qualification":
+                                                                                console.log(name);
+                                                                                $("#qualification-Tbl-Body").append('<tr id="qualification' + qcnt + '">'
+                                                                                        + '<td>'
+                                                                                        + '    <div class="form-group">'
+                                                                                        + '        <input type="text" class="form-control skill-div" name="skillQualification" required/>'
+                                                                                        + '    </div>'
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '    <div class="form-group">'
+                                                                                        + '       <input type="text" class="form-control skill-div" name="skillCollegeUniInstituteName" required/>'
+                                                                                        + '   </div>'
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '    <div class="form-group">'
+                                                                                        + '         <select class="form-control skill-select-div" name="skillExamination" required>'
+                                                                                        + '             <option value="-1">Select Examination</option>'
+                                                                                        + '             <option value="passed">Passed</option>'
+                                                                                        + '             <option value="appeared">Appear ed</option>'
+                                                                                        + '         </select>'
+                                                                                        + '   </div>'
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '   <div class="form-group">'
+                                                                                        + '     <input type="text" class="form-control skill-div" name="skillDivisionPercentageOfMarks" required/>'
+                                                                                        + '   </div>'
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '   <div class="form-group">'
+                                                                                        + '       <input type="text" class="form-control skill-div" name="skillYearOfPassing" required/>'
+                                                                                        + '   </div>'
+                                                                                        + '</td>'
+                                                                                        + '<td style="padding : 1em 0.2em;">'
+                                                                                        + '    <a class="btn btn-primary btn-xs pull-right" name="' + name + '" onclick="removeRow(this.name,' + qcnt + ')">-</a>'
+                                                                                        + '</td>'
+                                                                                        + '</tr>');
+                                                                                qcnt++;
+                                                                                break;
+                                                                            case "experiance":
+                                                                                console.log(name);
+                                                                                $("#experiance-Tbl-Body").append('<tr id="experiance' + scnt + '">'
+                                                                                        + '<td>'
+                                                                                        + '   <div class="form-group">'
+                                                                                        + '       <input type="text" class="form-control experiance-div" name="expPreviousCompanyName" required/>'
+                                                                                        + '   </div> '
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '   <div class="form-group">'
+                                                                                        + '       <input type="text" class="form-control experiance-div" name="expDesignation" required/>'
+                                                                                        + '   </div> '
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '   <div class="form-group">'
+                                                                                        + '       <input type="text" class="form-control experiance-div" name="expSalaryOffered" required/>'
+                                                                                        + '   </div> '
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '   <div class="form-group">'
+                                                                                        + '       <input type="text" class="form-control experiance-div" name="expDuration" required/>'
+                                                                                        + '   </div>'
+                                                                                        + '</td>'
+                                                                                        + '<td>'
+                                                                                        + '<div class="form-group">'
+                                                                                        + '    <input type="text" class="form-control experiance-div" name="expReasonToLeaveCompany" required/>'
+                                                                                        + '</div>   '
+                                                                                        + '  </td>'
+                                                                                        + '<td style="padding : 1em 0.2em;">'
+                                                                                        + '    <a class="btn btn-primary btn-xs pull-right" name="' + name + '" onclick="removeRow(this.name,' + scnt + ')">-</a>'
+                                                                                        + '</td>'
+                                                                                        + '</tr>');
+                                                                                scnt++;
+                                                                                break;
+                                                                            case "familyDetail":
+                                                                                $("#familyDtl-Tbl-Body").append('<tr id="familyDetail' + fcnt + '">'
+                                                                                        + '    <td>'
+                                                                                        + '       <div class="form-group">'
+                                                                                        + '           <input type="text" class="form-control familyDtl-div" name="familyFullName" required/>'
+                                                                                        + '       </div>'
+                                                                                        + '    </td>'
+                                                                                        + '    <td>'
+                                                                                        + '       <div class="form-group">'
+                                                                                        + '           <input type="text" class="form-control familyDtl-div" name="familyRealation" required/>'
+                                                                                        + '       </div>'
+                                                                                        + '    </td>'
+                                                                                        + '    <td>'
+                                                                                        + '       <div class="form-group">'
+                                                                                        + '           <input type="text" class="form-control familyDtl-div" name="familyOccupation" required/>'
+                                                                                        + '       </div>'
+                                                                                        + '    </td>'
+                                                                                        + '    <td>'
+                                                                                        + '      <div class="form-group">'
+                                                                                        + '           <input type="text" class="form-control familyDtl-div" name="familyPhone" required/>'
+                                                                                        + '       </div>         '
+                                                                                        + '    </td>'
+                                                                                        + '<td style="padding : 1em 0.2em;">'
+                                                                                        + '    <a class="btn btn-primary btn-xs pull-right" name="' + name + '" onclick="removeRow(this.name,' + fcnt + ')">-</a>'
+                                                                                        + '</td>'
+                                                                                        + '</tr>');
+                                                                                fcnt++;
+                                                                                break;
+                                                                            default:
+                                                                                console.log("Row Added");
+                                                                        }
+                                                                    }
+                                                                    function removeRow(name, idIs) {
+                                                                        console.log(name + " " + idIs);
+                                                                        switch (name) {
+                                                                            case "qualification" :
+                                                                                $("#qualification" + idIs).remove();
+                                                                                qcnt--;
+                                                                                break;
+                                                                            case "experiance" :
+                                                                                $("#experiance" + idIs).remove();
+                                                                                scnt--;
+                                                                                break;
+                                                                            case "familyDetail" :
+                                                                                $("#familyDetail" + idIs).remove();
+                                                                                fcnt--;
+                                                                                break;
+                                                                            default:
+                                                                                console.log("Row Remove");
+                                                                        }
+
+                                                                    }
+                                                                    $('#applicant').parsley().on('field:validated', function () {
+                                                                        //                                            var ok = $('.parsley-error').length === 0;
+                                                                        //                                           $('.bs-callout-warning').toggleClass('hidden', ok);
+                                                                    })
+                                                                            .on('form:submit', function () {
+
+                                                                                //   $("#applicant").submit(function(e){
+
+//                                                                                console.log(verify);
+//
+//                                                                                if (verify === "" || verify === "notdone") {
+//                                                                                    $.notify("Please Verify OTP..");
+//                                                                                    $("#otp").focus();
+//                                                                                    return false;
+//                                                                                }
+                                                                                var list = new Array();
+                                                                                var list1 = new Array();
+                                                                                var list2 = new Array();
+                                                                                var list3 = new Array();
+                                                                                //                var formData = $("#applicant").serializeArray();
+                                                                                var formData = {};
+
+                                                                                console.log($("#jobappConsultancyWalkinName").val());
+
+                                                                                formData['jobappConsultancyWalkinName'] = $("#jobappConsultancyWalkinName").val(),
+                                                                                        formData['jobappInteviewVenue'] = $("#jobappInteviewVenue").val(),
+                                                                                        formData['jobappRefferedByName'] = $("#jobappRefferedByName").val(),
+                                                                                        formData['jobappInterviewerName'] = $("#jobappInterviewerName").val(),
+                                                                                        formData['jobappBirthdate'] = $("#jobappBirthdate").val(),
+                                                                                        formData['jobappBirthplace'] = $("#jobappBirthplace").val(),
+                                                                                        formData['jobappAge'] = $("#jobappAge").val(),
+                                                                                        formData['jobappGender'] = $("#jobappGender").val(),
+                                                                                        formData['jobappMaritalStatus'] = $("#jobappMaritalStatus").val(),
+                                                                                        formData['jobappEmail'] = $("#jobappEmail").val(),
+                                                                                        formData['jobappPhone'] = $("#phoneno").val(),
+                                                                                        formData['jobappAltPhone'] = $("#jobappAltPhone").val(),
+                                                                                        formData['jobappLanguagesKnown'] = $("#jobappLanguagesKnown").val(),
+                                                                                        formData['jobappNationality'] = $("#jobappNationality").val(),
+                                                                                        formData['jobappAddressForCorrespondance1'] = $("#jobappAddressForCorrespondance1").val(),
+                                                                                        formData['jobappAddressForCorrespondance2'] = $("#jobappAddressForCorrespondance2").val(),
+                                                                                        formData['jobappCity'] = $("#jobappCity").val(),
+                                                                                        formData['jobappState'] = $("#jobappState").val(),
+                                                                                        formData['jobappPostalCode'] = $("#jobappPostalCode").val(),
+                                                                                        formData['jobappTimeRequiredForJoiningIfSelect'] = $("#jobappTimeRequiredForJoiningIfSelect").val(),
+                                                                                        list3.push(formData);
+
+                                                                                var qualificationData = {};
+                                                                                qualificationData['qualification'] = $('#skillQualification').val();
+                                                                                qualificationData['institute'] = $('#skillCollegeUniInstituteName').val();
+                                                                                qualificationData['examination'] = $('#skillExamination').val();
+                                                                                qualificationData['marks'] = $('#skillDivisionPercentageOfMarks').val();
+                                                                                qualificationData['passingyear'] = $('#skillDivisionPercentageOfMarks').val();
+                                                                                list.push(qualificationData);
+//                                                                                $("#qualification-Tbl-Body").find('tr').each(function (i) {
+//                                                                                    var data = {};
+//                                                                                    var tds = $(this).find('td'),
+//                                                                                            first = tds.eq(0).find('input').val(),
+//                                                                                            second = tds.eq(1).find('input').val(),
+//                                                                                            third = tds.eq(2).find('select').val(),
+//                                                                                            fourth = tds.eq(3).find('input').val(),
+//                                                                                            fifth = tds.eq(4).find('input').val();
+//                                                                                    data['qualification'] = first;
+//                                                                                    data['institute'] = second;
+//                                                                                    data['examination'] = third;
+//                                                                                    data['marks'] = fourth;
+//                                                                                    data['passingyear'] = fifth;
+//                                                                                    list.push(data);
+//                                                                                });
+                                                                                var expdata = {};
+                                                                                expdata['company'] = $('#expPreviousCompanyName').val();
+                                                                                expdata['degsignation'] = $('#expDesignation').val();
+                                                                                expdata['preSalary'] = $('#expSalaryOffered').val();
+                                                                                expdata['duration'] = $('#expDuration').val();
+                                                                                expdata['leavereason'] = $('#expReasonToLeaveCompany').val();
+                                                                                list1.push(expdata);
+//                                                                                $("#experiance-Tbl-Body").find('tr').each(function (i) {
+//                                                                                    var data = {};
+//                                                                                    var tds = $(this).find('td'),
+//                                                                                            first = tds.eq(0).find('input').val(),
+//                                                                                            second = tds.eq(1).find('input').val(),
+//                                                                                            third = tds.eq(2).find('input').val(),
+//                                                                                            fourth = tds.eq(3).find('input').val(),
+//                                                                                            fifth = tds.eq(4).find('input').val();
+//                                                                                    data['company'] = first;
+//                                                                                    data['degsignation'] = second;
+//                                                                                    data['preSalary'] = third;
+//                                                                                    data['duration'] = fourth;
+//                                                                                    data['leavereason'] = fifth;
+//                                                                                    list1.push(data);
+//                                                                                });
+//                                                                                var famdata = {};
+//                                                                                famdata['fullName'] = $('#familyFullName').val();
+//                                                                                famdata['relation'] = $('#familyRealation').val();
+//                                                                                famdata['occupation'] = $('#familyOccupation').val();
+//                                                                                famdata['contact'] = $('#familyPhone').val();
+//                                                                                list2.push(famdata);
+//                                                                                $("#familyDtl-Tbl-Body").find('tr').each(function (i) {
+//                                                                                    var data = {};
+//                                                                                    var tds = $(this).find('td'),
+//                                                                                            first = tds.eq(0).find('input').val(),
+//                                                                                            second = tds.eq(1).find('input').val(),
+//                                                                                            third = tds.eq(2).find('input').val(),
+//                                                                                            fourth = tds.eq(3).find('input').val();
+//
+//                                                                                    data['fullName'] = first;
+//                                                                                    data['relation'] = second;
+//                                                                                    data['occupation'] = third;
+//                                                                                    data['contact'] = fourth;
+//                                                                                    list2.push(data);
+//
+//                                                                                })
+
+                                                                                console.log(list);
+                                                                                var file = $("#fileUploader").val();
+                                                                                var input = document.getElementById('fileUploader')
+                                                                                console.log(file);
+                                                                                var formData = new FormData();
+                                                                                formData.append('file', input.files[0]);
+                                                                                formData.append('list3', JSON.stringify(list3));
+                                                                                formData.append('list', JSON.stringify(list));
+                                                                                formData.append('list1', JSON.stringify(list1));
+//                                                                                formData.append('list2', JSON.stringify(list2));
+//                                                                                        alert(formData.toString());
+                                                                                // $('#primeLoader').show();
+                                                                                $('#formSubmitBtn').hide();
+                                                                                $('#loaderbtn').show();
+                                                                                $.ajax({
+                                                                                    url: 'saveApplicantDetail',
+                                                                                    type: 'post',
+                                                                                    //                    dataType : 'json',
+                                                                                    //                    data : formData,
+                                                                                    processData: false,
+                                                                                    contentType: false,
+                                                                                    data: formData,
+
+                                                                                    success: function (result) {
+                                                                                        $('#formSubmitBtn').show();
+                                                                                        $('#loaderbtn').hide();
+                                                                                        //  $('#primeLoader').hide();
+                                                                                        console.log(result);
+                                                                                        if (result === "Done") {
+
+                                                                                            window.location.href = "defaultSuccess";
+                                                                                            //  window.onload = defaultSuccess;
+                                                                                        } else {
+
+                                                                                            window.location.href = "errorPage";
+//                                                                                                    window.onload = errorPage;
+
+                                                                                        }
+                                                                                    }
+                                                                                })
+
+                                                                            })
+
+                                                                    function getState(valueIs) {
+                                                                        console.log(valueIs);
+                                                                        $.ajax({
+                                                                            url: 'getState',
+                                                                            type: 'post',
+                                                                            data: {
+                                                                                'cName': valueIs,
+                                                                            },
+                                                                            success: function (result) {
+                                                                                console.log(result);
+
+                                                                                $("#jobappState").val(result);
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    //on change state
+                                                                    function getCityList(id) {
+
+                                                                        var sleID = document.querySelector('#jobappState');
+                                                                        var stateId = sleID.options[sleID.selectedIndex].id;
+                                                                        $.ajax({
+                                                                            url: 'getCityList',
+                                                                            type: 'GET',
+                                                                            data: {
+                                                                                'stateId': stateId,
+                                                                            },
+                                                                            success: function (result) {
+                                                                                // console.log(result);
+                                                                                $('#jobappCity').html(result);
+                                                                            }
+                                                                        })
+                                                                    }
+
+                                                                    $('#checkbox').click(function () {
+                                                                        if ($(this).is(':checked')) {
+                                                                            $(".experiance-div").val("NA");
+                                                                            $("#applicant3").hide();
+                                                                        } else {
+                                                                            $(".experiance-div").val("");
+                                                                            $("#applicant3").show();
+
+                                                                        }
+                                                                    });
+                                                                    $('#agreeCheck').click(function () {
+                                                                        if ($(this).is(':checked')) {
+                                                                            $("#formSubmitBtn").removeAttr('disabled');
+                                                                        } else {
+                                                                            $("#formSubmitBtn").attr('disabled', 'disabled');
+
+                                                                        }
+                                                                    });
+
+                                                                    //                                                                    function validNum(val1) {
+                                                                    //                                                                       // alert(val);
+                                                                    //                                                                        var phoneno = /^((\+91)?|91)?[6789][0-9]{9}/;
+                                                                    //                                                                        if (val1.value.match(phoneno))
+                                                                    //                                                                        {
+                                                                    //                                                                            alert("yes");
+                                                                    //                                                                        return true;
+                                                                    //                                                                        }
+                                                                    //                                                                        else
+                                                                    //                                                                        {
+                                                                    //                                                                            alert("message");
+                                                                    //                                                                                    return false;
+                                                                    //                                                                        }
+                                                                    //
+                                                                    //                                                                    }
+                                                                    function validateSize(input) {
+                                                                        const fileSize = input.files[0].size / 1024 / 1024; // in MiB
+                                                                        if (fileSize > 3) {
+//                                                                            alert('File size exceeds 2 MiB');
+                                                                            $.notify('File size exceeds 3 MB', "error");
+                                                                            $('#fileUploader').val(''); //for clearing with Jquery
+                                                                        } else {
+                                                                            // Proceed further
+                                                                        }
+                                                                    }
+                                                                    function getAge(date) {
+//                                                                        alert((new Date(date)).getFullYear())
+                                                                        var cdate = new Date();
+                                                                        var bdate = new Date(date);
+                                                                        var years = cdate.getFullYear() - bdate.getFullYear();
+                                                                        //                                                                        var years = new Date(new Date() - new Date(date)).getFullYear() - 1970; // miliseconds from epoch
+                                                                        $('#jobappAge').val(years);
+                                                                        if (years < 18) {
+                                                                            $('#jobappAge').val('');
+                                                                            $.notify('You are not eligible for this Post becasue you are below 18', "error");
+                                                                            $('#jobappBirthdate').val('');
+                                                                            $('#jobappBirthdate').focus();
+                                                                        }
+                                                                    }
+                                                                            </script>
+
+                                                                            </body>
+                                                                            </html>

@@ -1,0 +1,174 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Experience Letter</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 120px 50px 80px 50px;
+                margin-bottom: 80px;
+
+                @top-center {
+                    content: element(header);
+                }
+
+                @bottom-center {
+                    content: element(footer);
+                }
+            }
+
+            body {
+                text-align: justify;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* HEADER */
+            .header {
+                position: running(header);
+            }
+
+
+
+
+            /* CONTENT */
+            .content {
+                width: 100%;
+            }
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 20px 0;
+                text-decoration: underline;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: avoid;
+            }
+
+            td {
+                vertical-align: top;
+            }
+            p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 12px;
+                color: #555;
+            }
+
+            .footer-line {
+                border-top: 2px solid #128bfc;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <table>
+                <tr>
+                    <td style="width: 120px;">
+                        <img th:src="${logoPath}" style="width:150px;" />
+                    </td>
+                    <td style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; color:#128bfc;">
+                            THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED
+                        </div>
+                        <div style="font-size:9px;">
+                            Call Center Services | Software Development | Document Management Systems |
+                            Training Solutions | Security Enabled Printing
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr style="margin-top:10px; color:#128bfc"/>
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+            <!-- DATE -->
+            <div style="text-align:right; margin:0; line-height:1.2;">
+                <div>Document ID: <b><span th:text="${docNo}"></span></b></div>
+                <div>Date : <span th:text="${date}"></span></div>
+            </div>
+          <br/>
+            <!-- EMPLOYEE DETAILS -->
+
+
+            <!-- TITLE -->
+            <div class="title">
+                <strong>Experience Letter </strong>
+            </div>
+            <div class="title">
+                To Whom It May Concern
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section">
+                <p>This is to certify that  <strong><span th:text="${salutation}"></span> <span th:text="${employeeName}"></span> </strong> has worked with <strong>THE-CONNECTIONS ITES BUSINESS SERVICES PVT. LTD</strong> from <strong><span th:text="${joiningDate}"></span> </strong> to <strong><span th:text="${lastDate}"></span> </strong> and was designated as <strong><span th:text="${designation}"></span></strong> at the time of leaving the organization.</p>
+                <p>During the above tenure, we found <span th:text="${salutation == 'Mr.' ? 'him' : 'her'}"></span> to be regular, honest, and diligent in carrying out <span th:text="${salutation == 'Mr.' ? 'his' : 'her'}"></span> duties and responsibilities. This is also to certify that <strong><span th:text="${salutation}"></span> <span th:text="${employeeName}"></span> </strong> has no liabilities pending towards the company. </p>
+                <p>We wish <span th:text="${salutation == 'Mr.' ? 'him' : 'her'}"></span> every success in all future endeavors.</p>
+                <p class="signature" ><strong>
+                        The-Connections ITES Business Services Private Limited <br></br>
+                        <span th:text="${senderName}"></span><br/>
+                        Human Resource Department
+                    </strong> </p>
+            </div>
+            <div style="margin-top:10px;">
+                    <img th:src="${stampPath}" alt="Company Stamp" style="width:100px;"/>
+                </div>
+            <!-- PAGE BREAK -->
+
+
+            <!-- SECTION B -->
+
+
+        </div>
+        <div class="footer">
+            <p style="margin-top:20px; font-size:11px; color:#777; text-align:center; font-style:italic;">
+                This is a system-generated document and does not require a physical signature.
+            </p>
+            <div class="footer-line"></div>
+
+            <div>
+                Office No. 18 &amp; 19, D Tower, 5th Floor, Vega Center, Shankarsheth Road, Swargate, Pune-411037
+            </div>
+
+            <div>
+                Web : www.the-connections.com | Email : info@the-connections.com | CIN No. : U74990PN2016PTC158850
+            </div>
+
+            <div class="footer-line"></div>
+
+        </div>
+    </body>
+</html>
+

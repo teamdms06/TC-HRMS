@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Employment Agreement</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 90px 50px 50px 50px;
+
+                @top-center {
+                    content: element(header);
+                }
+
+                @bottom-center {
+                    content: element(footer);
+                }
+            }
+
+            body {
+                text-align: justify;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* HEADER */
+            .header {
+                position: running(header);
+                margin: 0;
+                padding: 0;
+            }
+
+            /* FOOTER */
+            .footer {
+                position: running(footer);
+                font-size: 11px;
+                border-top: 2px solid #128bfc;
+                padding-top: 3px;
+                margin: 0;
+            }
+
+            /* PAGE NUMBER */
+            .pageNumber:before {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+
+            /* CONTENT */
+            .content {
+                width: 100%;
+            }
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 20px 0;
+                text-decoration: underline;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: avoid;
+            }
+
+            td {
+                vertical-align: top;
+            }
+            p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <table>
+                <tr>
+                    <td style="width: 120px;">
+                        <img th:src="${logoPath}" style="width:150px;" />
+                    </td>
+                    <td style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; color:#128bfc;">
+                            THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED
+                        </div>
+                        <div style="font-size:9px;">
+                            Call Center Services | Software Development | Document Management Systems |
+                            Training Solutions | Security Enabled Printing
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div style="height:2px; background:#128bfc; margin:0;"></div>
+            <!--<hr style="margin: 0; padding: 0; border: none; border-top: 2px solid #128bfc;" />-->
+            <!--<hr style="margin-top:10px; color:#128bfc"/>-->
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+        <div class="footer">
+            <table>
+                <tr>
+                    <td style="text-align:left;">
+                        | Employment Agreement with The-Connections |
+                    </td>
+                    <td style="text-align:right;">
+                        <span class="pageNumber"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+            <!-- DATE -->
+            <div style="text-align:right; margin:0; line-height:1.2;">
+                <div>Document ID: <b><span th:text="${docNo}"></span></b></div>
+                <div>Date : <span th:text="${date}"></span></div>
+            </div>
+
+            <!--EMPLOYEE DETAILS--> 
+
+            <!--            <table style="width:100%;">
+                            <tr>
+                                <td style="width:50%; vertical-align:top;">
+                                    <p style="margin:0;"><strong>TO,</strong></p>
+                                    <p style="margin:0;"><strong th:text="${employeeName}"></strong></p>
+            
+                                    <p style="margin-top:5px;">
+                                        <span th:text="${addr}"></span><br/>
+                                        <span th:text="${city}"></span>,
+                                        <span th:text="${state}"></span>,
+                                        <span th:text="${pincode}"></span>
+                                    </p>
+                                </td>
+                                <td style="width:50%;"></td>
+                            </tr>
+                        </table>-->
+            <!-- TITLE -->
+            <div class="title"><strong>EMPLOYMENT AGREEMENT</strong> <br></br>
+                For the position of -
+                <span th:text="${designation}"></span>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section">
+                <!--<p><strong>EMPLOYMENT AGREEMENT</strong></p>-->
+                <!--                <p>
+                                    This agreement lays down the terms of employment agreed upon by the Organization and Employee. Whether stated explicitly in this agreement or not, both the Organization and the Employee have the duty of mutual confidence and trust, and to make only lawful and reasonable demands on each other.
+                                </p>-->
+                <p>
+                    This Employment Agreement is made and executed as of this day of <strong><span th:text="${joiningDate}"></span></strong> by and between </p>
+                <p style="text-align: center"> <strong>THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED </strong> </p>
+                <p><strong>Through </strong></p>
+                <p><strong>The Human Resource Manager,</strong></p>
+                <p>having its registered office at 5th Floor, Vega Centre, D Wing, Shankar Sheth Rd, Swargate, Pune, Maharashtra 411037.</p>
+
+                <p style="text-align: center"><strong>AND</strong></p>
+                <p>
+                    <strong><span th:text="${employeeName}"></span></strong>,</p>
+                <p><strong>Age: <span th:text="${age}"></span>Years</strong></p>
+                <p style="margin-top:5px;">
+                    <strong>Address-
+                    <!-- Address -->
+                    <span th:if="${addr != '-' and addr != null and !#strings.isEmpty(addr)}"
+                          th:text="${addr}">
+                    </span>
+
+                    <!-- Line break only if address exists -->
+                    <br th:if="${addr != '-' and addr != null and !#strings.isEmpty(addr)}"/>
+
+                    <!-- City -->
+                    <span th:if="${city != '-' and city != null and !#strings.isEmpty(city)}"
+                          th:text="${city}">
+                    </span>
+
+                    <!-- Comma after city only if state exists -->
+                    <span th:if="${city != '-' and city != null and !#strings.isEmpty(city)
+                          and state != '-' and state != null}">
+                        ,
+                    </span>
+
+                    <!-- State -->
+                    <span th:if="${state != '-' and state != null and !#strings.isEmpty(state)}"
+                          th:text="${state}">
+                    </span>
+
+                    <!-- Comma after state only if pincode exists -->
+                    <span th:if="${state != '-' and state != null
+                          and pincode != '-' and pincode != null}">
+                        ,
+                    </span>
+
+                    <!-- Pincode -->
+                    <span th:if="${pincode != '-' and pincode != null and !#strings.isEmpty(pincode)}"
+                          th:text="${pincode}">
+                    </span>
+                    </strong>
+                </p>
+                <p><strong>Employee ID: <span th:text="${employeeId}"></span></strong></p>
+                <p>(Hereinafter, will be referred to as the employee)</p>
+                <p>Each is referred to as a “Party” and collectively as “Parties.” Whereas the parties hereto voluntarily enter into this agreement to define and set forth the terms and conditions of the employment of the Employee of the organization.</p>
+                <p><strong>
+                        Now, therefore, in consideration of the mutual convention and agreed by the organization and the Employee as follows:</strong>
+                </p>
+                <p><strong>
+                        A) EMPLOYMENT DETAILS:  </strong>
+                </p>
+                <p><strong>
+                        1. Appointment of an Employee:  </strong>
+                </p>
+                <p>After signing and accepting the Employment Agreement, <strong><span th:text="${employeeName}"></span></strong> is hereby appointed as <strong> <span th:text="${designation}"></span> </strong>. The nature of employment is Regular/full-time. 
+                </p>
+                <p><strong>
+                        2. Commencement date: </strong>
+                </p>
+                <p>Your employment with the Organization shall be effective from the date of execution of this document, which shall be <strong><span th:text="${joiningDate}"></span></strong>. </p>
+            </div>
+
+            <!-- PAGE BREAK -->
+            <div class="page-break"></div>
+
+            <!-- SECTION B -->
+            <div class="section">
+                <p><strong> 3. Documents to be provided:</strong></p>
+                <p>a) Employees need to provide the Organization with a self-attested true copy of all the documents provided in Annexure A.</p>
+                <p>b) If the Organization identifies any discrepancy, inconsistency, or misrepresentation in the self-attested true copy documents submitted by the employee, the Organization shall have the right to immediately terminate this Agreement without any prior notice. In such an event, the employee shall not be eligible for employment, and the Organization reserves the right to initiate appropriate legal action against the employee in accordance with applicable law.</p>
+                <p>c) All employment rights will be reserved and governed by the Organization</p>
+                <p>d) Where an Employee claims to possess prior work experience relevant to the employment offered by the Organization, the Employee shall submit self-attested copies of supporting documents including, but not limited to, relieving letters, experience letters, appointment letters, and salary account bank statements for the last six (6) months from all previous employers, as proof of such prior employment and work experience. In the event the Employee is unable to produce any of the aforesaid documents, the Employee shall provide a written explanation specifying the reasons for non-submission of such documents. The Organization shall have the right to verify the authenticity and sufficiency of the documents and explanations submitted by the Employee, and any false representation, concealment, or submission of forged or misleading documents shall constitute misconduct and may result in withdrawal of employment, disciplinary action, or termination of employment without notice.</p>
+                <p>e) The Employee shall, at the time of joining employment, disclose in writing to the Human Resources Department any existing medical condition, ongoing treatment, or health-related circumstance concerning the Employee or any immediate family member, which may reasonably require the Employee to avail frequent leave or may materially affect the Employee’s ability to perform duties and responsibilities. The Employee shall further keep the Organization informed of any such condition arising during the course of employment. Failure to make such disclosure, concealment of material information, or furnishing false or misleading information shall constitute misconduct and may result in disciplinary action in accordance with the Organization’s policies, including termination of employment without notice.</p>
+
+                <p><strong>4. Probationary Appointment:</strong></p>
+                <p>a) The initial nature of the employment will be a probationary appointment for a period of 3 months from the date of execution of this agreement.</p>
+                <p>b) Upon completion of the initial probation period, the Organization shall have the sole discretion to extend the probation period based on the Employee’s performance, conduct, or suitability, for such further period as it deems fit. If the probation of the employee has been extended for a maximum of 1 month, then such extension will be communicated to the employee by H.R. department/ Team Leader through email.</p>
+                <p>c) During, or upon completion of the probation period, the Employee’s role, responsibilities, and continuation in employment shall be determined by the Concern department based on a performance evaluation. The evaluation process, criteria, and timelines shall be as prescribed by the Organization and communicated to the Employee from time to time through email.</p>
+                <p>d) At the end of the probationary period, the Organization shall:</p>
+                <p> i. If satisfied with performance and suitability for continued employment, the same shall be confirmed in writing; or</p>
+                <p> ii.	Terminate your employment upon giving you 15 days' written notice, such termination being at the sole discretion of the Organization</p>
+
+                <p><strong> 5. Working Shift: </strong></p>
+                <p>The Employee's working shift is generally full-time, from 9:30 AM to 6:30 PM. The Employee acknowledges that, based on business, client, or project requirements, the Organization may require the Employee to work in rotational shifts. The Employee hereby agrees to work in such shifts as may be assigned, without any entitlement to additional allowance, compensation, or salary, unless otherwise expressly provided by the Organization in writing.</p>
+
+                <p><strong> 6. Office hours: </strong></p>
+                <p>a) The Employee shall be required to work a minimum of nine (9) hours per day and six (6) days per week, strictly in accordance with the working hours, shifts, and schedules as may be prescribed by the Organization from time to time. The Employee shall adhere to all attendance, punctuality, and time-tracking requirements, and shall not be entitled to any overtime, additional wages, or compensatory time off unless expressly approved in writing by the Organization. Failure to comply with the prescribed working hours or schedule shall be treated as misconduct and may attract disciplinary action, including termination of employment.</p>
+                <p>b) The Organization may amend the office hours from time to time. However, the Organization has the right to require you to work such further hours on weekdays/weekends and on other notified holidays determined by the Organization by reference to the need to enhance and/or protect the Organization's interest or project requirements.</p>
+
+                <p><strong>7. Location of the Employment:  </strong> </p>
+                <p>a) From the date of commencement of the employment, the Employee will be employed in <span th:text="${location}"></span> Branch or such other place that the Organization may require from time to time.</p>
+                <p>b) The Organization may, at its sole and absolute discretion, or at the Organization's requirement, transfer an employee to any other office of the Organization within India.</p>
+                <p><strong> B) TERMS OF THE EMPLOYMENT</strong> </p>
+                <p><strong> 1. Remuneration / Compensation &amp; Benefits:</strong> </p>
+                <p> a) As remuneration you shall be entitled to receive a CTC of INR.<strong> <span th:text="${#numbers.formatDecimal(empSal.ctc, 0, 0)} + ' Rs /-'"></span></strong> per month which is transferred to your salary account.</p>
+
+                <p> b) The CTC shall comprise the employee’s total cost to the organization and includes all the payments made and benefits provided by the Organization directly and indirectly to the employee’s benefit, whether as a salary or otherwise.</p>
+                <p> c) The Organization shall have no obligation to revise or increase the Employee’s Cost to Company (“CTC”) during the course of employment. Any revision, increment, or enhancement in the Employee’s CTC shall be based upon the Employee’s performance, conduct, business requirements, and such other factors as may be determined by the Organization from time to time. The decision regarding any revision or increase in CTC shall vest solely and absolutely with the Organization, and the Employee shall have no automatic or vested right to claim the same.</p>
+
+            </div>
+
+            <!-- PAGE BREAK -->
+            <div class="page-break"></div>
+            <div class="section">
+                <p> d) The Organization will review the performance of the Employee during the Probationary period and the continuation of employment will be conveyed to the Employee by writing through email.</p>
+
+                <p> e) For all payments or benefits provided under this agreement, the Employee is solely responsible for complying with all requirements under Indian Tax laws, including timely and proper tax compliance, and the Organization is not responsible for any taxes or other imposts incurred by the Employee. From any payments or benefits made or given in connection with the Employment, the Organization shall have the right to make such deductions that it deems necessary and appropriate, and the Organization shall provide the Employee with Form 16 evidencing the deductions made.</p>
+
+                <p> f) The Organization may undertake a third-party service for payroll and tax deductions of Employees.</p>
+
+                <p> g) The Organization shall be entitled, at any time during employment, or in any event on the termination of employment, howsoever arising, to deduct from employee’s remuneration and any sums reimbursable to employee by the Organization, any monies due from employee to the Organization including, but not limited to any outstanding advances, payment for excess holiday, overpayment of salary and any other monies owed by employee to the Organization pursuant to employment with the Organization; </p>
+
+                <p> h) While determining an increment in CTC/Salary, the Organization will evaluate the performance based on the feedback/s received from clients, managers, HR department, and colleagues. The decision of the Organization’s concern department in this respect will be final and binding.</p>
+
+                <p> i) In the event an employee is unable to satisfactorily perform the duties and responsibilities assigned to him/her despite receiving adequate training, guidance, and repeated warnings from the Organization, the Organization may initiate corrective performance measures. If the employee receives three (3) written warnings within a period of one (1) month on account of poor performance, negligence, or inability to discharge assigned duties, the employee may be relieved from his/her current responsibilities and placed under a Performance Improvement Plan (“PIP”) at the sole discretion of the Organization. During the period of the PIP training and assessment, the employee shall be entitled to receive 50% of the salary payable for the immediately preceding month. Upon successful completion of the PIP, the employee may be reinstated to regular duties, subject to the satisfaction of the Organization regarding the employee’s performance and capability. However, if the employee fails to achieve the required performance standards even after undergoing two (2) PIP sessions within a period of six (6) months, the Organization shall have the right to terminate the employment of such employee on grounds of continued non-performance, inefficiency, or inability to discharge duties as required by the Organization.</p>
+                <p> j) Salary/Remuneration bifurcation sheet is provided in Annexure C.</p>
+            </div>
+
+            <!-- PAGE BREAK -->
+            <div class="page-break"></div>
+            <div class="section">
+                <p><strong> 2. Duties and Obligations: </strong></p>
+                <p> a) The Employee shall perform such duties, functions, and responsibilities as may be assigned by the Organization from time to time and shall faithfully, diligently, and efficiently discharge the same. The Employee shall be bound to accept and carry out all lawful and reasonable instructions, directions, and responsibilities assigned by the Organization or its authorized representatives, and any refusal or failure to do so shall constitute misconduct and may invite disciplinary action.</p>
+
+                <p> b) The Employee’s duties shall include all functions and responsibilities ordinarily associated with the Employee’s designation, job title, or role, as well as such additional duties and assignments as may be reasonably required by the Organization from time to time to meet its business and operational needs. The Employee shall perform all such duties diligently and in accordance with the directions issued by the Organization or its authorized representatives.</p>
+                <p> c) The Organization and Employee may from time to time agree to make changes in the Employee’s duties and position as per the demand of the situation and current scenario if the Organization shall deem fit.</p>
+                <p> d) The Employee agrees to perform the duties in accordance with this agreement. The Employee agrees to perform the duties as per the directions, instructions, requests, and orders of the Organization and any other Organization’s guidelines, practice manuals, policies, or procedures as they exist from time to time. </p>
+
+                <p> e) The Employee shall strictly adhere to the prescribed working hours and report for duty on time. In the event the Employee is late on more than three (3) occasions within a single salary cycle, such conduct shall, at the sole discretion of the Organization, be treated as a half-day absence, without prejudice to any further disciplinary action that may be taken for repeated or habitual lateness.</p>
+
+                <p> f) The Employee shall be responsible for safeguarding and preventing any unauthorized use of the Employee’s allocated login credentials, passwords, and access card, and shall not permit any third party to use the same under any circumstances. The Employee shall ensure that access to the Organization’s premises and systems is strictly limited to authorized personnel only. Any breach of this obligation, including permitting unauthorized access, shall constitute serious misconduct and may result in immediate termination of employment with 24-hour notice or intimation, at the sole discretion of the organization.</p>
+
+                <p> g) The Employee shall be subject to medical check-up at regular intervals as per the rules of the Organization and continuance in service shall depend upon the employee being medically fit.</p>
+
+                <p> h) The Employee shall be solely responsible for the safety and security of their personal belongings, and the Organization shall not be liable for any loss, theft, or damage to the same under any circumstances. The Employee shall not engage in reading unauthorized materials, use of social media, mobile phone, mobile internet or access the internet for purposes unrelated to official duties during working hours. The use of personal storage devices, including pen drives or any external media, on the Organization’s systems is strictly prohibited unless expressly authorized in writing by the HR Department. Any violation of this provision shall be treated as misconduct and may result in disciplinary action, including termination of employment</p>
+
+                <p> i) The Employees are prohibited from carrying pen drives or any data transmission devices and using mobile phones on the work floor. Lockers are provided for the storage of personal belongings. Any employee found using or charging mobile phones, transferring data, or using pen drives on the work floor may have their gadgets confiscated at the discretion of the organization. Any violation of this provision shall be treated as misconduct and may result in disciplinary action, including termination of employment.</p>
+
+                <p> j) The Employee must perform all the employment duties in good faith, having regard to the best interest of the Organization, and in a careful conscience.</p>
+                <p> k) The Employee must perform his/her duties ethically, morally, and professionally as per his/her skills, the standard set by the Organization’s organization, his/her training, and experience.</p>
+                <p> l) The Employee should devote his/her time, attention, and ability solely and exclusively towards the performance of the duties and responsibilities assigned to him/her by the Organization during his/her tenure and during working hours.</p> 
+                <p> m) The Employee will abide by the Organization’s policy and internal working rules of the Organization.</p>
+                <p> n) The Employee will properly and faithfully serve the Organization and use his/her best endeavors to protect the interests and reputation of the Organization.</p>
+                <p> o) The Employee will devote his/her full attention and skill to the affairs of the Organization and use his/her best endeavors to promote its interests. The Employee shall adhere to, execute, and fulfill all policies established by the Organization.</p>
+
+                <p><strong>3. Leave Policy: </strong></p>
+                <p><strong>a) Planned Leave:</strong></p>
+                <p>“Planned Leave” shall mean any leave that is foreseeable and applied for in advance. The Employee shall apply for such leave with prior written approval of the HR department/ Manager/Team Leader, at least [7] days in advance or such other period as may be prescribed. Grant of Planned Leave shall be subject to work exigencies and managerial approval, and the Organization reserves the right to approve, reject, or reschedule such leave.</p>
+                <p><strong>b) Unplanned Leave:</strong></p>
+                <p>“Unplanned Leave” shall mean any leave arising out of unforeseen or emergency circumstances, including but not limited to illness, accident, or urgent personal matters. The Employee shall inform the HR department/ Manager/Team Leader at the earliest possible time, and in any case before the commencement of working hours on the day of absence, unless impracticable.</p>
+                <p><strong>c) Leave During Notice Period</strong></p>
+                <p>The Employee shall not be entitled to avail any Planned Leave during the notice period. The primary obligation of the Employee during the notice period shall be to ensure proper handover of duties and continuity of work. Any leave during the notice period shall be granted only in exceptional circumstances, at the sole discretion of the Organization, and subject to prior written approval. In the event the Employee avails any leave during the notice period without approval, such absence shall be treated as unauthorized absence and may result in disciplinary action, including extension of the notice period equivalent to the period of absence, deduction of salary, or withholding of full and final settlement.</p>
+
+            </div>
+
+            <div class="page-break"></div>
+            <div class="section">
+
+
+                <p> d) In the event the Employee remains absent from duty without prior written intimation or approval for a continuous period of three (3) working days, such absence shall be treated as unauthorized. The Organization shall issue a written notice to the Employee at the last known address/email requiring the Employee to report for duty within 24 hours and/or provide a satisfactory explanation within a specified period. If the Employee fails to respond or provide a satisfactory explanation, with corresponding evidence, within 48 hours after sending such notice, the same shall be deemed as abandonment of employment. In such circumstances, the Organization shall have the right, at its sole discretion, to terminate the employment of the Employee with immediate effect, without any further notice.  The Organization shall further be entitled to discontinue payment of salary/wages from the last working day actually attended by the Employee.</p>
+
+                <p> e) Any leaves taken for illness/ sickness or injury will be deducted from the employee’s sick leave entitlement.</p>
+                <p> f) In the event the Employee remains absent from work continuously for one (1) day or more on account of illness, sickness, or injury, the Employee shall submit a medical certificate issued by a registered MBBS medical practitioner within twenty-four (24) hours from the commencement of such absence, specifying the nature of the illness, sickness, or injury and certifying the Employee’s inability to attend work. The Employee shall further keep the Organization informed regarding the tentative period required for recovery and the expected date of resumption of duties. If the employee failed to resume work within such a timeline, then the employee will have to provide a fresh MBBS doctor’s certificate stating the reason for the late recovery and the expected time to recover. In the event the Employee fails to resume duties within the tentative recovery period previously informed to the Organization, the Employee shall submit a fresh medical certificate issued by a registered MBBS medical practitioner specifying the reasons for the continued illness, sickness, or injury, along with the revised expected period of recovery and probable date of resumption of duties.</p>
+                <p> g) During the probation period, the employee shall not be entitled to any planned leave. Leave during the probation period may be granted only in cases of a genuine medical emergency where the employee is unable to perform assigned duties. The employee shall communicate such medical emergency in writing to the HR Department within 48 hours from the commencement of such absence. Grant of such leave shall be subject to submission and verification of supporting medical documents, including a medical certificate issued by a registered MBBS medical practitioner and any other relevant documents as may be required by the Company. Any period of leave availed during probation shall result in a corresponding extension of the probation period for an equivalent number of days.</p>
+                <p> h) Any leave remaining unutilized by the employee at the end of the applicable calendar year, leave cycle, or at the time of cessation of employment, as the case may be, shall automatically lapse and stand forfeited. Such unutilized leave shall neither be carried forward to the subsequent period nor be eligible for encashment, compensation, or any monetary benefit.</p>
+                <p> i) Detailed guidelines for the Annual Leave Policy of the Organization are provided in Annexure B.</p>
+
+                <p><strong>C) CONFIDENTIAL INFORMATION &amp; TRADE SECRET </strong></p>
+
+                <p>a) Every Employee shall, at the time of joining the Organization, execute a Confidentiality and Non-Disclosure Agreement (“NDA”) in favour of the Organization. The terms, conditions, obligations, and restrictions contained in such NDA shall be binding upon the Employee and shall be deemed to form an integral part of this Employment Agreement. Any breach of the provisions of the said NDA shall constitute a breach of this Agreement and may invite disciplinary and legal action as deemed appropriate by the Organization.</p>
+            </div>
+
+            <div class="page-break"></div>
+            <div class="section">
+                <p> <strong>D) RESIGNATION </strong></p>
+                <p>1. If an Employee wants to leave the organization, he/she will have to give 30 days’ / 60 days' prior written notice in the format of an email and/or letter to the HR department.</p>
+
+                <p>2. If an Employee wants to leave the organization during the probationary period, he/she will have to give 30 days’ / 60 days' written notice in the format of an email and/or letter. The Employee must pay back all the expenses incurred by the Organization for his/her skill training and development purposes (which includes soft and technical skills).</p>
+
+                <p>3. In the event an Employee seeks to be relieved from employment without serving the prescribed notice period, the Employee shall submit a written request to the Human Resources Department seeking waiver of the notice period requirement. Upon review and scrutiny of such a request, the Organization shall have sole discretion to accept or reject the same based on the operational requirements and interests of the Organization. In the event such a request is rejected, the Employee shall be bound to serve the full notice period as prescribed under this Agreement. However, if the request is accepted by the Organization, the Employee shall be required to buy out the applicable notice period of one (1) month or two (2) months, as the case may be, by paying an amount equivalent to the monthly Cost to Company (CTC) last drawn by the Employee for each month of the notice period waived, along with clearance of any other dues, liabilities, recoveries, or amounts payable to the Organization.</p>
+
+                <p>4. Employees serving a notice period shall provide all the necessary training, documentation, work, and knowledge transfer (KT), and all the necessary soft skills to the new Employee or the current Employee who is replacing the Employee.</p>
+
+                <p>5. The notice of the termination has been given, the Employee is still required to follow all the directions given by the Organization during the notice period.</p>
+
+                <p>6. During the notice period, the Employee shall not, directly or indirectly, initiate or engage in any communication with the Organization’s existing clients or prospective clients, except where such communication is strictly required in the ordinary course of duties and is undertaken with prior written approval of the concerned department or reporting manager. Any approved communication shall be limited to official purposes only and shall be conducted through authorized channels of the Organization. The Employee shall not use such interaction to solicit business, divert clients, or act in any manner prejudicial to the interests of the Organization.</p>
+
+                <p>7. During the last week of the notice period, Employees need to return all office belongings, all manuals, training material, accessories, all equipment, correspondence, records, software models, any data in any form, any copies, notes, and any other documents or any other property belonging to the Organization. The Employee will return all the passwords and all the sensitive information during this period. The Employee will delete all the data that is not stored in the Organization’s property or accessories.</p>
+
+                <p>8. All the information, confidential information, and any Intellectual Property of the Organization acquired by or in possession of the Employee under this agreement shall be returned to the Organization immediately in the first week of the notice period.</p>
+
+
+            </div>
+
+            <div class="page-break"></div>
+
+            <div class="section">
+                <p>9. The Employee shall be entitled to receive the Full and Final Settlement only upon completion of the prescribed notice period in accordance with this Agreement. The Full and Final Settlement shall be processed within forty-five (45) days thereafter and shall ordinarily be released on the next applicable regular salary disbursement date of the Organization. In the event the notice period is expressly waived by the Human Resources Department through written communication, the Full and Final Settlement shall be processed within forty-five (45) days from the date of such waiver communication. Further, where the employment of the Employee is terminated by the Organization for any reason whatsoever, the Full and Final Settlement shall be processed within forty-five (45) days from the date of termination and issuance of written communication thereof, subject to clearance of all dues, handover obligations, and compliance with the Organization’s policies and procedures.</p>
+                <p>10.In the event the Employee is liable to pay any amount, dues, recovery, damages, advances, or any other sum to the Organization, the Organization shall have the right to deduct such amount from the Employee’s salary, incentives, benefits, or Full and Final Settlement payable to the Employee. Further, where the Employee has incurred any expenditure on behalf of the Organization in the course of employment, with prior approval of the competent authority or where the Employee was otherwise duly authorized to incur such expenditure, the Organization shall reimburse the same subject to submission of supporting bills, invoices, receipts, and relevant documents by the Employee within the prescribed time. Such reimbursement shall be subject to verification, approval, and validation of the claim and supporting documents by the Organization and may be adjusted or released as part of the Full and Final Settlement process. The Employee shall obtain the necessary “No Objection Certificate” (“NOC”) and clearance from all concerned departments of the Organization, including but not limited to the Tech Support Department and the Human Resources Department, prior to processing of the Employee’s Full and Final Settlement. The Organization shall be entitled to withhold or delay the Full and Final Settlement until all departmental clearances, handovers, return of assets, and other compliance requirements are duly completed by the Employee.</p>
+                <p>11.After following all the above-mentioned clauses, if the Organization is satisfied, a release letter will be issued to the Employee on or before the last working date.</p>
+                <p><strong>E) TERMINATION/DISMISSAL OF THE EMPLOYEE</strong></p>
+                <p>Not with standing anything contained in this Agreement, the Organization shall have the right to terminate the employment of the Employee by giving twenty-four (24) hours’ notice, if the Employee is found guilty pursuant to a duly conducted internal inquiry or disciplinary proceeding, at the sole discretion of the Organization, in any of the following circumstances:</p>
+
+                <p>a) If the Employee is found guilty after due internal inquiry of any fraud, negligence, misconduct, or any breach of the terms of this employment agreement.</p>
+
+                <p>b) If the Employee fails to achieve the required standards of performance, efficiency, or conduct despite undergoing two (2) Performance Improvement Plan (“PIP”) sessions within a period of six (6) months.</p>
+
+                <p>c) If the Employee has committed any criminal offense, and an FIR with respect to such employee has been filed against such employee, which is punishable under any criminal law in India.</p>
+
+
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <p>d) Any gross misconduct done by the Employee and after due internal inquiry found guilty during the period of employment at the workplace is not good for the reputation of the organization.</p>
+
+                <p>e) If the Employee is found guilty after due internal inquiry, abuses or misuses the Organization's computer system, or any password relating to that computer system or gains access to any file or loads any information or program contrary to the Organization's interests or procedures.</p>
+
+                <p>f) If at any time, whether before or after commencement of employment, any information, representation, or document submitted by the Employee in connection with obtaining employment with the Organization is found to be false, inaccurate, misleading, or involves suppression of any material fact relating to the Employee’s qualifications, experience, background, or suitability for employment, the same shall constitute a material breach of the terms of employment.</p>
+
+                <p>g) If the Employee becomes subject to any immigration crimes and inquiry about the same is going on by the concerned government department under all existing Immigration Laws across the World.</p>
+                <p>h) If the Employee is found guilty, pursuant to a duly conducted internal inquiry, engaging in any act of indecent behavior, harassment, bullying, intimidation, or any conduct creating a hostile or unsafe work environment, towards any employee, client, customer, vendor, or any person associated with the Organization, whether within the workplace or in connection with employment.</p>
+                <p>i) Any act of sexual harassment, as defined under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 and the rules framed thereunder, shall constitute misconduct. All complaints of sexual harassment shall be dealt with in accordance with the provisions of the said Act, including inquiry by the Internal Committee constituted by the Organization. Where the Employee is found guilty pursuant to such inquiry, the Organization shall take appropriate action in accordance with the recommendations of the Internal Committee and applicable laws, which may include disciplinary action up to and including termination of employment.</p>
+
+                <p>j) Any kind of discrimination based on race, gender, identity, sex, place of birth, Religion, caste, disability, or sexual orientation as well as other categories as per the Indian Constitution and other Laws.</p>
+                <p>k) If the Employee is found guilty, pursuant to a duly conducted internal inquiry is found drinking alcohol or smoking any banned substance at the workplace.</p>
+                <p>l) If the Employee is found guilty, pursuant to a duly conducted internal inquiry, willfully breaches any safety or health regulations or policies, if any are prescribed by the Organization.</p>
+
+
+                <p>m) If the Employee is found guilty, pursuant to a duly conducted internal inquiry, of insubordination or misconduct, including any willful refusal, failure, or deliberate omission to comply with any lawful and reasonable instruction, direction, policy, or order issued by the Organization or by the Employee’s immediate superior, reporting manager, or team leader, and despite prior warning and reasonable opportunity being granted to the Employee to correct such conduct, the same shall constitute willful disobedience and misconduct liable for disciplinary action, including termination of employment.</p>
+
+                <p>n) If the Employee is found guilty, pursuant to a duly conducted internal inquiry a serious and persistent act of refusal of duty which results in the breach of this employment agreement.</p>
+
+                
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <p>o) If the Employee is found guilty, pursuant to a duly conducted internal inquiry, of falsifying records of any claim or expenses</p>
+
+                <p>p) Any kind of unauthorized forgeries such as the creation, addition, or alteration of any writing, record (i.e. hard copies as well as electronic), instrument, stamp, register, deed, or letterhead of the Organization and falsely using the digital signature of any Employee or Organization or any office staff with the wrong intention. It is an act to commit fraud that is fueled by the intention of deceit under the Indian Penal Code, 1860, and the Information Technology Act, 2000.</p>
+
+                <p>q) If the Employee is found guilty, pursuant to a duly conducted internal inquiry in accordance with the Organization’s policies and applicable laws, of breaching any of the terms of this Agreement, the Organization shall have the right to terminate the employment of the Employee with immediate effect. After the termination, the employee, within a day or two, will return all the office belongings, all the manuals, training material, accessories, all equipment, correspondence, records, software models, any data in any form, any copies, notes and any other documents or any other property belonging to the Organization. The Employee will return all the passwords and all the sensitive information during this period. The Employee will delete all the data that is not stored in the Organization’s property or accessories.</p>
+
+                <p>r) If the Employee is dismissed or terminated from employment on grounds mentioned above, the Organization reserves the right to withhold, adjust, or deny any payments or benefits payable to the Employee. However, the Organization shall remain entitled to recover any dues, losses, damages, notice pay, or liabilities from the Employee.</p>
+                <p>s) During all subsequent procedures of termination, the Organization will be the one authorized to make all decisions regarding the Employee's dismissal.</p>
+
+
+
+                <p><strong>F) RESTRICTIVE OBLIGATIONS</strong></p>
+                <p>1.During the term of employment with the Organization, the Employee shall devote full working time, attention, and abilities to the duties assigned and shall not, without prior written approval of the Organization, directly or indirectly engage in any other employment, occupation, consultancy, business, profession, or income-generating activity. The Employee shall also not hold any position (whether advisory, managerial, or otherwise) in any other entity, nor participate in any activity that may create a conflict of interest with the Organization. </p>
+
+                <p>2. The Employee will not be engaged in any business activity for personal gains if such activity interferes with his/her duties and responsibilities here under.</p>
+                <p>3. During the course of employment and for a period of one (1) year following cessation of employment for any reason whatsoever, the Employee shall not, directly or indirectly solicit, approach, canvass, or attempt to solicit any business from any client or customer of the Organization with whom the Employee had dealings or about whom the Employee had access to Confidential Information during the course of employment engage in or undertake any business with such clients or customers in a manner that competes with or is detrimental to the business interests of the Organization.</p>
+                
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                
+
+                <p>4. During Employment, the Employee will neither engage directly or indirectly with the competitive business (defined as under) nor perform dual employment with the competitive business. The Employee is aware that this is to safeguard any sensitive information of the Organization that may come into knowledge while in employment.</p>
+
+                <p>5. Competitive Business/s includes any firm, partnership, joint venture, organization, and/or any other entity and/or person that engages in the business or carries out activities similar or competitive to the business in which the Organization engages or proposes to engage during the term of employment.</p>
+
+                <p>6. The Employee shall not from his/her own account or on behalf of any other person, solicit or accept orders, products, or services from any of the Organization’s current or previous clients that compete with products and services of or in any way related to the business of the Organization from any of the Organization’s current or previous clients.</p>
+
+                <p>7. Without the Organization's prior consent, the Employee will not engage in any activity, either directly or indirectly to solicit the employment of or advise any of the Organization’s existing Employees or advise any of the person who was employed by the Organization within six months prior to such solicitation or any person or organization providing services to or through Organization to terminate his or her contract or relationship with Organization or to accept any contract directly or indirectly or other arrangements for providing services to any other person or organization.</p>
+
+                <p>8. The Employee will not contact any of the existing or prospective clients of the Organization without the Organization's prior consent, directly or indirectly, to prevent damage in any way to their business relationship with the Organization.</p>
+                <p>9. The Employee will not contact, without the Organization's prior written consent, directly or indirectly, with any client of the Organization where the Employee has been taken or sent for training, deputation or secondment, or professional work by the Organization.</p>
+                <p>10. The Employee acknowledges that each of the restrictions above shall be treated as a separate agreement and construed independently. It is expressively understood by the parties that although the Employee and the Organization consider the restrictions contained in this clause to be reasonable if a final judicial determination is made by the competent court within the jurisdiction that the time, territory, or any other restriction contained in this Agreement are unenforceable restriction against the Employee, the provision of this agreement will not be rendered void but shall be deemed an amendment to apply as to such maximum time and territory and to such maximum extent such court may judicially determine or indicate to be enforceable. As an alternative, if any court of competent jurisdiction finds that this agreement contains unenforceable restrictions, and such restrictions cannot be amended so that they become enforceable, such findings will not affect the enforceability of any other restrictions in this agreement.</p>
+                <p>11. Employees expressly agree and understand that the foregoing restrictions are necessary and reasonable in scope and duration, in all circumstances, for the purpose of protecting the Organization’s business.</p>
+                <p>12. The parties agree that if any of the terms of this clause are breached or violated, damages alone may not compensate for such breach or violation. Injunctive relief is reasonable and essential to safeguard the Organization's interests, and an injunction can therefore be obtained by the Organization as an additional remedy to safeguard the Organization's interests. A failure to take action by the Organization in response to a breach or violation shall not be construed as a waiver of that breach or violation.</p>
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <p><strong>G) AMENDMENTS</strong></p>
+                <p>1.The Organization reserves all rights to make reasonable changes to any of the terms and conditions of employment and the Employee shall be notified of such changes by way of general notice or email.</p>
+
+                <p>2. The Organization shall give 1 month's written notice of what it considers to be any significant change, either by way of an individual notice or a general notice to all Employees.</p>
+                <p>3. If the Employee does not send any written objection within 15 days of receiving the general notice, such significant changes are deemed to be accepted by the Employee.</p>
+                <p>4. If the Employee receives an objection within the prescribed period, such objection should be considered and will be resolved within the next month before making a significant change.</p>
+                <p>5. The Employee may raise objections or seek clarification with respect to such changes within the period specified in the notice. The Organization shall consider such objections; however, the decision to accept or reject any such objection shall remain at the sole discretion of the Organization. The Organization shall communicate its decision on such objections within seven (7) working days from the date of receipt of the Employee’s objection. </p>
+
+                <p>6. The decision of the Organization as to what constitutes minor changes of detail of significant changes shall be final and binding.</p>
+                <p>7. Employee shall not be entitled to make any changes or amendments to this Employment Contract.</p>
+
+                <p><strong>H) NOTICES</strong></p>
+                <p>1. The Employee shall disclose to the Organization, at the time of joining as well as during the course of employment, any instance where an FIR has been registered against the Employee; or the Employee is subject to any criminal investigation, inquiry, or proceedings by any law enforcement or governmental authority The Employee shall promptly inform the Organization in writing of any such development occurring during the course of employment.</p>
+
+                <p>2. Any notice given under or in connection with this Agreement must be delivered personally or sent by registered post or through registered email id to either party.</p>
+
+                <p>3. Employees’ all correspondence addresses will be updated from time to time with the Organization. As some of the important communications will be sent to the employee to organizations through by post only.</p>
+
+                <p>4. Employee must notify Organization in writing of any change in his/her name, bank account number, addresses, marital status or next of kin within one month of such change. The Employee shall promptly inform the Organization in writing if any FIR is registered against the Employee in respect of any alleged criminal offence the Employee is convicted of any criminal offence, any disciplinary or adverse action is initiated or taken against the Employee by any professional, statutory, or regulatory authority or in case the Employee becomes bankrupt.</p>
+                  <p><strong>I) GOVERNING LAW &amp; JURISDICTION</strong></p>
+                <p>This agreement shall be governed by and construed in accordance with Indian laws. And each party to this agreement submits to the exclusive jurisdiction of the District Pune, State Maharashtra, and Country India.</p>
+
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+               
+                <p> <strong>J) MISCELLANEOUS</strong></p>
+                <p>1. This Agreement sets out the entire agreement and understanding between the Parties in connection with the Employment and supersedes any previous contract or agreement between employee and the Organization.</p>
+                <p>2. The Organization may hold and process, whether electronically or manually, the data it collects in relation to the Employee in the course of the employment for the Organization's management and administration of its business and of other Employees, as well as to comply with applicable laws, regulations, and procedures. Whether in India or elsewhere, the Organization or its agents can transfer, store, and process such data.</p>
+                <p>3. The Employee agrees, recognizes, and acknowledges that:</p>
+
+                <p>a) He/she has been provided with a copy of this agreement for review before signing it, that he/she has read it and that he/she understands the terms, purposes, and effects of this agreement, and that he/she has signed the same only after having the opportunity. to seek clarifications. He/she has given the signed photocopy/softcopy of this agreement for the records. He/she is not under the influence of anything and anyone while signing this agreement and this agreement will not impose an undue hardship upon him/her. He/she executed and signed the same agreement under their own free will without relying upon any statements made by the Organization or any of the representatives. This agreement is in all respects reasonable and necessary to protect the legitimate business interests of the Organization.</p>
+                <p>b) If he/she violates any terms of this agreement, the Organization will suffer irreparable injury and damages the amount of which cannot be adequately measured in monetary. In that case, the Organization shall be entitled to injunctive relief, in addition to any other remedy available at law or in equity, in the event he/she violates any of the terms or conditions of this agreement.</p>
+                 <p ><strong>K) ABSCONDING </strong></p>
+
+                <p>1. If an Employee remains absent from work for three (3) or more consecutive working days without prior approval, authorization, or proper intimation to the Organization after joining employment, such conduct shall be treated as abandonment of employment and/or absconding from duties. In such circumstances, the Organization shall have the right to terminate the employment of the Employee with immediate effect without any further notice. The Organization shall further be entitled to withhold or defer the Full and Final Settlement until completion of all exit formalities, including return of the Organization’s property, devices, documents, records, access credentials, confidential information, and any other materials belonging to the Organization. The Organization shall also reserve the right to initiate appropriate disciplinary or legal proceedings, including recovery proceedings, if deemed necessary under the circumstances.</p>
+                <p><strong>L) Increments and Promotions</strong></p>
+                <p>Your career progression within the company will depend entirely on your performance and capabilities. Your individual performance will be reviewed regularly by your team leader, managers and peers, and these evaluations will serve as the basis for decisions regarding your salary increments and promotions.</p>
+                <p class="signature" ><strong> 
+                        For, 
+                        The-Connections ITES Business Services Private Limited <br></br>
+                        Human Resource Department <br></br>
+                        <span th:text="${actorName}"></span><br/>
+                        Date : <span th:text="${date}"></span>
+                    </strong> </p>
+            </div>
+         
+
+            <div class="page-break"></div>
+            <div class="section">
+                <h2>DECLARATION </h2>
+
+
+                <p>I confirm that I have read and understood the aforesaid agreement fully and by signing and returning 
+                    the copy to the Organization, I hereby accepts the terms and conditions contained therein and agree 
+                    that the same constitutes a valid and binding contract of the employment between myself and Organization.</p>
+                <p>Signed:</p>
+                <p>Name:</p>
+                <p>Date:</p>
+
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <h2 style="text-align: center">ANNEXURE A</h2>
+
+
+                <p><strong>LIST OF SELF-ATTESTED DOCUMENTS  THAT NEED TO BE PROVIDED BY THE EMPLOYEE TO THE ORGANIZATION:</strong></p>
+
+                <ol>
+                    <li>Aadhar card.</li>
+                    <li>Pan Card. </li>
+                    <li>Passport. </li>
+                    <li>Details of PF/UAN Account.</li>
+                    <li>Proof of Local Address (Current light bills, rent agreement, Letter from PG/Hostel, etc.).</li>
+                    <li>Proof of Hometown Address (Current light bills, ration card, etc.).</li>
+                    <li>Documents supporting your Educational Qualifications</li>
+                    <li>Documents supporting your Professional Qualifications. </li>
+                    <li>Medical Certificate. </li>
+                    <li>Experience letter, relieving letter, salary account statement of the last 3 employers (if employee claims experience).</li>
+                    <li>2 Emergency contact details: name, address, phone number, email ID, relationship.</li>
+                    <li>Any other necessary Documents. </li>
+                </ol>
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <h2 style="text-align: center">ANNEXURE B</h2>
+
+
+                <p style="text-align: center"><strong>GUIDELINES FOR THE ANNUAL LEAVE POLICY OF THE ORGANIZATION</strong></p>
+                <p style="text-align: center"><strong>LEAVE RULES </strong></p>
+                <p ><strong>1. Objective</strong></p>
+                <p>The purpose of this Leave Policy is to regulate leave entitlement, attendance, employee welfare, operational continuity, and compliance with applicable laws. All Employees are required to adhere strictly to the leave procedures prescribed by the Organization.</p>
+
+
+                <p><strong> 2. Applicability</strong></p>
+                <p>This Policy shall apply to all Employees of the Organization unless otherwise specifically stated in the appointment letter, employment agreement, or applicable law.</p>
+
+                <p><strong>3. General Conditions Applicable to All Leaves</strong></p>
+                <p>a) Leave cannot be claimed as a matter of right and shall always be subject to approval by the Organization.</p>
+                <p>b) Grant of leave shall depend upon work exigencies, staffing requirements, operational needs, and Management discretion.</p>
+                <p>a) Employees must apply for leave through the prescribed process and obtain prior approval before proceeding on leave, except in medical emergencies.</p>
+                <p>b) Unauthorized absence, habitual absenteeism, misuse of leave, or furnishing false information/documents shall constitute misconduct and may invite disciplinary action.</p>
+                <p>c) The Organization reserves the right to refuse, defer, curtail, revoke, or cancel any leave in the interest of business operations.</p>
+                <p>d) Employees shall remain contactable during leave wherever reasonably required by the Organization.</p>
+                <p>e) Sundays, weekly offs, public holidays, and declared holidays falling during the leave period may be counted as part of leave as per the Organization’s policy and applicable law.</p>
+                <p>f) Leave application should be sent directly to the Supervisor/ team leader; without the approval of the Supervisor/ team leader, the application will not be valid.</p>
+                <p><strong>2. Planned Leave </strong></p>
+                <p>a) Planned leave refers to leave taken for personal work, travel, family functions, ceremonies, vacation, or any foreseeable purpose.</p>
+                <p>b) Employees must submit leave applications in advance:</p>
+                <ol>
+                    <li>Minimum seven (7) days prior notice for leave up to three (3) days. </li>
+                    <li>Minimum fifteen (15) days prior notice for leave exceeding three (3) days.</li>
+                </ol>
+                <p>c) Planned leave shall be approved subject to workload, staffing availability, and Management approval.</p>
+                 </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <p>d) Employees shall complete proper work handover before proceeding on planned leave.</p>
+                <p>e) Extension of planned leave without prior written approval shall be treated as unauthorized absence. Unplanned / Emergency Leave.</p>
+           
+                <p >a) Unplanned leave refers to leave required due to sudden emergency, accident, urgent personal circumstances, family emergency, or unforeseen situations.</p>
+
+                <p>b) Employees must inform their Reporting Manager and HR Department at the earliest possible opportunity through call, message, or email.</p>
+                <p>c) The Employee may be required to submit supporting documents or justification depending upon the nature and duration of absence.</p>
+                <p>d) Frequent or habitual unplanned leave may invite scrutiny and disciplinary action if found unreasonable or abusive.</p>
+
+                <p><strong>Sick Leave / Medical Leave</strong></p>
+                <p>a) Sick leave may be granted in case of illness, sickness, injury, or medical incapacity affecting the Employee’s ability to perform duties.</p>
+                <p>b) Employees must inform the Organization immediately regarding such illness or medical condition.</p>
+                <p>c) Where absence continues for one (1) day or more, the Employee shall submit a medical certificate issued by a registered MBBS medical practitioner within twenty-four (24) hours stating the nature of illness and inability to work.</p>
+                <p>d) If the Employee fails to resume duties within the tentative recovery period informed earlier, a fresh medical certificate by a registered MBBS medical practitioner specifying the reason for delayed recovery and revised recovery period shall be submitted.</p>
+                <p>e) The Organization reserves the right to verify the authenticity of medical documents and may require additional medical examination or fitness certification before permitting resumption of duties.</p>
+                <p>f) Submission of forged or misleading medical records shall constitute serious misconduct.</p>
+
+                <p><strong>Leave Without Pay (LWP)</strong></p>
+                <p>a) Where leave balance is exhausted or leave is not approved under any eligible category, the Organization may treat such absence as Leave Without Pay (“LWP”).</p>
+                <p>b) Salary deductions for LWP shall be made proportionately as per the Organization’s payroll practices.</p>
+                <p><strong>Right to Amend</strong></p>
+                <p>The Organization reserves the right to modify, amend, suspend, interpret, or withdraw this Leave Policy, in whole or in part, at any time, depending upon operational requirements, Management discretion, or changes in applicable law.</p>
+                <p>If approval is not received by the supervisor within 24 hours., then employees can directly consult the Assistant Manager and HR for the approval of Leave while if in any scenario the approval is not provided by AM and HR within 24hrs then Employee will have full rights to consult directly to the Higher Management.</p>           
+               
+                <p><strong>However, leave approval depends on the Management’s Decision.</strong></p>
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <h2 style="text-align: center">ANNEXURE C </h2>
+                <h3 style="text-align: center">Salary Bifurcation </h3>
+                <br></br>
+                <table style="
+                       width: 80%;
+                       border-collapse: collapse;
+                       font-size: 11px;
+                       margin-top: 10px;
+                       ">
+
+                    <tr>
+                        <th style="border: 1px solid black; padding: 5px; text-align: left;">
+                            Summary of CTC Components
+                        </th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: right;">
+                            Amount (₹)
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Yearly CTC</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.ctc * 12}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Monthly CTC</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.ctc}"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="border: 1px solid black; padding: 4px; text-align:center;"><b>Component</b></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Basic Salary</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.basic}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">House Rent Allowance (HRA)</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.hra}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Conveyance Allowance</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.conveyance}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Medical Allowance</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.medical}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Special Allowance</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.specialAllowance}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;"><b>Gross Salary</b></td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.grossSalary}"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="border: 1px solid black; padding: 4px; text-align:center;"><b>Deductions</b></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Employer PF Contribution</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.employeePf}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Employee PF Deduction</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.employeePf}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Professional Tax</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.professionalTax}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;">Insurance</td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;" th:text="${empSal.insuranceDeduction}"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border: 1px solid black; padding: 4px;"><b>Net In-Hand Salary</b></td>
+                        <td style="border: 1px solid black; padding: 4px; text-align:right;"><b th:text="${empSal.netSalary}"></b></td>
+                    </tr>
+
+                </table>
+
+
+                <p class="signature" ><strong> 
+                        For, 
+                        The-Connections ITES Business Services Private Limited <br></br>
+                        <span th:text="${actorName}"></span><br/>
+                        Human Resource Department
+                    </strong> </p>
+                <div style="margin-top:10px;">
+                    <img th:src="${stampPath}" alt="Company Stamp" style="width:100px;"/>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size:11px; color:#777; text-align:center; font-style:italic;">
+                This is a system-generated document and does not require a physical signature.
+            </p>
+
+        </div>
+
+    </body>
+</html>

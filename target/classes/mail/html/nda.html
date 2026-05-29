@@ -1,0 +1,290 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>NDA</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 120px 50px 80px 50px;
+                margin-bottom: 80px;
+
+                @top-center {
+                    content: element(header);
+                }
+
+                @bottom-center {
+                    content: element(footer);
+                }
+            }
+
+            body {
+                text-align: justify;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* HEADER */
+            .header {
+                position: running(header);
+            }
+
+
+
+
+            /* CONTENT */
+            .content {
+                width: 100%;
+            }
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 20px 0;
+                text-decoration: underline;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: avoid;
+            }
+
+            td {
+                vertical-align: top;
+            }
+            p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .footer {
+                position: running(footer);
+                font-size: 11px;
+                border-top: 2px solid #128bfc;
+                padding-top: 3px;
+                margin: 0;
+            }
+
+            /* PAGE NUMBER */
+            .pageNumber:before {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <table>
+                <tr>
+                    <td style="width: 120px;">
+                        <img th:src="${logoPath}" style="width:150px;" />
+                    </td>
+                    <td style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; color:#128bfc;">
+                            THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED
+                        </div>
+                        <div style="font-size:9px;">
+                            Call Center Services | Software Development | Document Management Systems |
+                            Training Solutions | Security Enabled Printing
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div style="height:2px; background:#128bfc; margin:0;"></div>
+            <!--<hr style="margin: 0; padding: 0; border: none; border-top: 2px solid #128bfc;" />-->
+            <!--<hr style="margin-top:10px; color:#128bfc"/>-->
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+        <div class="footer">
+
+            <table>
+                <tr>
+                    <td style="text-align:left;">
+                        | NDA with The-Connections |
+                    </td>
+                    <td style="text-align:right;">
+                        <span class="pageNumber"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+            <!-- DATE -->
+            <div style="text-align:right; margin:0; line-height:1.2;">
+                <div>Document ID: <b><span th:text="${docNo}"></span></b></div>
+                <div>Date : <span th:text="${date}"></span></div>
+            </div>
+
+            <!-- EMPLOYEE DETAILS -->
+
+
+            <!-- TITLE -->
+            <div class="title">
+                <strong>EMPLOYEE NON-DISCLOSURE AGREEMENT (NDA)</strong>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section">
+                <p style="text-align: center">This “Agreement” made today <span th:text="${date}"></span> by and between a </p>
+                <div class="title" style="color:#128bfc;" > <strong >THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED </strong>
+                </div>
+                <p>Through its Authorized Signatory,</p>
+                <p><strong><span th:text="${senderName}"></span><br/>
+                        HR  Department.</strong></p>
+
+                <p>  (Hereinafter referred to as the  <strong> “Party of First Part/Organization ”</strong>, which expression shall, unless repugnant to the context or meaning thereof, include its successors, administrators, representatives, and assigns, acting), <strong>Party of the FIRST PART/Organization.</strong></p>
+
+                <p style="text-align: center"><strong>AND</strong></p>
+                <p><strong><span th:text="${employeeName}"></span><br/>
+                    Age: <span th:text="${age}"></span> Years<br/>
+                    Designation: <span th:text="${designation}"></span></strong></p>
+
+                <p style="margin-top:5px;">
+                    <strong>Address:
+                        <!-- Address -->
+                        <span th:if="${addr != '-' and addr != null and !#strings.isEmpty(addr)}"
+                              th:text="${addr}">
+                        </span>
+
+                        <!-- Line break only if address exists -->
+                        <br th:if="${addr != '-' and addr != null and !#strings.isEmpty(addr)}"/>
+
+                        <!-- City -->
+                        <span th:if="${city != '-' and city != null and !#strings.isEmpty(city)}"
+                              th:text="${city}">
+                        </span>
+
+                        <!-- Comma after city only if state exists -->
+                        <span th:if="${city != '-' and city != null and !#strings.isEmpty(city)
+                              and state != '-' and state != null}">
+                            ,
+                        </span>
+
+                        <!-- State -->
+                        <span th:if="${state != '-' and state != null and !#strings.isEmpty(state)}"
+                              th:text="${state}">
+                        </span>
+
+                        <!-- Comma after state only if pincode exists -->
+                        <span th:if="${state != '-' and state != null
+                              and pincode != '-' and pincode != null}">
+                            ,
+                        </span>
+
+                        <!-- Pincode -->
+                        <span th:if="${pincode != '-' and pincode != null and !#strings.isEmpty(pincode)}"
+                              th:text="${pincode}">
+                        </span>
+                    </strong>
+                </p>
+                <p><strong>Employee ID: <span th:text="${employeeId}"></span> <br/>
+                        Contact No: <span th:text="${contact}"></span></strong></p>
+
+                <p>(Hereinafter referred to as the <strong> “Party of the SECOND PART/Employee”</strong> which expression shall, unless repugnant to the context or meaning thereof, include his/her heirs, successors, administrators, and legal representatives.)<strong> Party of the SECOND PART/Employee.) </strong></p>
+
+                <p>WHEREAS, the above parties are hereinafter collectively referred to as the “Parties” and individually as a “Party”.</p>
+                <p><strong>WHERE AS</strong> the Organization is engaged in the business of information technology services and/or business process outsourcing, including providing services to its clients involving the handling of business information, technology systems, customer interactions, and personal data;</p>
+                <p><strong>AND WHERE AS</strong> in the course of employment, the Employee will have access to and be entrusted with certain confidential, proprietary, and sensitive information of the Company and/or its clients, and the Organization desires to set forth the terms applicable to such Confidential Information.</p>
+                <p>NOW, THEREFORE,  in consideration of the foregoing promises and covenants set forth herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the Parties agree as follows:</p>
+            </div>
+
+            <!-- PAGE BREAK -->
+            <div class="page-break"></div>
+            <div class="section">
+                <p><strong>1. Definition of Confidential Information</strong>  </p>
+                <p>Confidential Information” shall mean and include all non-public, proprietary, sensitive, or regulated information, whether in written, oral, electronic, digital, visual, or any other form, accessed, received, processed, or handled by the Employee during the course of employment, including but not limited to:</p>
+                <p>(a) <strong>Client Data:</strong> Customer information, account details, transaction records, call recordings, chat logs, tickets, and any data processed on behalf of clients;</p>
+                <p>(b) <strong>Personal and Sensitive Data:</strong>Personal data, sensitive personal data, financial data, health data, identification data, or any information governed under applicable data protection laws;</p>
+                <p>(c) <strong>Systems and Credentials:</strong> Login IDs, passwords, authentication credentials, VPN access, system architecture, network configurations, databases, servers, and internal platforms;</p>
+                <p>(d) <strong>Business Processes and Operations:</strong> Standard Operating Procedures (SOPs), workflows, process manuals, quality frameworks, escalation matrices, and service delivery models;</p>
+                <p>(e) <strong>Technical Information:</strong> Software, source code, scripts, APIs, tools, algorithms, and IT infrastructure details;</p>
+                <p>(f) <strong>Financial and Business Information:</strong> Pricing, cost structures, revenue data, forecasts, business strategies, proposals, and internal reports;</p>
+                <p>(g)<strong> Employee and Organizational Data:</strong> Employee records, payroll data, internal communications, and HR information;</p>
+                <p>(h) <strong>Derived Information:</strong> Any notes, summaries, analyses, compilations, reports, or datasets derived from or based on the above information.
+                <br/>Confidential Information shall include information whether or not marked as “Confidential” and shall also include any information accessed, observed, or obtained through Company systems or client environments.</p>
+                <p>2. During the course of employment, the Employee (Party of the Second Part) shall have access to and be entrusted with confidential and proprietary information belonging to the Company (Party of the First Part), its clients, partners, and vendors, including but not limited to business data, client information, operational processes, technical systems, and personal data processed in the course of providing IT and/or BPO services.</p>
+                <p>3. The Employee acknowledges that, during the course of employment, he/she may have access to Confidential Information, including but not limited to client data, customer information, business processes, Standard Operating Procedures (SOPs), financial information, internal systems and databases, employee records, and any other non-public or proprietary information of the Company or its clients, whether in oral, written, electronic, or any other form.</p>
+                <p>4. The Employee hereby undertakes that he/she shall not, directly or indirectly, disclose, publish, copy, reproduce, transmit, share, or otherwise use or misuse any Confidential Information, except as strictly required for the performance of assigned duties and only with the prior written authorization of an authorized representative of the Company.</p>
+            </div>
+
+            <!-- PAGE BREAK -->
+            <div class="page-break"></div>
+            <div class="section">
+
+                <p>5. The Employee hereby undertakes to use the Confidential Information solely for the purpose of performing duties assigned by the Company and strictly in connection with official work. The Employee shall not use such Confidential Information for any personal purpose or for the benefit of any third party.</p>
+                <p>6. The Employee hereby undertakes to strictly comply with all policies, procedures, and guidelines of the Company relating to information security, confidentiality, data protection, and the use of IT systems, as may be in force from time to time, including any amendments thereto. The Employee further acknowledges that he/she has read, understood, and agrees to abide by such policies.</p>
+                <p>7. The Employee hereby undertakes that he/she shall not, without prior written approval of the Process Head or the Human Resources Department, directly or indirectly establish any unauthorized communication with the Company’s clients, disclose or share any internal Company information with such clients, or engage in any discussion beyond the scope of assigned work-related communication.</p>
+                <p>8. The Employee hereby undertakes to immediately report to his/her immediate superior, Team Leader, or any designated authority of the Company any actual or suspected data breach, unauthorized access, security incident, or misuse of Confidential Information, whether arising from the Employee’s system or involving any other employee or third party in relation to the Organization.</p>
+                <p>9. Upon resignation, termination of employment, or upon request by the Company, the Employee shall, within 2 (two) to 3 (three) working days, return all Company property, including but not limited to documents, devices, access credentials, and any materials containing Confidential Information, in good condition, reasonable wear and tear excepted.</p>
+                <p>In the event of any loss, damage, or failure to return such property, the Company shall be entitled to recover the cost of such loss or damage from the Employee, including by way of adjustment against the Employee’s full and final settlement.</p>
+                <p>10. This Agreement shall come into force on the date of execution and shall remain valid during the term of the Employee’s employment with the Company. The obligations of confidentiality, data protection, and non-disclosure shall survive the termination of employment and shall continue:
+                <br/>(a) for a period of five (5) years from the date of termination; or
+                <br/>(b) in respect of Confidential Information such as client data, personal data, or sensitive business information, for as long as such information remains confidential and is not lawfully in the public domain, whichever is longer.</p>
+                <p>11. If the Employee is required to disclose any Confidential Information pursuant to any applicable law, regulation, or order of a court or governmental authority, the Employee shall, to the extent legally permissible, promptly notify the Company in writing before such disclosure to enable the Company to seek a protective order or other appropriate remedy.
+                <br/>The Employee shall disclose only that portion of the Confidential Information which is legally required to be disclosed and shall use reasonable efforts to ensure that such disclosure is treated as confidential. The Employee shall, at the Company’s request, reasonably cooperate with the Company in seeking to prevent or limit such disclosure.</p>
+            </div>
+
+            <!-- PAGE BREAK -->
+            <div class="page-break"></div>
+            <div class="section">
+                <p>12. Any breach or non-compliance found after due internal inquiry with the aforesaid policies shall be treated as a material breach of employment and may result in disciplinary action, including but not limited to suspension, withholding or adjustment of salary, incentives, or amounts payable to the Employee, including full and final settlement, against the losses or damages suffered by the Company.
+                <br/>The Company may also recover any shortfall from the Employee through appropriate legal proceedings, terminate employment immediately in case of breach relating to Confidential Information, and/or take such other action as deemed appropriate by the Company, without prejudice to the Company’s right to seek legal remedies.
+                <br/>The Employee acknowledges that any data breach or misuse of Confidential Information may cause irreparable harm to the Company and its clients, and the Company shall be entitled to seek injunctive relief and other remedies available under applicable law.</p>
+                <p>13. This Agreement shall be governed by and construed in accordance with the laws of India. Subject to applicable law, the courts at Pune, Maharashtra shall have exclusive jurisdiction over any disputes arising out of or in connection with this Agreement</p>
+                 <p>14. The Employee confirms that he/she has read and understood the contents of this Agreement and voluntarily agrees to be bound by its terms.
+                <br/>This Agreement shall be executed in original and retained by the Company, and a copy (including a scanned or electronic copy) shall be provided to the Employee, which shall be deemed a valid and binding copy.</p>
+                <p>15. This Agreement may be amended or modified only through a written instrument signed by both Parties.IN WITNESS WHEREOF, the Parties have caused this Agreement to be executed by their duly authorized representatives.</p>
+
+
+
+                <p class="signature" ><strong> 
+                        For, 
+                        The-Connections ITES Business Services Private Limited <br></br>
+                        <span th:text="${senderName}"></span><br/>
+                        HR  Department.
+                    </strong> </p>
+                <div style="margin-top:10px;">
+                    <img th:src="${stampPath}" alt="Company Stamp" style="width:100px;"/>
+                </div>
+
+                <p>Employee Name: <span th:text="${employeeName}"></span></p>
+                <p>Employee ID: <span th:text="${employeeId}"></span></p>
+                <p>Department: <span th:text="${department}"></span></p>
+                <p>Employee Signature:______________________</p>
+                <p>Date:</p>
+
+                <p style="margin-top:20px; font-size:11px; color:#777; text-align:center; font-style:italic;">
+                    This is a system-generated document and does not require a physical signature.
+                </p>
+            </div>
+            <!-- PAGE BREAK -->
+
+
+            <!-- SECTION B -->
+
+
+        </div>
+
+    </body>
+</html>
+

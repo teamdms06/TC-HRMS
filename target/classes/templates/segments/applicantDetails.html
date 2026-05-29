@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>TC-HRMS</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="asset/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="asset/vendors/css/vendor.bundle.base.css">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- Layout styles -->
+        <link rel="stylesheet" href="asset/css/style.css">
+        <!-- End layout styles -->
+        <link rel="shortcut icon" href="/asset/images/favicon.ico" />
+    </head>
+    <body>
+        <div class="container-scroller">
+
+            <div th:replace="fragments/navbar"></div>
+            <!-- partial:partials/_navbar.html -->
+
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <div th:replace="fragments/sidebar"></div>
+                <!-- partial:partials/_sidebar.html -->
+
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">
+                                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                                    <i class="mdi mdi-home"></i>
+                                </span> View Applications Details
+                            </h3>
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <!--                                    <li class="breadcrumb-item active" aria-current="page">
+                                                                            <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                                                                        </li>-->
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div th:replace="segments/fragments/uniqueApplicationDetails"></div>
+
+
+
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <!--<div th:replace="fragments/footer"></div>-->
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <div class="modal fade" id="salaryModal" tabindex="-1">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                        <form id="salarybifircation">
+                            <input type="hidden" id="salaryId" name="id" >
+                            <input type="hidden" id="applicantId" name="applicantId" th:value="${jAppId}">
+                            <div class="modal-header">
+                                <h6 class="modal-title">Salary Calculation</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <table class="table table-bordered">
+
+                                    <!-- CTC -->
+                                    <tr style="display: none">
+                                        <td>TC Employee ID</td>
+                                        <td><input type="text" id="tcId" name="tcId" class="form-control" value="NA"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monthly CTC</td>
+                                        <td><input type="number" id="ctc" name="ctc" class="form-control"></td>
+                                    </tr>
+
+                                    <!-- SALARY -->
+                                    <tr>
+                                        <th colspan="2">Salary</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Basic</td>
+                                        <td><input type="number" id="basic" name="basic" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>HRA</td>
+                                        <td><input type="number" id="hra" name="hra" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Conveyance</td>
+                                        <td><input type="number" id="conv" name="conveyance" class="form-control" ></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Medical</td>
+                                        <td><input type="number" id="medical" name="medical" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Special</td>
+                                        <td><input type="number" id="special" name="specialAllowance" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Gross Salary</td>
+                                        <td><input type="number" id="gross" name="grossSalary" class="form-control"></td>
+                                    </tr>
+
+                                    <!-- DEDUCTIONS -->
+                                    <tr>
+                                        <th colspan="2">Deductions</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Employee PF</td>
+                                        <td><input type="number" id="pfEmployee" name="employeePf" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Professional Tax</td>
+                                        <td><input type="number" id="pt" name="professionalTax" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Insurance</td>
+                                        <td><input type="number" id="insurance" name="insuranceDeduction" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Total Deduction</b></td>
+                                        <td><input type="number" id="totalDeduction" name="totalDeduction" class="form-control" readonly></td>
+                                    </tr>
+
+                                    <!-- NET SALARY -->
+                                    <tr>
+                                        <td><b>Net In-Hand Salary</b></td>
+                                        <td><input type="number" id="netSalary" name="netSalary" class="form-control" readonly></td>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="applicantModal" tabindex="-1" aria-labelledby="applicantModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="applicantModalLabel">Applicant Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form id="updateApplicantDeatials">
+                                <input type="hidden" id="jobId" name="jobappId">
+                                <div class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Applicant Name</label>
+                                        <input type="text" class="form-control" id="applicant_name" name="jobappInterviewerName">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Mail ID</label>
+                                        <input type="email" class="form-control" id="email" name="jobappEmail">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Post</label>
+                                        <input type="text" class="form-control" id="post" name="jobappConsultancyWalkinName">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Department</label>
+                                        <input type="text" class="form-control" id="department" name="department">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Date OF Joining</label>
+                                        <input type="date" class="form-control" id="doj" name="jobappTimeRequiredForJoiningIfSelect">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Work Location</label>
+                                        <input type="text" class="form-control" id="work_location" name="workLocation">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="asset/vendors/js/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="asset/vendors/chart.js/Chart.min.js"></script>
+        <script src="asset/js/jquery.cookie.js" type="text/javascript"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="asset/js/off-canvas.js"></script>
+        <script src="asset/js/hoverable-collapse.js"></script>
+        <script src="asset/js/misc.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page -->
+        <script src="asset/js/dashboard.js"></script>
+        <script src="asset/js/todolist.js"></script>
+        <!-- End custom js for this page -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: 'getTLList',
+                    type: 'GET',
+                    success: function (result) {
+                        console.log(result);
+                        $("#nextRoundTo").html(result);
+                    }
+                })
+            })
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+
+            function getAverage() {
+                var typingTest = document.getElementById('typingTest').value;
+                var workExperience = document.getElementById('workExperience').value;
+                var jobKnowledge = document.getElementById('jobKnowledge').value;
+                var communicationSkills = document.getElementById('communicationSkills').value;
+                var motivationInitiative = document.getElementById('motivationInitiative').value;
+//                var educationBackground = document.getElementById('educationBackground').value;
+                var personality = document.getElementById('personality').value;
+//                var language = document.getElementById('language').value;
+                if (typingTest > 5) {
+                    $("#typingTest").focus();
+                    $("#typingTest").val("");
+                    return false;
+                }
+                if (workExperience > 5) {
+                    $("#workExperience").focus();
+                    $("#workExperience").val("");
+                    return false;
+                }
+                if (communicationSkills > 5) {
+                    $("#communicationSkills").focus();
+                    $("#communicationSkills").val("");
+                    return false;
+                }
+                if (motivationInitiative > 5) {
+                    $("#motivationInitiative").focus();
+                    $("#motivationInitiative").val("");
+                    return false;
+                }
+//                if (educationBackground > 5) {
+//                    $("#educationBackground").focus();
+//                    $("#educationBackground").val("");
+//                    return false;
+//
+//                }
+                if (personality > 5) {
+                    $("#personality").focus();
+                    $("#personality").val("");
+                    return false;
+                }
+//                if (language > 5) {
+//                    $("#language").focus();
+//                    $("#language").val("");
+//                    return false;
+//
+//                }
+                if (jobKnowledge > 5) {
+                    $("#jobKnowledge").focus();
+                    $("#jobKnowledge").val("");
+                    return false;
+                }
+
+                var total;
+                var ave;
+                var totcount = 0;
+//                if ((typingTest !== "" || typingTest !==0 ) && (workExperience !== ""|| workExperience !==0 ) && (jobKnowledge !== ""|| jobKnowledge !==0 ) && (communicationSkills !== ""|| communicationSkills !==0 ) && (motivationInitiative !== ""|| motivationInitiative !==0 )
+//                        && (educationBackground !== ""|| educationBackground !==0 ) && (personality !== ""|| personality !==0 ) && (language !== ""|| language !==0)) {
+//                    total = parseInt(typingTest) + parseInt(workExperience) + parseInt(jobKnowledge) + parseInt(communicationSkills) + parseInt(motivationInitiative) + parseInt(educationBackground) + parseInt(personality) + parseInt(language);
+//                   
+//            ave = total / 8;
+//
+//                    document.getElementById('result').value = ave.toFixed(0);
+//                }
+
+                if (typingTest > 0) {
+                    totcount = totcount + 1;
+                } else {
+                    totcount = totcount;
+                }
+                if (workExperience > 0) {
+                    totcount = totcount + 1;
+                } else {
+                    totcount = totcount;
+                }
+                if (jobKnowledge > 0) {
+                    totcount = totcount + 1;
+                } else {
+                    totcount = totcount;
+                }
+                if (communicationSkills > 0) {
+                    totcount = totcount + 1;
+                } else {
+                    totcount = totcount;
+                }
+                if (motivationInitiative > 0) {
+                    totcount = totcount + 1;
+                } else {
+                    totcount = totcount;
+                }
+//                if (educationBackground > 0) {
+//
+//                    totcount = totcount + 1;
+//                } else {
+//                    totcount = totcount;
+//                }
+                if (personality > 0) {
+                    totcount = totcount + 1;
+                } else {
+                    totcount = totcount;
+                }
+//                if (language > 0) {
+//                    totcount = totcount + 1;
+//                } else {
+//                    totcount = totcount;
+//                }
+                console.log("totcount" + totcount);
+                total = parseInt(typingTest) + parseInt(workExperience) + parseInt(jobKnowledge) + parseInt(communicationSkills) + parseInt(motivationInitiative) + parseInt(personality);
+//                parseInt(educationBackground) + parseInt(language)
+                console.log("total" + total);
+                ave = total / totcount;
+                console.log("ave" + ave);
+                document.getElementById('result').value = ave.toFixed(0);
+            }
+
+            function divHideShow(id) {
+//               alert($('#jappId').val())
+                var jAppId = $('#jappId').val();
+                if (id === "viewCV") {
+                    $('#resumeDiv').show();
+                    $('#appDetails').hide();
+                    $('#viewCV').hide();
+                    $('#viewDetails').show();
+                    $.ajax({
+                        url: 'getIframeRemsume',
+                        type: 'get',
+                        data: {"jappId": jAppId},
+                        success: function (result) {
+//                            const blob = base64ToBlob(result, 'application/pdf');
+//                            const url = URL.createObjectURL(blob);
+//                            $('#myIframe').attr("src", url);
+//                            const fileType = result.fileType;
+                            const fileUrl = result.url; // now using URL instead of base64
+                            const fileName = result.fileName;
+                            $('#myIframe').attr("src", fileUrl).show();
+                            $('#downloadLink').html(`<a href="${fileUrl}" download="${fileName}">Download File</a>`);
+                        }
+                    });
+                } else {
+                    $('#resumeDiv').hide();
+                    $('#appDetails').show();
+                    $('#viewCV').show();
+                    $('#viewDetails').hide();
+                }
+            }
+
+            //it for more than 2 mb pdf file 
+            function base64ToBlob(base64, mimeType = "application/octet-stream") {
+//                const binStr = atob(base64);
+//                const len = binStr.length;
+//                const arr = new Uint8Array(len);
+//                for (let i = 0; i < len; i++) {
+//                    arr[ i ] = binStr.charCodeAt(i);
+//                }
+//                return new Blob([arr], {type: type});
+                const byteCharacters = atob(base64);
+                const byteArrays = [];
+                for (let i = 0; i < byteCharacters.length; i += 512) {
+                    const slice = byteCharacters.slice(i, i + 512);
+                    const byteNumbers = new Array(slice.length);
+                    for (let j = 0; j < slice.length; j++) {
+                        byteNumbers[j] = slice.charCodeAt(j);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    byteArrays.push(byteArray);
+                }
+                return new Blob(byteArrays, {type: mimeType});
+            }
+            //assignTo to  next round
+            function assignTo1(val) {
+//               alert(val)
+                $('#nxtroundTR').show();
+                if (val === 'Selected' || val === 'Rejected') {
+                    $('#nextRoundTo').removeAttr('required');
+                    $('#nxtroundTR').hide();
+                    $('#nextRoundTo').val(0);
+//                    $('#nextRoundTo').removeAttr('required');​​​​​
+
+
+                }
+            }
+
+            //letter asimgnement 06042026
+            function getLetterType(type) {
+//                               alert($('#jappId').val())                 
+                $('#viewLetterDiv').show();
+                $('#viewAttempts').hide();
+                $('#lettertypemail').val(type);
+                var letterId = $('#jappId').val();
+                $('#primeLoader1').show();
+                $.ajax({
+                    url: 'getviewLetterById',
+                    type: 'get',
+                    data: {"letterId": letterId, "lettertype": type},
+                    success: function (result) {
+                        //                                                                        alert(result)
+                        $('#myIframe1').html(result);
+                        //                                                                      $('#myIframe').attr("src", result).show();
+                    }
+                })
+
+            }
+            function sendLetter() {
+//                                                                alert(id)
+                var letterId = $('#jappId').val();
+//                alert(letterId)
+                var lettertypeMail = $('#lettertypemail').val();
+                Swal.fire({
+                    title: 'Sending Email...',
+                    text: 'Please wait',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                $.ajax({
+                    url: 'sendMailWithAttachment',
+                    type: 'get',
+                    data: {"letterId": letterId, "lettertype": lettertypeMail},
+                    success: function (result) {
+                        if (result === "Succuss") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Email Sent!',
+                                text: 'Offer letter sent successfully',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 2000);
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Failed!',
+                                text: 'Something went wrong. Kindly Contact to Develpoer Team..'
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Failed!',
+                            text: 'Something went wrong'
+                        });
+                    }
+                    //                                                                      $('#myIframe').attr("src", result).show();
+
+                })
+            }
+
+            function sendLOIAndAppointmentLetter(id) {
+                alert(id)
+                var letterType;
+                if(id==="loiLetterId"){
+                   letterType="loi"; 
+                }else if(id==="appointmentLetter"){
+                    letterType="appointment"; 
+                }
+                var letterId = $('#jappId').val();
+                // ✅ VALIDATION
+                if (!letterId) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Missing Required Fields',
+                        text: 'Please fill all mandatory fields before sending.'
+                    });
+                    return;
+                }
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: `
+        Do you want to send this email?<br><br>
+        <b>Please cross-check the following details:</b><br>
+        • Name, Email ID,Designation<br>
+        • Department,Location<br>
+        • Salary(HR Final round Offerd Salary.)
+        
+    `,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Send',
+                    cancelButtonText: 'No, Cancel',
+                    confirmButtonColor: '#28a745',
+                    cancelButtonColor: '#d33'
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        // ✅ SHOW LOADER
+                        Swal.fire({
+                            title: 'Sending Email...',
+                            text: 'Please wait',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+                        // ✅ DISABLE BUTTON (prevent double click)
+                       
+                         if(id==="loiLetterId"){
+                    $('#loiLetterId').prop('disabled', true);
+                }else if(id==="appointmentLetter"){
+                    $('#appointmentLetter').prop('disabled', true);
+                }
+                        $.ajax({
+                            url: 'sendLetter',
+//                            url: 'sendLOI',
+                            type: 'GET',
+                            data: {letterId: letterId,letterType: letterType},
+                            success: function (result) {
+                                console.log("Result:", result);
+                                console.log("Type:", typeof result);
+                                // ✅ CLOSE LOADER FIRST
+                                Swal.close();
+                                if (result.status === "success") {
+
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Email Sent!',
+                                        text: 'Offer letter sent successfully',
+                                        timer: 2000,
+                                        showConfirmButton: false
+                                    });
+                                    setTimeout(() => {
+                                        window.location.reload();
+                                    }, 2000);
+                                } else if (result.status === "login") {
+
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Session Expired',
+                                        text: 'Please login again'
+                                    }).then(() => {
+                                        window.location.href = "/login";
+                                    });
+                                } else {
+
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Failed!',
+                                        text: 'Something went wrong. Please contact developer team.'
+                                    });
+                                }
+
+                                // ✅ ENABLE BUTTON AGAIN
+                                $('#loiLetterId').prop('disabled', false);
+                            },
+                            error: function () {
+
+                                Swal.close();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Server Error',
+                                    text: 'Unable to process request. Try again later.'
+                                });
+                                $('#loiLetterId').prop('disabled', false);
+                            }
+                        });
+                    }
+
+                    // ❌ CANCELLED
+                    else if (result.dismiss === Swal.DismissReason.cancel) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Cancelled',
+                            text: 'Email not sent'
+                        });
+                    }
+                });
+            }
+//                                                                alert(id)
+//                var letterId = $('#jappId').val();
+//                Swal.fire({
+//                    title: 'Sending Email...',
+//                    text: 'Please wait',
+//                    allowOutsideClick: false,
+//                    didOpen: () => {
+//                        Swal.showLoading();
+//                    }
+//                });
+//                $.ajax({
+//                    url: 'sendLOI',
+//                    type: 'get',
+//                    data: {"letterId": letterId},
+//                    success: function (result) {
+//                        if (result === "Succuss") {
+//                            Swal.fire({
+//                                icon: 'success',
+//                                title: 'Email Sent!',
+//                                text: 'Offer letter sent successfully',
+//                                timer: 2000,
+//                                showConfirmButton: false
+//                            });
+//
+//                            setTimeout(() => {
+//                                window.location.reload();
+//                            }, 2000);
+//                        } else {
+//                            Swal.fire({
+//                                icon: 'error',
+//                                title: 'Failed!',
+//                                text: 'Something went wrong. Kindly Contact to Develpoer Team..'
+//                            });
+//                        }
+//                    },
+//                    error: function () {
+//                        Swal.fire({
+//                            icon: 'error',
+//                            title: 'Failed!',
+//                            text: 'Something went wrong'
+//                        });
+//                    }
+//                })
+
+
+        </script>
+        <script>
+
+            // AUTO CALC FROM CTC
+            document.getElementById("ctc").addEventListener("input", function () {
+
+                let ctc = parseFloat(this.value) || 0;
+                let basic = ctc * 0.5;
+                let hra = ctc * 0.25;
+//                let conv = parseFloat(document.getElementById("conv").value) || 600;
+                let conv = ctc * 0.1;
+//                let medical = parseFloat(document.getElementById("medical").value) || 500;
+                let medical = ctc * 0.05;
+                let special = ctc - (basic + hra + conv + medical);
+                document.getElementById("basic").value = basic.toFixed(0);
+                document.getElementById("hra").value = hra.toFixed(0);
+                document.getElementById("conv").value = conv.toFixed(0);
+                document.getElementById("medical").value = medical.toFixed(0);
+                document.getElementById("special").value = special.toFixed(0);
+                document.getElementById("gross").value = ctc.toFixed(0);
+                calculateAll();
+            });
+            // TOTAL + NET CALC
+            function calculateAll() {
+
+                let gross = parseFloat(document.getElementById("gross").value) || 0;
+                let pfEmp = parseFloat(document.getElementById("pfEmployee").value) || 0;
+                let pt = parseFloat(document.getElementById("pt").value) || 0;
+                let insurance = parseFloat(document.getElementById("insurance").value) || 0;
+                let totalDeduction = pfEmp * 2 + pt + insurance;
+                let netSalary = gross - totalDeduction;
+                document.getElementById("totalDeduction").value = totalDeduction.toFixed(0);
+                document.getElementById("netSalary").value = netSalary.toFixed(0);
+            }
+
+            // AUTO UPDATE ON CHANGE
+            document.querySelectorAll("#pfEmployee, #pt, #insurance").forEach(input => {
+                input.addEventListener("input", calculateAll);
+            });
+        </script>
+        <script>
+
+            $('#salarybifircation').submit(function (e) {
+                e.preventDefault();
+                //                var formData = $(this).serialize();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'saveSalary',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        console.log(result);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Done...',
+                            text: 'Data Saved Successfully!',
+                            confirmButtonText: 'OK',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        })
+                    }
+                })
+
+
+            });
+            function openAddModal(jobappId) {
+//                let parts = jobappId.split("-");
+                let modal = new bootstrap.Modal(document.getElementById('salaryModal'));
+                modal.show();
+            }
+            function openUpdateApplicantDetailsModal(btn) {
+//                let parts = jobappId;
+                document.getElementById('jobId').value = btn.dataset.id;
+                document.getElementById('applicant_name').value = btn.dataset.name;
+                document.getElementById('email').value = btn.dataset.email;
+                document.getElementById('post').value = btn.dataset.post;
+                document.getElementById('department').value = btn.dataset.dept;
+                document.getElementById('doj').value = btn.dataset.doj;
+                document.getElementById('work_location').value = btn.dataset.location;
+                let modal = new bootstrap.Modal(document.getElementById('applicantModal'));
+                modal.show();
+            }
+
+            $('#updateApplicantDeatials').submit(function (e) {
+//                alert()
+                e.preventDefault();
+                $.ajax({
+                    url: 'updateApplicantDetails',
+                    type: 'POST',
+                    data: {
+                        jobappId: $('#jobId').val(),
+                        jobappInterviewerName: $('#applicant_name').val(),
+                        jobappEmail: $('#email').val(),
+                        jobappConsultancyWalkinName: $('#post').val(),
+                        department: $('#department').val(),
+                        jobappTimeRequiredForJoiningIfSelect: $('#doj').val(),
+                        workLocation: $('#work_location').val()
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Done...',
+                            text: 'Data Saved Successfully!',
+                            confirmButtonText: 'OK',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        })
+                    }
+                })
+
+
+            });
+            function openEditModal(jobappId) {
+//             alert(jobappId)
+                let parts = jobappId.split("-");
+                let jId = parts[1];
+                fetch('/getSalaryById?jobappId=' + jId)
+                        .then(res => res.json())
+                        .then(data => {
+
+                            if (data) {
+
+                                document.getElementById("salaryId").value = data.id;
+                                document.getElementById("tcId").value = data.tcId;
+                                document.getElementById("ctc").value = data.ctc;
+                                document.getElementById("basic").value = data.basic;
+                                document.getElementById("hra").value = data.hra;
+                                document.getElementById("conv").value = data.conveyance;
+                                document.getElementById("medical").value = data.medical;
+                                document.getElementById("special").value = data.specialAllowance;
+                                document.getElementById("gross").value = data.grossSalary;
+                                document.getElementById("pfEmployee").value = data.employeePf;
+                                document.getElementById("pt").value = data.professionalTax;
+                                document.getElementById("insurance").value = data.insuranceDeduction;
+                                document.getElementById("totalDeduction").value = data.totalDeduction;
+                                document.getElementById("netSalary").value = data.netSalary;
+                            }
+
+                            let modal = new bootstrap.Modal(document.getElementById('salaryModal'));
+                            modal.show();
+                        });
+            }
+
+
+        </script>
+        <script>
+            function numberToWordsIndian(num) {
+                const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+                    "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen",
+                    "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+                const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty",
+                    "Sixty", "Seventy", "Eighty", "Ninety"];
+                const convert = (n) => {
+                    if (n < 20)
+                        return ones[n];
+                    if (n < 100)
+                        return tens[Math.floor(n / 10)] + " " + ones[n % 10];
+                    return ones[Math.floor(n / 100)] + " Hundred " + convert(n % 100);
+                };
+
+                if (num === 0)
+                    return "zero";
+
+                let result = "";
+
+                if (num >= 100000) {
+                    result += convert(Math.floor(num / 100000)) + " lakh ";
+                    num %= 100000;
+                }
+
+                if (num >= 1000) {
+                    result += convert(Math.floor(num / 1000)) + " thousand ";
+                    num %= 1000;
+                }
+
+                if (num > 0) {
+                    result += convert(num);
+                }
+
+                return result.trim().replace(/\s+/g, " ");
+            }
+
+            // 🔥 Live typing
+            document.getElementById("offSal").addEventListener("input", function () {
+                const value = this.value;
+                if (value === "") {
+                    document.getElementById("output").innerText = "";
+                    return;
+                }
+
+                document.getElementById("output").innerText = numberToWordsIndian(Number(value));
+            });
+        </script>
+    </body>
+</html>

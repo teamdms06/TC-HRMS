@@ -1,0 +1,229 @@
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <!--<h4 class="card-title">Project Status</h4>-->
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>Applicant Details :</strong></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="table-responsive" id="appDetails">
+                    <table class="table table-responsive">
+
+                        <tbody th:each="lastRec :${getAllDetails}">
+                        <input type="hidden" id="jappId" th:value="${leadId}" />
+                        <!--<input type="hidden" id="roundStatus" th:value="${lastRec[16]}" />-->
+                        <tr>
+                            <th>Applicant Name</th>
+                            <td th:text="${lastRec[2]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Add Set NAme</th>
+                            <td th:text="${lastRec[8]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Campaign Name</th>
+                            <td th:text="${lastRec[9]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Form Name</th>
+                            <td th:text="${lastRec[10]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Contact Number</th>
+                            <td th:text="${lastRec[4]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Email ID</th>
+                            <td th:text="${lastRec[3]}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>City</th>
+                            <td th:text="${lastRec[5]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Proficient in English</th>
+                            <td th:text="${lastRec[6]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                <span th:text="${lastRec[7]}"
+                                      th:classappend="
+                                      ${lastRec[7]} == 'Under followUp' ? 'btn btn-warning btn-sm' :
+                                      (${lastRec[7]} == 'Interested' ? 'btn btn-success btn-sm' :
+                                      (${lastRec[7]} == 'Not Interested' ? 'btn btn-danger btn-sm' :
+                                      (${lastRec[7]} == 'NEW' ? 'btn btn-primary btn-sm' :
+                                      'btn btn-secondary btn-sm')))">
+                                </span>
+                                <button class="btn btn-primary btn-sm"
+                                        th:if="${nextLeadId != null}"
+                                        th:data-id="${nextLeadId}"
+                                        th:data-status="${lastRec[7]}"
+                                        onclick="goToNextFromBtn(this)">
+                                    Next →
+                                </button>
+                            </td>
+                        </tr> 
+                      
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--    </div>-->
+    <div class="col-md-6 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>Lead Details :</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion panel-group" id="accordionExample">
+                    <div class="accordion-item"> 
+                        <!--th:if="${hrfeedbacks[0].finalStatus=='FRESH'}"-->
+                        <h4 class="accordion-header" id="headingOne">
+                            <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                New feedback
+                            </a>
+                        </h4>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="col-lg-12 ">
+                                    <form id="saveAddsLeadFeedbackForm">
+                                        <!--action="saveAddsLeadFeedback" method="POST"-->
+                                        <input type="hidden" name="leadId" th:value="${leadId}">
+                                        <input type="hidden" name="actionBy" th:value="${session.actor_process}"/>
+
+                                        <table class="table table-bordered">
+                                            <tbody>
+
+                                                <tr>
+                                                    <td> Call Status</td>
+                                                    <td>
+                                                        <select class="form-control" id="callStatus"  name="callStatus" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="Contacted">Contacted</option>
+                                                            <option value="Non Contacted">Non Contacted</option>
+
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+                                                <tr class="notContDiv" style="display: none">
+                                                    <td> Language: </td>
+                                                    <td>
+                                                        <input type="text" class="form-control"  id="language" name="language"  placeholder="...." >
+                                                        <!--onkeyup="getAverage();"-->
+                                                    </td>
+
+                                                </tr>
+                                                <tr class="notContDiv" style="display: none">
+                                                    <td> Salary Expectations</td>
+                                                    <td>
+                                                        <input type="text" class="form-control " id="salaryExpectation"  name="salaryExpectation" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>final Status</td>
+                                                    <td>
+                                                        <select class="form-control" id="status"  name="status"  required>
+                                                            <option value="">-Select-</option>
+                                                            <!--                                                            <option value="Under followUp">Under followUp</option>
+                                                                                                                        <option value="Interested">Interested</option>
+                                                                                                                        <option value="Not Interested">Not Interested</option>-->
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Remark </td>
+                                                    <td>
+                                                        <textarea  class="form-control" id="remark"  name="feedback" min="0" max="5" required ></textarea>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        <button type="submit" class="btn btn-gradient-primary btn-rounded btn-sm">Submit</button>
+                                        <button class="btn btn-gradient-secondary btn-rounded btn-sm" type="reset">Reset</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="accordion-item" th:unless="${#lists.isEmpty(hrfeedbacks)}" th:each="hrfeedback,iterator : ${hrfeedbacks}"> <!--th:if="${hrfeedback.count !=0}"-->
+                        <h4 class="accordion-header" th:id="${'headingTwo'+ +iterator.index}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="${'#collapseTwo'+ + iterator.index}" aria-expanded="false" th:aria-controls="${'collapseTwo'+ + iterator.index}">
+                                <span>Call By : <span class="badge badge-success " th:text="${hrfeedback.actionBy}"></span></span>
+                            </button>
+                        </h4>
+                        <div  th:id="${'collapseTwo'+ + iterator.index}" class="accordion-collapse collapse" th:aria-labelledby="${'headingTwo'+ +iterator.index}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-condensed" style="z-index: 100;">
+                                        <tbody >
+                                            <tr>
+                                                <td 
+                                                    style="font-weight:bold;font-size:14px;vertical-align:top">Call Details
+                                                </td>
+                                                <td colspan="3" >Date & Time :- <span class="badge badge-info" th:text="${hrfeedback.createdAt}"></span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th style="width: 30%"><span >Call Status</span></th>
+                                                <td style="width: 30%">
+                                                    <span   th:text="${hrfeedback.callStatus}"></span>
+                                                </td>
+                                                <th style="width: 30%"><span > Status</span></th>
+                                                <td style="width: 30%">
+                                                    <span class="btn btn-gradient-primary btn-sm"  th:text="${hrfeedback.status}"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span>Proficient in English</span></th>
+                                                <td style="width: 30%">
+                                                    <span   th:text="${hrfeedback.language}"></span>
+                                                </td>
+                                                <th style="width: 30%"><span > salary Expectations</span></th>
+                                                <td style="width: 30%">
+                                                    <span   th:text="${hrfeedback.salaryExpectation}"></span>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <th>Remark</th>
+                                                <td colspan="3" >
+                                                    <span th:text="${hrfeedback.feedback}"></span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

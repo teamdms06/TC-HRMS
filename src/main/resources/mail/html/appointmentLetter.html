@@ -1,0 +1,290 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Employment Agreement</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 120px 50px 80px 50px;
+
+                @top-center {
+                    content: element(header);
+                }
+
+                @bottom-center {
+                    content: element(footer);
+                }
+            }
+
+            body {
+                text-align: justify;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* HEADER */
+            .header {
+                position: running(header);
+            }
+
+
+
+
+            /* CONTENT */
+            .content {
+                width: 100%;
+            }
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 10px 0;
+                text-decoration: underline;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: avoid;
+                margin-top: 10px;
+            }
+
+            td {
+                padding: 4px 0;
+                vertical-align: top;
+            }
+            p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 12px;
+                color: #555;
+            }
+
+            .footer-line {
+                border-top: 2px solid #128bfc;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <table>
+                <tr>
+                    <td style="width: 120px;">
+                        <img th:src="${logoPath}" style="width:150px;" />
+                    </td>
+                    <td style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; color:#128bfc;">
+                            THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED
+                        </div>
+                        <div style="font-size:9px;">
+                            Call Center Services | Software Development | Document Management Systems |
+                            Training Solutions | Security Enabled Printing
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr style="margin-top:10px; color:#128bfc"/>
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+            <!-- DATE -->
+            <div style="text-align:right; margin:0; line-height:1.0;">
+                <div>Document ID: <b><span th:text="${docNo}"></span></b></div>
+                <div>Date : <span th:text="${date}"></span></div>
+            </div>
+
+            <!-- EMPLOYEE DETAILS -->
+           <table style="width:100%;">
+                            <tr>
+                                <td style="width:50%; vertical-align:top;">
+                                    <p style="margin:0;"><strong>TO,</strong></p>
+                                    <p style="margin:0;"><strong th:text="${employeeName}"></strong></p>
+            
+                                   <p style="margin-top:5px;">
+
+                    <!-- Address -->
+                    <span th:if="${addr != '-' and addr != null and !#strings.isEmpty(addr)}"
+                          th:text="${addr}">
+                    </span>
+
+                    <!-- Line break only if address exists -->
+                    <br th:if="${addr != '-' and addr != null and !#strings.isEmpty(addr)}"/>
+
+                    <!-- City -->
+                    <span th:if="${city != '-' and city != null and !#strings.isEmpty(city)}"
+                          th:text="${city}">
+                    </span>
+
+                    <!-- Comma after city only if state exists -->
+                    <span th:if="${city != '-' and city != null and !#strings.isEmpty(city)
+                          and state != '-' and state != null}">
+                        ,
+                    </span>
+
+                    <!-- State -->
+                    <span th:if="${state != '-' and state != null and !#strings.isEmpty(state)}"
+                          th:text="${state}">
+                    </span>
+
+                    <!-- Comma after state only if pincode exists -->
+                    <span th:if="${state != '-' and state != null
+                          and pincode != '-' and pincode != null}">
+                        ,
+                    </span>
+
+                    <!-- Pincode -->
+                    <span th:if="${pincode != '-' and pincode != null and !#strings.isEmpty(pincode)}"
+                          th:text="${pincode}">
+                    </span>
+
+                </p>
+                                </td>
+                                <td style="width:50%;"></td>
+                            </tr>
+                        </table>
+
+            <!-- TITLE -->
+            <div class="title">
+                Subject: Appointment as - <span th:text="${designation}"></span>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section">
+                <p><strong>Dear <span th:text="${employeeName}"></span>,</strong></p>
+                <p>With reference to your application, LOI and subsequent discussions, we are pleased to appoint you as <strong><span th:text="${designation}"></span> </strong> with  <strong> THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</strong>  on the following terms and conditions:</p>
+                
+                <p><strong>1. Appointment and Joining</strong></p>
+                <p>You shall join the services of the Company on or before <strong><span th:text="${joiningDate}"></span></strong> at the Company’s office situated at <strong><span th:text="${location}"></span></strong>. Your employment shall commence from the date of your joining.</p>
+                <p><strong>2. Probation Period</strong></p>
+                <p>You shall initially be on probation for a period of 3 months from the date of joining.</p>
+                <p><strong>3. Place of Posting</strong></p>
+                <p>Your initial place of posting shall be at <strong><span th:text="${location}"></span></strong> However, the Company reserves the right to transfer you based on business requirements.</p>
+                <p><strong>4. Duties and Responsibilities</strong></p>
+                <p>You shall perform the duties assigned to you by the management from time to time with sincerity, honesty, and diligence.</p>
+                <p><strong>5. Working Hours</strong></p>
+                <p>Your working hours, weekly offs, and shift timings shall be as per Company policy and operational requirements.</p>
+                <p><strong>6. Compensation</strong></p>
+                <p>You shall be paid a CTC of Rs. <strong><span th:text="${salary}"></span>/-</strong> per month. The detailed salary structure shall be provided separately in the Salary Breakup Sheet.</p>
+                 <p><strong>7. Confidentiality</strong></p>
+            </div>
+            <div class="page-break"></div>
+            <div class="section">
+                <p>You shall maintain strict confidentiality and shall not disclose such information to any third party during or after cessation of employment.</p>
+                <p><strong>8. Code of Conduct</strong></p>
+                <p>You shall maintain discipline and professionalism at the workplace.</p>
+                <p><strong>9. Leave</strong></p>
+                <p>You shall be entitled to leave and holidays as per the Company’s leave policy applicable from time to time.</p>
+                <p><strong>10. Background Verification</strong></p>
+                <p>Your appointment is subject to satisfactory background verification.</p>
+                <p><strong>11. Employment Agreement and NDA Agreement</strong></p>
+                <p>You are required to execute an Employment Agreement with the Company, wherein the detailed terms and conditions governing your employment have been set out. You shall also be required to execute and comply with the Non-Disclosure Agreement (NDA) of the Company for maintaining the confidentiality of the Company’s business information, client data, and other proprietary information.</p>
+                
+                <p>You are required to sign and return the self-attested duplicate copy of this letter as a token of your acceptance of the above terms and conditions.</p>
+                <p>We welcome you to the organization and wish you a successful career with us.</p>
+                
+               
+                <p class="signature" ><strong> 
+                        For, 
+                        The-Connections ITES Business Services Private Limited <br></br>
+                         Authorized Signatory <br/>
+                        <span th:text="${actorName}"></span><br/>
+                        HR Department.
+                    </strong> </p>
+                <div style="margin-top:10px;">
+                    <img th:src="${stampPath}" alt="Company Stamp" style="width:100px;"/>
+                </div>
+                <div style="margin-top:15px;">
+
+    <p style="
+       font-size:12px;
+       font-weight:400;
+       color:#111827;
+       margin-bottom:25px;">
+        Accepted and Agreed
+    </p>
+
+    <div style="margin-bottom:10px;">
+
+        <div style="
+             width:180px;
+             border-bottom:1px solid #000;
+             margin-bottom:8px;">
+        </div>
+
+<!--        <p style="
+           margin:0;
+           font-size:10px;
+           color:#374151;">
+            Signature
+        </p>-->
+         <p style="
+                   margin:0 0 8px 0;
+                   font-size:12px;
+                   color:#111827;
+                   font-weight:400;">
+                    Name:
+                </p>
+         <p style="
+                   margin:0 0 8px 0;
+                   font-size:12px;
+                   color:#111827;
+                   font-weight:400;">
+                    Date:
+                </p>
+        
+        <p style="margin:0 0 8px 0; font-size:11px; color:#777; text-align:center; font-style:italic;">
+                This is a system-generated document and does not require a physical signature.
+            </p>
+    </div>
+
+    
+
+</div>
+                
+            </div>
+        </div>
+         
+        <div class="footer">
+            
+            <div class="footer-line"></div>
+
+            <div>
+                Office No. 18 &amp; 19, D Tower, 5th Floor, Vega Center, Shankarsheth Road, Swargate, Pune-411037
+            </div>
+
+            <div>
+                Web : www.the-connections.com | Email : info@the-connections.com | CIN No. : U74990PN2016PTC158850
+            </div>
+
+            <div class="footer-line"></div>
+
+        </div>
+    </body>
+</html>
+

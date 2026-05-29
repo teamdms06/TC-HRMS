@@ -1,0 +1,170 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Relieving Letter</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 120px 50px 80px 50px;
+                margin-bottom: 80px;
+
+                @top-center {
+                    content: element(header);
+                }
+
+                @bottom-center {
+                    content: element(footer);
+                }
+            }
+
+            body {
+                text-align: justify;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* HEADER */
+            .header {
+                position: running(header);
+            }
+
+
+
+
+            /* CONTENT */
+            .content {
+                width: 100%;
+            }
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 20px 0;
+                text-decoration: underline;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: avoid;
+            }
+
+            td {
+                vertical-align: top;
+            }
+            p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 12px;
+                color: #555;
+            }
+
+            .footer-line {
+                border-top: 2px solid #128bfc;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <table>
+                <tr>
+                    <td style="width: 120px;">
+                        <img th:src="${logoPath}" style="width:150px;" />
+                    </td>
+                    <td style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; color:#128bfc;">
+                            THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED
+                        </div>
+                        <div style="font-size:9px;">
+                            Call Center Services | Software Development | Document Management Systems |
+                            Training Solutions | Security Enabled Printing
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr style="margin-top:10px; color:#128bfc"/>
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+            <!-- DATE -->
+            <div style="text-align:right; margin-bottom:20px;">
+                Date : <span th:text="${date}"></span>
+            </div>
+
+            <!-- EMPLOYEE DETAILS -->
+
+
+            <!-- TITLE -->
+            <div class="title">
+                <strong>Relieving Letter</strong>
+            </div>
+            <div class="title">
+                To Whom It May Concern
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section">
+                <p>This is with reference to Ms. / Mr. <span th:text="${name}"></span> resignation dated  <span th:text="${dor}"></span> from the position of <span th:text="${designation}"></span>. </p>
+                <p>Your resignation has been accepted by the Management, and you are relieved from the services of the <strong> The-Connections ITES Business Services Private Limited </strong> company with immediate effect.</p>
+                <p>We want to state for the record that you have served the organization. Your full and final settlement of all dues will be processed after 45 days (next salary date) following your resignation.</p>
+                <p>We wish you all the best for your future endeavors.</p>
+                <p class="signature" ><strong> 
+                        For, 
+                        The-Connections ITES Business Services Private Limited <br></br>
+                        <span th:text="${actorName}"></span><br/>
+                        HR & Admin Department.
+                    </strong> </p>
+            </div>
+            <!-- PAGE BREAK -->
+
+
+            <!-- SECTION B -->
+
+
+        </div>
+        <div class="footer">
+
+            <div class="footer-line"></div>
+
+            <div>
+                Office No. 18 &amp; 19, D Tower, 5th Floor, Vega Center, Shankarsheth Road, Swargate, Pune-411037
+            </div>
+
+            <div>
+                Web : www.the-connections.com | Email : info@the-connections.com | CIN No. : U74990PN2016PTC158850
+            </div>
+
+            <div class="footer-line"></div>
+
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,45 @@
+<!--<div id="trainingBatchList" fragment="trainingBatchList1" class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Recently Applied</h4>
+                <div class="table-responsive">
+                    <table class="table" id="dataTableId">
+                        <thead>
+                            <tr>
+                                <th> SR No.</th>
+                                <th> Batch Name </th>
+                                <th> Start Date</th>
+                                <th> trainer </th>
+                                <th> Location </th>
+                                <th> Agent Name List </th>
+                                <th> Status </th>
+                                <th> Action </th>
+                                <th> Add Agent </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="batch,iterator : ${batchList}">
+                                 <td th:text="${iterator.index+1}"></td>
+                                <td th:text="${batch[1]}">9</td>
+                                <td th:text="${batch[2]}">9</td>
+                                                                <td th:text="${batch[3]}">9</td>
+                                <td th:text="${batch[4]}">9</td>
+                                <td th:text="${batch[5]}">9</td>
+                                <td th:text="${batch[6]}">9</td>
+                                <td > <button class="btn btn-outline-primary btn-sm" th:id="${batch[0]}" onclick="getBatchdetails(this.id)" data-toggle="modal" data-target="#basicModal">View</button>
+                                    <button class="btn btn-outline-info btn-sm" th:id="${batch[0]}" onclick="updateBatchForm(this.id)" >Update</button>
+                                    <button class="btn btn-outline-info btn-sm" th:id="${batch[0]}" >Evaluated</button>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>TC-HRMS</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="asset/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="asset/vendors/css/vendor.bundle.base.css">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- Layout styles -->
+        <link rel="stylesheet" href="asset/css/style.css">
+        <!-- End layout styles -->
+        <link rel="shortcut icon" href="/asset/images/favicon.ico" />
+    </head>
+    <body>
+        <div class="container-scroller">
+
+            <div th:replace="fragments/navbar"></div>
+            <!-- partial:partials/_navbar.html -->
+
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <div th:replace="fragments/sidebar"></div>
+                <!-- partial:partials/_sidebar.html -->
+
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">
+                                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                                    <i class="mdi mdi-home"></i>
+                                </span> View Adds Lead Details
+                            </h3>
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <!--                                    <li class="breadcrumb-item active" aria-current="page">
+                                                                            <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                                                                        </li>-->
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div th:replace="segments/fragments/uniqueOldEmployeeLetterData"></div>
+
+
+
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <!--<div th:replace="fragments/footer"></div>-->
+                    <!-- partial -->
+                </div>
+                
+                <!-- main-panel ends -->
+            </div>
+            <div class="modal fade" id="salaryModal" tabindex="-1">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                        <form id="salarybifircation">
+                            <input type="hidden" id="salaryId" name="id" >
+                            <input type="hidden" id="applicantId" name="applicantId" th:value="${jAppId}">
+                            <div class="modal-header">
+                                <h6 class="modal-title">Salary Calculation</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <table class="table table-bordered">
+
+                                    <!-- CTC -->
+                                    <tr>
+                                        <td>TC Employee ID</td>
+                                        <td><input type="text" id="tcId" name="tcId" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monthly CTC</td>
+                                        <td><input type="number" id="ctc" name="ctc" class="form-control"></td>
+                                    </tr>
+
+                                    <!-- SALARY -->
+                                    <tr>
+                                        <th colspan="2">Salary</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Basic</td>
+                                        <td><input type="number" id="basic" name="basic" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>HRA</td>
+                                        <td><input type="number" id="hra" name="hra" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Conveyance</td>
+                                        <td><input type="number" id="conv" name="conveyance" class="form-control" value="600"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Medical</td>
+                                        <td><input type="number" id="medical" name="medical" class="form-control" value="500"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Special</td>
+                                        <td><input type="number" id="special" name="specialAllowance" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Gross Salary</td>
+                                        <td><input type="number" id="gross" name="grossSalary" class="form-control"></td>
+                                    </tr>
+
+                                    <!-- DEDUCTIONS -->
+                                    <tr>
+                                        <th colspan="2">Deductions</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Employee PF</td>
+                                        <td><input type="number" id="pfEmployee" name="employeePf" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Professional Tax</td>
+                                        <td><input type="number" id="pt" name="professionalTax" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Insurance</td>
+                                        <td><input type="number" id="insurance" name="insuranceDeduction" class="form-control"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Total Deduction</b></td>
+                                        <td><input type="number" id="totalDeduction" name="totalDeduction" class="form-control" readonly></td>
+                                    </tr>
+
+                                    <!-- NET SALARY -->
+                                    <tr>
+                                        <td><b>Net In-Hand Salary</b></td>
+                                        <td><input type="number" id="netSalary" name="netSalary" class="form-control" readonly></td>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal -->
+<div class="modal fade" id="modifyModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+                <h5>Modify Employee</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form method="post" th:action="@{/updateOldEmployeeDetails}">
+                <div class="modal-body">
+
+                    <input type="hidden" name="id">
+
+                    <!-- Employee -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>TC ID</label>
+                            <input name="employeeId" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Name</label>
+                            <input name="employeeName" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Gender</label>
+                            <select name="gender" class="form-control">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>DOB</label>
+                            <input type="date" name="dateOfBirth" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>Joining</label>
+                            <input type="date" name="dateOfJoining" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>Email</label>
+                            <input name="emailId" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>Contact</label>
+                            <input name="contactNumber" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>Designation</label>
+                            <input name="designation" class="form-control">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>Address</label>
+                            <textarea name="employeeAddress" class="form-control"></textarea>
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>City</label>
+                            <input name="city" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>State</label>
+                            <input name="state" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-2">
+                            <label>Pincode</label>
+                            <input name="pincode" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Salary -->
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <label>CTC</label>
+                            <input name="ctc" class="form-control">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Basic</label>
+                            <input name="basic" class="form-control">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>HRA</label>
+                            <input name="hra" class="form-control">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Conveyance</label>
+                            <input name="conveyance" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Medical</label>
+                            <input name="medical" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Special Allowance</label>
+                            <input name="specialAllowance" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Gross</label>
+                            <input name="grossSalary" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Employee PF</label>
+                            <input name="employeePf" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Employer PF</label>
+                            <input name="employerPf" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Professional Tax</label>
+                            <input name="professionalTax" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Insurance</label>
+                            <input name="insuranceDeduction" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Total Deduction</label>
+                            <input name="totalDeduction" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label>Net Salary</label>
+                            <input name="netSalary" class="form-control">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-success">Update</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="asset/vendors/js/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="asset/vendors/chart.js/Chart.min.js"></script>
+        <script src="asset/js/jquery.cookie.js" type="text/javascript"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="asset/js/off-canvas.js"></script>
+        <script src="asset/js/hoverable-collapse.js"></script>
+        <script src="asset/js/misc.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page -->
+        <script src="asset/js/dashboard.js"></script>
+        <script src="asset/js/todolist.js"></script>
+        <!-- End custom js for this page -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: 'getTLList',
+                    type: 'GET',
+                    success: function (result) {
+                        console.log(result);
+
+                        $("#nextRoundTo").html(result);
+                    }
+                })
+            })
+        </script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $('#saveAddsLeadFeedbackForm').submit(function (e)  {
+                e.preventDefault();
+//                var formData = $(this).serialize();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'saveAddsLeadFeedback',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        console.log(result);
+                           Swal.fire({
+                        icon: 'success',
+                        title: 'Done...',
+                        text: 'Data Saved Successfully!',
+                        confirmButtonText: 'OK',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    })
+//                        $("#nextRoundTo").html(result);
+                    }
+                })
+            })
+//            saveAddsLeadFeedback
+     function openEditModal(jobappId) {
+//             alert(jobappId)
+                let parts = jobappId.split("-");
+                let jId = parts[1];
+                fetch('/getSalaryById?jobappId=' + jId)
+                        .then(res => res.json())
+                        .then(data => {
+
+                            if (data) {
+
+                                document.getElementById("salaryId").value = data.id;
+                                document.getElementById("tcId").value = data.tcId;
+
+                                document.getElementById("ctc").value = data.ctc;
+                                document.getElementById("basic").value = data.basic;
+                                document.getElementById("hra").value = data.hra;
+                                document.getElementById("conv").value = data.conveyance;
+                                document.getElementById("medical").value = data.medical;
+                                document.getElementById("special").value = data.specialAllowance;
+                                document.getElementById("gross").value = data.grossSalary;
+
+                                document.getElementById("pfEmployee").value = data.employeePf;
+                                document.getElementById("pt").value = data.professionalTax;
+                                document.getElementById("insurance").value = data.insuranceDeduction;
+                                document.getElementById("totalDeduction").value = data.totalDeduction;
+                                document.getElementById("netSalary").value = data.netSalary;
+                            }
+
+                            let modal = new bootstrap.Modal(document.getElementById('salaryModal'));
+                            modal.show();
+                        });
+            }
+        
+            
+           
+        </script>
+       <script>
+function loadData(button) {
+
+    const modal = document.getElementById('modifyModal');
+
+    // 🔥 Mapping (lowercase → correct field name)
+    const fieldMap = {
+        employeeid: "employeeId",
+        employeename: "employeeName",
+        dateofbirth: "dateOfBirth",
+        dateofjoining: "dateOfJoining",
+        emailid: "emailId",
+        contactnumber: "contactNumber",
+        employeeaddress: "employeeAddress",
+        offerletterstatus: "offerLetterStatus",
+        salbifurcationid: "salBifurcationId",
+        specialallowance: "specialAllowance",
+        grosssalary: "grossSalary",
+        employeepf: "employeePf",
+        employerpf: "employerPf",
+        professionaltax: "professionalTax",
+        insurancededuction: "insuranceDeduction",
+        totaldeduction: "totalDeduction",
+        netsalary: "netSalary"
+    };
+
+    Array.from(button.attributes).forEach(attr => {
+
+        if (attr.name.startsWith('data-')) {
+
+            let key = attr.name.replace('data-', '').toLowerCase();
+
+            // 🔥 Convert using map OR fallback
+            key = fieldMap[key] || key;
+
+            const input = modal.querySelector(`[name="${key}"]`);
+
+            if (input) {
+
+                if (input.type === "date" && attr.value) {
+                    input.value = attr.value.split('T')[0];
+                } else {
+                    input.value = attr.value;
+                }
+
+            } else {
+                console.warn("❌ Not found:", key);
+            }
+        }
+    });
+}
+</script>
+<script>
+function sendOldEmpOLMail(button) {
+
+    let id = $(button).data("id");
+
+    // 🔥 Confirmation popup
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to send email?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Send",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            // Disable button
+            $(button).prop("disabled", true)
+                     .html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+
+            $.ajax({
+                url: '/send-single-mail',
+                type: 'POST',
+                data: { id: id },
+
+                success: function(response) {
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: response,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+
+                    $(button).html("Sent");
+                },
+
+                error: function(xhr) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Failed",
+                        text: xhr.responseText || "Something went wrong"
+                    });
+
+                    $(button).prop("disabled", false)
+                             .text("Send Mail");
+                }
+            });
+
+        }
+    });
+}
+</script>
+    </body>
+</html>

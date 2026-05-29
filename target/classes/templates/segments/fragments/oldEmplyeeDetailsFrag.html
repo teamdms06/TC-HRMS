@@ -1,0 +1,49 @@
+<div id="newMetaAddsData" fragment="oldEmplyeeDetailsFrag" class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <!--<h4 class="card-title">Recently Applied</h4>-->
+                <div class="table-responsive">
+                    <table class="table" id="dataTableOldEmplId">
+
+                        <thead>
+                            <tr>
+                                <th> Employee Id </th>
+                                <th> Emp Name </th>
+                                <th> Contact Number </th>
+                                <th> Date Of Joinging</th>
+                                <th> Designation </th>
+                                <th> Status </th>
+                                <th > Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="hrnew : ${itrdata}">
+                                <td th:text="${hrnew[1]}">9</td>
+                                <td th:text="${hrnew[2]}">9</td>
+                                <td th:text="${hrnew[3]}">9</td>
+                                <!--<td th:text="${hrnew[3]}">9</td>-->
+                                <td th:text="${hrnew[4]}">9</td>
+                                <td th:text="${hrnew[5]}">9</td>
+                                <!--<td th:text="${hrnew[5]}">9</td>-->
+                                <!--<td th:text="${hrnew[6]}">9</td>-->
+                                <!--<td th:text="${hrnew[7]}">9</td>-->
+                                <td>
+                                    <span th:text="${hrnew[6]}"
+                                          th:classappend="
+                                          (${hrnew[6]} == 'Send' ? 'btn btn-success btn-sm' :
+                                          (${hrnew[6]} == 'NotSend' ? 'btn btn-danger btn-sm' :
+                                          'btn btn-secondary btn-sm'))">
+                                    </span>
+                                </td>
+                                <td > <button class="btn btn-outline-primary btn-sm" th:id="${hrnew[0]}" onclick="getOldEmployeeDeatails(this.id)">View</button> </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

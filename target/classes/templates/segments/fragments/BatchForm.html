@@ -1,0 +1,108 @@
+<div th:fragment="batchformfrag" id="trainingBatchForm1" class="col-12" >
+    <div class="card">
+
+        <div class="card-body">
+
+            <h4 class="card-title">Update Training Batch Details</h4>
+
+            <form class="form-sample" action="updateBatchDeatils" method="POST">
+
+                <div class="row" th:each="tlist:${trainer}">
+                    <input type="hidden" name="id" th:value="${tlist.id}" />
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Batch Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="batchName" class="form-control" th:value="${tlist.batchName}" readonly/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Start Date</label>
+                            <div class="col-sm-9">
+                                <input type="date" name="batchStartDate" class="form-control"  th:value="${tlist.batchStartDate}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Trainer Name</label>
+                            <div class="col-sm-9">
+                                <select class="form-control trainerNameid" name="trainerName" id="trainerNameid" required>
+                           
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Location</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="location" required>
+                                    <option value="">-Select Location-</option>
+                                    <option value="Swargate, Pune">Swargate, Pune</option>
+                                    <option value="Camp, Pune">Camp, Pune</option>
+                                    <option value="bangalore">bangalore</option>
+                                    <!--<option>Category4</option>-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Batch Status</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="batchStatus" required>
+                                    <option value="">-Select Status-</option>
+                                    <option value="NEW">NEW</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Add Agent</label>
+                            <div class="col-sm-9">
+                                <select name="agentList" id="choices-multiple-remove-button" style="width: 100%" placeholder="Select upto 5 agents" class="form-control agentListUpdId" multiple>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" >Remark</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="exampleTextarea1" rows="4" name="remark" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-outline-primary me-2 btn-sm">Submit</button>
+                                <button class="btn btn-outline-info me-2 btn-sm" type="reset"> Reset</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</div>

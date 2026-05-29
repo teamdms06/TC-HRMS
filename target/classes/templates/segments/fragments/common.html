@@ -1,0 +1,16 @@
+<div th:fragment="CityList">
+    <option value="">-select-</option> 
+    <option th:each="ct :${ctList}" th:value="${ct.name}" th:text="${ct.name}"></option>
+</div>
+<div th:fragment="UserList">
+    <option value="">-select-</option> 
+    <option th:each="ul :${ulist}" th:value="${ul.id}" th:text="${ul.name}"></option>
+</div>
+<!--<div th:fragment="TrainerList">
+    <option value="">-select-</option> 
+    <option th:each="tlist :${trainerList}" th:value="${tlist.id}" th:text="${tlist.name}"></option>
+</div>
+<div th:fragment="SelectedAgentList">
+  
+    <option th:each="alist :${AgentList}" th:value="${alist[0]}" th:text="${alist[1]}"></option>
+</div>-->

@@ -1,0 +1,238 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Promotion Letter</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 120px 50px 80px 50px;
+
+                @top-center {
+                    content: element(header);
+                }
+
+                @bottom-center {
+                    content: element(footer);
+                }
+            }
+
+            body {
+                text-align: justify;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* HEADER */
+            .header {
+                position: running(header);
+            }
+
+            /* FOOTER */
+            .footer {
+                position: running(footer);
+                font-size: 11px;
+                border-top: 1px solid #128bfc;
+            }
+
+            /* PAGE NUMBER */
+            .pageNumber:before {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+
+            /* CONTENT */
+            .content {
+                width: 100%;
+            }
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 20px 0;
+                text-decoration: underline;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: avoid;
+            }
+
+            td {
+                vertical-align: top;
+            }
+            p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <table>
+                <tr>
+                    <td style="width: 120px;">
+                        <img th:src="${logoPath}" style="width:150px;" />
+                    </td>
+                    <td style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; color:#128bfc;">
+                            THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED
+                        </div>
+                        <div style="font-size:9px;">
+                            Call Center Services | Software Development | Document Management Systems |
+                            Training Solutions | Security Enabled Printing
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr style="margin:2px 0 0 0;border:0; border-top:1px solid #128bfc;"/>
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+        <div class="footer">
+          
+            <hr style="margin:0 0 6px 0; border:0; border-top:1px solid #128bfc;"/>
+
+            <table style="width:100%; border-collapse:collapse;">
+
+                <tr>
+                    <td colspan="2"
+                        style="text-align:center;
+                        font-size:9px;
+                        padding-bottom:4px;
+                        color:#666;">
+
+                        Office No. 18 &amp; 19, D Tower, 5th Floor,
+                        Vega Center, Shankarsheth Road,
+                        Swargate, Pune-411037
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"
+                        style="text-align:center;
+                        font-size:9px;
+                        padding-bottom:6px;
+                        color:#666;">
+
+                        Web : www.the-connections.com |
+                        Email : info@the-connections.com |
+                        CIN No. : U74990PN2016PTC158850
+                    </td>
+                </tr>
+
+            </table>
+
+            <hr style="margin:6px 0 0 0; border:0; border-top:1px solid #128bfc;"/>
+
+        </div>
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+            <!-- DATE -->
+            <div style="text-align:right; margin:0; line-height:1.2;">
+                <div>Document ID: <b><span th:text="${docNo}"></span></b></div>
+                <div>Date : <span th:text="${date}"></span></div>
+            </div>
+            <br/>
+            <!-- EMPLOYEE DETAILS -->
+            <table style="width:100%; font-size:14px; border-collapse: collapse;">
+                <tr>
+                    <td><b>Name</b></td>
+                    <td>: <span th:text="${employeeName}">XYZ</span></td>
+
+                    <td><b>Employee ID</b></td>
+                    <td>: <span th:text="${employeeId}">XYZ</span></td>
+                </tr>
+
+                <tr>
+                    <td><b>Department</b></td>
+                    <td>: <span th:text="${department}">XYZ</span></td>
+
+                    <td><b>Designation</b></td>
+                    <td>: <span th:text="${designation}">XYZ</span></td>
+                </tr>
+
+                <tr>
+                    <td><b>Grade</b></td>
+                    <td>: <span th:text="${level}">(Agent/Leader)</span></td>
+
+                    <td><b>Date of Joining</b></td>
+                    <td>: <span th:text="${joiningDate}">XYZ</span></td>
+                </tr>
+            </table>
+
+            <!-- TITLE -->
+            <div class="title">
+                PROMOTION &amp; INCREMENT LETTER
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section">
+                <p><b>Congratulations!</b></p>
+
+                <p style="text-align: justify;">
+                    We are pleased to inform you that THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED has decided to promote you to the position of <b th:text="${designation}">-</b> at Grade
+                    <b> <span th:text="${level}"></span></b>. 
+                </p>
+                <p>
+                    Your gross salary has been revised from <b>Rs. <span th:text="${oldsal}"></span>/- </b>per month to <b>Rs. <span th:text="${empSal.ctc}">9,000</span>/- </b> 
+                    with effect from <b th:text="${effectiveFrom}">21st Apr 2022</b>.
+                </p>
+
+                <p style="text-align: justify;">
+                    All other terms and conditions of your appointment shall remain unchanged. The salary is subject to Income Tax, Professional Tax, and any other statutory deductions, as applicable.</p>
+
+                <p style="text-align: justify;">The company has continuously monitored and evaluated your performance, and it has been observed that your persistent efforts, effectiveness, and efficiency at the workplace make you capable of handling higher responsibilities.</p>
+
+                <p style="text-align: justify;"> We expect you to maintain consistency and a high level of motivation in your work behavior, and we hope that you will continue to set an example for the other employees of the organization. We wish you all the best for your future performance.
+                </p>
+
+                <p>Please note that, in case you plan to resign, you will be required to serve the notice period as per company policy, which is two months for leaders and one month for agents, unless otherwise approved by the management.</p>
+
+                <!--                <div style="
+                    background:#eef6ff;
+                    border-left:5px solid #128bfc;
+                    padding:12px 15px;
+                    margin:20px 0;
+                    border-radius:4px;
+                    font-size:14px;
+                    line-height:1.7;
+                    color:#333;">
+                    Please sign the duplicate copy of this letter as a token of acceptance of the same.
+                
+                </div>-->
+
+                <br></br>
+                <p class="signature" ><strong> 
+                        Warm Regards,<br></br>
+                       THE-CONNECTIONS ITES BUSINESS SERVICES PVT.LTD <br></br>
+                        <span th:text="${senderName}"></span><br/>
+                        <span th:text="${senderRole}"></span>
+                    </strong> </p>
+                <div style="margin-top:10px;">
+                    <img th:src="${stampPath}" alt="Company Stamp" style="width:100px;"/>
+                </div>
+                  <p style="margin-top:20px; font-size:11px; color:#777; text-align:center; font-style:italic;">
+                This is a system-generated document and does not require a physical signature.
+            </p>
+            </div>
+        </div>
+    </body>
+</html>
+

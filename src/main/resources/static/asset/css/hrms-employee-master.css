@@ -1,0 +1,624 @@
+  body {
+                background: #f4f7fb;
+            }
+
+            .emp-master-wrapper {
+                padding: 10px;
+            }
+
+            .emp-search-panel {
+                background: #fff;
+                border-radius: 22px;
+                padding: 22px;
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                align-items: center;
+                box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+                margin-bottom: 24px;
+            }
+
+            .emp-search-left {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .emp-search-icon {
+                width: 58px;
+                height: 58px;
+                border-radius: 18px;
+                background: linear-gradient(135deg,#2563eb,#1e40af);
+                color: #fff;
+                font-size: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .emp-search-left h4 {
+                margin: 0;
+                font-weight: 800;
+                color: #0f172a;
+            }
+
+            .emp-search-left p {
+                margin: 4px 0 0;
+                color: #64748b;
+                font-size: 13px;
+            }
+
+            .emp-search-box {
+                width: 430px;
+            }
+
+            .emp-profile-banner {
+                background: linear-gradient(135deg,#0f172a,#2563eb);
+                border-radius: 26px;
+                padding: 28px;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                box-shadow: 0 16px 36px rgba(37,99,235,0.28);
+                margin-bottom: 24px;
+            }
+
+            .emp-avatar {
+                width: 90px;
+                height: 90px;
+                border-radius: 26px;
+                background: rgba(255,255,255,0.18);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 34px;
+                font-weight: 800;
+            }
+
+            .emp-profile-info {
+                flex: 1;
+            }
+
+            .emp-profile-info h3 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 800;
+            }
+
+            .emp-profile-info p {
+                margin: 6px 0 12px;
+                color: #dbeafe;
+            }
+
+            .emp-tags span {
+                background: rgba(255,255,255,0.18);
+                padding: 6px 14px;
+                border-radius: 30px;
+                margin-right: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                display: inline-block;
+                margin-bottom: 5px;
+            }
+
+            .emp-quick-stats {
+                display: flex;
+                gap: 14px;
+            }
+
+            .emp-quick-stats div {
+                background: rgba(255,255,255,0.16);
+                border-radius: 18px;
+                padding: 16px 22px;
+                text-align: center;
+                min-width: 120px;
+            }
+
+            .emp-quick-stats h5 {
+                margin: 0;
+                font-size: 26px;
+                font-weight: 800;
+            }
+
+            .emp-quick-stats p {
+                margin: 4px 0 0;
+                color: #dbeafe;
+                font-size: 12px;
+            }
+
+            .emp-card-grid {
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 22px;
+            }
+
+            .emp-info-card {
+                background: #fff;
+                border-radius: 22px;
+                padding: 22px;
+                box-shadow: 0 10px 28px rgba(15,23,42,0.07);
+            }
+
+            .emp-card-title {
+                font-size: 16px;
+                font-weight: 800;
+                color: #0f172a;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 18px;
+            }
+            .edit-btn {
+                border-radius: 8px;
+                padding: 6px 14px;
+                font-size: 13px;
+            }
+
+            .emp-card-title i {
+                width: 36px;
+                height: 36px;
+                background: #eff6ff;
+                color: #2563eb;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .emp-info-list div {
+                display: flex;
+                justify-content: space-between;
+                gap: 16px;
+                padding: 11px 0;
+                border-bottom: 1px dashed #e2e8f0;
+            }
+
+            .emp-info-list div:last-child {
+                border-bottom: 0;
+            }
+
+            .emp-info-list span {
+                color: #64748b;
+                font-size: 13px;
+            }
+
+            .emp-info-list strong {
+                color: #0f172a;
+                font-size: 13px;
+                text-align: right;
+            }
+
+            .salary-highlight {
+                background: linear-gradient(135deg,#ecfdf5,#dcfce7);
+                border-radius: 18px;
+                padding: 18px;
+                margin-bottom: 12px;
+            }
+
+            .salary-highlight p {
+                margin: 0;
+                color: #166534;
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .salary-highlight h3 {
+                margin: 6px 0 0;
+                color: #14532d;
+                font-weight: 900;
+            }
+
+            .emp-doc-grid {
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+                gap: 14px;
+            }
+
+            .emp-doc-grid div {
+                background: #f8fafc;
+                border-radius: 16px;
+                padding: 16px;
+                text-align: center;
+            }
+
+            .emp-doc-grid h5 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 900;
+                color: #2563eb;
+            }
+
+            .emp-doc-grid span {
+                font-size: 11px;
+                color: #64748b;
+                font-weight: 700;
+            }
+
+            .select2-container--default .select2-selection--single {
+                height: 45px;
+                border-radius: 14px;
+                border: 1px solid #cbd5e1;
+                display: flex;
+                align-items: center;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                line-height: 45px;
+                font-size: 13px;
+                color: #334155;
+                padding-left: 14px;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow {
+                height: 45px;
+            }
+
+            @media(max-width: 992px) {
+                .emp-search-panel,
+                .emp-profile-banner {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .emp-search-box {
+                    width: 100%;
+                }
+
+                .emp-card-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .emp-quick-stats {
+                    width: 100%;
+                    flex-wrap: wrap;
+                }
+            }
+            .emp-search-actions {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .bulk-upload-btn {
+                height: 45px;
+                border-radius: 14px;
+                font-weight: 700;
+                padding: 0 18px;
+                white-space: nowrap;
+                box-shadow: 0 8px 18px rgba(37,99,235,0.25);
+            }
+
+            @media(max-width: 992px) {
+                .emp-search-actions {
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .emp-search-box {
+                    width: 100%;
+                }
+
+                .bulk-upload-btn {
+                    width: 100%;
+                }
+            }
+            /*upload*/
+            .bulk-modal {
+                border: 0;
+                border-radius: 18px;
+                overflow: hidden;
+                box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+            }
+
+            .bulk-header {
+                background: linear-gradient(135deg, #2563eb, #0f172a);
+                color: #fff;
+                border: 0;
+                padding: 18px 22px;
+            }
+
+            .bulk-header h5 {
+                font-weight: 700;
+                margin: 0;
+            }
+
+            .bulk-header small {
+                color: #dbeafe;
+            }
+
+            .sample-box {
+                background: #f8fafc;
+                border: 1px dashed #93c5fd;
+                border-radius: 14px;
+                padding: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 14px;
+            }
+
+            .sample-box p {
+                margin: 3px 0 0;
+                font-size: 12px;
+                color: #64748b;
+            }
+
+            .drop-zone {
+                border: 2px dashed #60a5fa;
+                background: linear-gradient(135deg, #eff6ff, #ffffff);
+                border-radius: 18px;
+                padding: 35px 20px;
+                text-align: center;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .drop-zone:hover {
+                background: #dbeafe;
+                transform: translateY(-2px);
+            }
+
+            .upload-icon {
+                width: 58px;
+                height: 58px;
+                margin: 0 auto 12px;
+                border-radius: 50%;
+                background: #2563eb;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 26px;
+            }
+
+            .drop-zone h6 {
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+
+            .drop-zone p {
+                margin: 0;
+                color: #64748b;
+                font-size: 13px;
+            }
+
+            .file-name {
+                font-size: 13px;
+                color: #16a34a;
+                font-weight: 600;
+            }
+            .drop-zone {
+                display: block;
+                border: 2px dashed #60a5fa;
+                background: linear-gradient(135deg, #eff6ff, #ffffff);
+                border-radius: 18px;
+                padding: 35px 20px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .drag-active {
+                background: #dbeafe !important;
+                border-color: #2563eb !important;
+            }
+            /*uploadDoc*/
+            .document-upload-status-card{
+                background:#f8fafc;
+                border-radius:18px;
+                padding:18px;
+                border:1px solid #e2e8f0;
+                margin-bottom:18px;
+            }
+
+            .document-check-grid{
+                display:grid;
+                grid-template-columns:repeat(2,1fr);
+                gap:10px;
+            }
+
+            .doc-check-item{
+                background:#fff;
+                border:1px solid #e2e8f0;
+                border-radius:12px;
+                padding:10px 12px;
+                display:flex;
+                align-items:center;
+                gap:10px;
+                font-size:13px;
+                font-weight:600;
+                color:#475569;
+            }
+
+            .doc-check-item i{
+                font-size:18px;
+                color:#94a3b8;
+            }
+
+            .doc-check-item.uploaded{
+                background:#ecfdf5;
+                border-color:#22c55e;
+                color:#166534;
+            }
+
+            .doc-check-item.uploaded i{
+                color:#16a34a;
+            }
+
+            @media(max-width:768px){
+
+                .document-check-grid{
+                    grid-template-columns:1fr;
+                }
+            }
+            .salary-eye{
+                cursor:pointer;
+                font-size:22px;
+                color:#2563eb;
+                margin-left:10px;
+            }
+            /*edit modal*/
+            .profile-edit-premium-modal{
+                border:0;
+                border-radius:24px;
+                overflow:hidden;
+                box-shadow:0 20px 60px rgba(15,23,42,.22);
+            }
+
+            .profile-edit-hero{
+                background:linear-gradient(135deg,#2563eb,#1e293b);
+                padding:18px 22px;
+                color:#fff;
+                display:flex;
+                align-items:center;
+                gap:14px;
+                position:relative;
+            }
+
+            .profile-edit-avatar{
+                width:58px;
+                height:58px;
+                border-radius:18px;
+                background:rgba(255,255,255,.16);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:28px;
+            }
+
+            .profile-edit-title h3{
+                margin:0;
+                font-size:20px;
+                font-weight:900;
+            }
+
+            .profile-edit-title p{
+                margin:2px 0 0;
+                font-size:12px;
+                color:#dbeafe;
+            }
+
+            .profile-edit-close{
+                position:absolute;
+                top:12px;
+                right:18px;
+                color:#fff;
+                opacity:1;
+                font-size:30px;
+            }
+
+            .profile-edit-body{
+                padding:18px;
+                background:#f8fafc;
+                max-height:65vh;
+                overflow-y:auto;
+            }
+
+            .profile-section-card{
+                background:#fff;
+                border:1px solid #e2e8f0;
+                border-radius:18px;
+                padding:14px;
+                margin-bottom:14px;
+            }
+
+            .section-heading{
+                font-size:13px;
+                font-weight:900;
+                color:#0f172a;
+                margin-bottom:12px;
+                display:flex;
+                align-items:center;
+                gap:8px;
+            }
+
+            .section-heading i{
+                width:30px;
+                height:30px;
+                border-radius:10px;
+                background:#eff6ff;
+                color:#2563eb;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:16px;
+            }
+
+            .profile-edit-grid{
+                display:grid;
+                grid-template-columns:repeat(2,minmax(0,1fr));
+                gap:10px;
+            }
+
+            .profile-field{
+                background:#f8fafc;
+                border:1px solid #e2e8f0;
+                border-radius:14px;
+                padding:10px 12px;
+            }
+
+            .profile-field.full{
+                grid-column:1/-1;
+            }
+
+            .profile-field label{
+                display:block;
+                font-size:10px;
+                font-weight:900;
+                color:#64748b;
+                margin-bottom:5px;
+                text-transform:uppercase;
+            }
+
+            .profile-field input,
+            .profile-field select,
+            .profile-field textarea{
+                width:100%;
+                border:0;
+                background:transparent;
+                outline:none;
+                font-size:13px;
+                font-weight:700;
+                color:#0f172a;
+            }
+
+            .profile-field textarea{
+                resize:none;
+            }
+
+            .profile-edit-footer{
+                background:#fff;
+                padding:14px 18px;
+                display:flex;
+                justify-content:flex-end;
+                gap:10px;
+                border-top:1px solid #e2e8f0;
+            }
+
+            .profile-cancel-btn{
+                border:0;
+                background:#f1f5f9;
+                color:#334155;
+                padding:8px 16px;
+                border-radius:12px;
+                font-weight:800;
+            }
+
+            .profile-save-btn{
+                border:0;
+                background:linear-gradient(135deg,#2563eb,#1d4ed8);
+                color:#fff;
+                padding:8px 18px;
+                border-radius:12px;
+                font-weight:900;
+                box-shadow:0 8px 20px rgba(37,99,235,.22);
+            }
+
+            @media(max-width:768px){
+
+                .profile-edit-grid{
+                    grid-template-columns:1fr;
+                }
+
+            }

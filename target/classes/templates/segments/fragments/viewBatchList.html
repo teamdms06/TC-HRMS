@@ -1,0 +1,72 @@
+<!--<div th:fragment="viewBatchListData">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Recently Applied</h4>
+                <div class="table-responsive" id="appDetails">
+                    <table class="table table-responsive">
+
+                        <tbody th:each="lastRec :${batchData}">
+                            <input type="hidden" id="jappId" th:value="${lastRec[15]}" />
+                            <tr>
+                                <th>Batch Name</th>
+                                <td th:text="${lastRec.batchName}"></td>
+                            </tr> 
+                            <tr>
+                                <th>Start Date</th>
+                                <td th:text="${lastRec.batchStartDate}"></td>
+                            </tr> 
+                            <tr>
+                                <th>Location</th>
+                                <td th:text="${lastRec.location}"></td>
+                            </tr>
+                            <tr>
+                                <th>Trainer</th>
+                                <td th:text="${trainer}"></td>
+                            </tr> 
+                            <tr>
+                                <th>Employye List</th>
+                        <span id="empListSpan" style="display: none" th:text="${agentList}"></span>
+                        <td >
+                            <ol id="appendUl">
+                            </ol>
+                        </td>
+                        </tr> 
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ul = document.getElementById("appendUl");
+            var arr = $("#empListSpan").text();
+            const myArray = arr.replace(/[\[\]']+/g, '').split(",");
+            console.log(myArray);
+            for (var i = 0; i < myArray.length; i++) {
+                var name = myArray[i];
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(name));
+                ul.appendChild(li);
+            }
+
+
+        })
+
+        function viewAgentList() {
+            $("#addAgent1Id").select2();
+      //      $("#addagentBtnId").hide();
+//            $.ajax({
+//                url: 'getAgentList',
+//                type: 'GET',
+//                success: function (result) {
+//                    console.log(result);
+//                    $("#addAgent1Id").html(result);
+//                }
+//            })
+
+        }
+    </script>
+</div>-->

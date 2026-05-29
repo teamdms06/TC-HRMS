@@ -1,0 +1,61 @@
+<nav fragment="sidebar" class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                  <img src="asset/images/TC_Logo_sm.png" alt="profile">
+                  <span class="login-status online"></span>
+                  <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                  <span class="font-weight-bold mb-2" th:text="${session.actorName}">David Grey. H</span>
+                  <span class="text-secondary text-small" th:text="${session.actor_process}">HR Manager</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="freshData">
+                <span class="menu-title" th:text="${(session.actor_process=='TL') ?'HR Round Done':'New Application'}">New Batches</span>
+                <i class="mdi mdi-new-box menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="hold">
+                <span class="menu-title">Training Completed</span>
+                <i class="mdi mdi-pause-octagon menu-icon"></i>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="selected">
+                <span class="menu-title">Training Pending</span>
+                <i class="mdi mdi-thumb-up menu-icon"></i>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="rejected">
+                <span class="menu-title">Training Cancelled</span>
+                <i class="mdi mdi-thumb-down menu-icon"></i>
+              </a>
+            </li>
+<!--            <li class="nav-item">
+              <a class="nav-link" href="trainingBatches">
+                <span class="menu-title">Training Batches</span>
+                <i class="mdi mdi-file-excel menu-icon"></i>
+              </a>
+            </li>-->
+            <li class="nav-item">
+              <a class="nav-link" href="report">
+                <span class="menu-title">Report</span>
+                <i class="mdi mdi-file-excel menu-icon"></i>
+              </a>
+            </li>
+
+          </ul>
+        </nav>

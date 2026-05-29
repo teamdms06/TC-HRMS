@@ -1,0 +1,212 @@
+<nav fragment="sidebar" class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                    <img src="asset/images/C_logo.jpeg" alt="profile">
+                    <span class="login-status online"></span>
+                    <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                    <span class="font-weight-bold mb-2" th:text="${session.actorName}">David Grey. H</span>
+                    <span class="text-secondary text-small" th:text="${session.actor_process}">HR Manager</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="dashboard">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item" th:if="${(session.actor_process!='TL') && (session.actor_process!='HR')}">
+            <a class="nav-link" href="/employee-master">
+
+                <span class="menu-title">Employee Master</span>
+                <i class="mdi mdi-account-box menu-icon"></i>
+            </a>
+        </li>
+        <!--            <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                      <a class="nav-link" href="metaAddsLeadData">
+                        <span class="menu-title" th:text="${(session.actor_process=='TL') ?'HR Round Done':'New Application'}">New Application</span>
+                        <span class="menu-title" >Meta Adds Leads</span>
+                        <i class="mdi mdi-new-box menu-icon"></i>
+                      </a>
+                    </li>-->
+        <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#metaAddsMenu" role="button" aria-expanded="false">
+                <span class="menu-title">Meta Adds Leads</span>
+                 <i class="mdi mdi-menu-down menu-icon"></i>
+            </a>
+
+            <!-- 🔽 SUB MENU -->
+            <div class="collapse" id="metaAddsMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="metaAddsLeadData?status=New">
+                            <span class="menu-title">New Leads</span>
+                            
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="metaAddsLeadData?status=Under followUp">
+                            <span class="menu-title">In Progress</span>
+                            
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="metaAddsLeadData?status=Interested">
+                            <span class="menu-title">Interested</span>
+                            
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="metaAddsLeadData?status=Not Interested">
+                            <span class="menu-title">Not Interested</span>
+                            
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </li>
+        <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#RecruitmentMenu" role="button" aria-expanded="false">
+                <span class="menu-title">Recruitment</span>
+                <!--<i class="mdi mdi-menu-down float-end"></i>-->
+                <i class="mdi mdi-menu-down menu-icon"></i>
+            </a>
+
+            <!-- 🔽 SUB MENU -->
+            <div class="collapse" id="RecruitmentMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                        <a class="nav-link" href="freshData">
+                            <span class="menu-title" th:text="${(session.actor_process=='TL') ?'HR Round Done':'New Application'}"></span>
+                            <!--<span class="menu-title" >New Application</span>-->
+                            <!--<i class="mdi mdi-new-box menu-icon"></i>-->
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="nxtRound">
+                        <span class="menu-title">Next Round</span>
+                        <!--<i class="mdi mdi-cached menu-icon"></i>-->
+                    </a>
+                </li>
+                <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="clientRound">
+                        <span class="menu-title">Client Round</span>
+                        <!--<i class="mdi mdi-fullscreen menu-icon"></i>-->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="hold">
+                        <span class="menu-title">Hold</span>
+                        <!--<i class="mdi mdi-pause-octagon menu-icon"></i>-->
+                    </a>
+                </li>
+                <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="selected">
+                        <span class="menu-title">Selected</span>
+                        <!--<i class="mdi mdi-thumb-up menu-icon"></i>-->
+                    </a>
+                </li>
+                <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="rejected">
+                        <span class="menu-title">Rejected</span>
+                        <!--<i class="mdi mdi-thumb-down menu-icon"></i>-->
+                    </a>
+                </li>
+
+                </ul>
+            </div>
+
+        </li>
+
+        <!--        <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="freshData">
+                        <span class="menu-title" th:text="${(session.actor_process=='TL') ?'HR Round Done':'New Application'}">New Application</span>
+                        <span class="menu-title" >New Application</span>
+                        <i class="mdi mdi-new-box menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nxtRound">
+                        <span class="menu-title">Next Round</span>
+                        <i class="mdi mdi-cached menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="clientRound">
+                        <span class="menu-title">Client Round</span>
+                        <i class="mdi mdi-fullscreen menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="hold">
+                        <span class="menu-title">Hold</span>
+                        <i class="mdi mdi-pause-octagon menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="selected">
+                        <span class="menu-title">Selected</span>
+                        <i class="mdi mdi-thumb-up menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                    <a class="nav-link" href="rejected">
+                        <span class="menu-title">Rejected</span>
+                        <i class="mdi mdi-thumb-down menu-icon"></i>
+                    </a>
+                </li>-->
+        <!--            <li class="nav-item">
+                      <a class="nav-link" href="trainingBatches">
+                        <span class="menu-title">Training Batches</span>
+                        <i class="mdi mdi-file-excel menu-icon"></i>
+                      </a>
+                    </li>-->
+        <li class="nav-item"  th:if="${(session.actor_process=='Admin')}">
+            <a class="nav-link" href="report">
+                <span class="menu-title">Report</span>
+                <i class="mdi mdi-file-excel menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item"  th:if="${(session.actor_process !='TL')}">
+            <a class="nav-link" href="documentCenter">
+                <span class="menu-title">Document Center</span>
+                <i class="mdi mdi-file-excel menu-icon"></i>
+            </a>
+        </li>
+        <!--             <li class="nav-item" th:if="${(session.actor_process=='HR') || (session.actor_process=='Admin')}">
+                      <a class="nav-link" href="letterIssueOld">
+                       <span class="menu-title" >Letter Issue</span>
+                        <i class="mdi mdi-new-box menu-icon"></i>
+                      </a>
+                    </li>-->
+        <!--            <li class="nav-item">
+                      <a class="nav-link" href="addClient">
+                        <span class="menu-title">Add Client</span>
+                        <i class="mdi mdi-file-excel menu-icon"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="clientAgreement">
+                        <span class="menu-title">Client Agreement</span>
+                        <i class="mdi mdi-file-excel menu-icon"></i>
+                      </a>
+                    </li>-->
+
+    </ul>
+</nav>

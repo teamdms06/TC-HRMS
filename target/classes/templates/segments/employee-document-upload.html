@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document Upload</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <style>
+            body {
+                background: linear-gradient(135deg, #eef6ff, #f8fafc);
+                font-family: Arial, sans-serif;
+            }
+
+            .upload-wrapper {
+                max-width: 1050px;
+                margin: auto;
+                padding: 20px;
+            }
+
+            .upload-header {
+                background: linear-gradient(135deg, #0d6efd, #102a63);
+                color: white;
+                border-radius: 22px;
+                padding: 28px;
+                margin-bottom: 22px;
+                box-shadow: 0 12px 30px rgba(13,110,253,0.25);
+            }
+
+            .upload-header h3 {
+                font-weight: 800;
+                margin-bottom: 6px;
+            }
+
+            .progress-card {
+                background: white;
+                border-radius: 18px;
+                padding: 18px;
+                margin-bottom: 22px;
+                box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+            }
+
+            .doc-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .doc-card {
+                background: white;
+                border-radius: 18px;
+                padding: 18px;
+                box-shadow: 0 8px 22px rgba(15,23,42,0.08);
+                border: 1px solid #e5e7eb;
+                transition: 0.25s;
+            }
+
+            .doc-card:hover {
+                transform: translateY(-3px);
+            }
+
+            .doc-title {
+                font-weight: 800;
+                color: #0f172a;
+                margin-bottom: 6px;
+            }
+
+            .doc-desc {
+                color: #64748b;
+                font-size: 13px;
+                min-height: 38px;
+            }
+
+            .file-input {
+                font-size: 13px;
+                margin-top: 10px;
+            }
+
+            .upload-btn {
+                margin-top: 12px;
+                border-radius: 12px;
+                font-weight: 700;
+            }
+
+            .status-badge {
+                font-size: 11px;
+                padding: 5px 10px;
+                border-radius: 20px;
+            }
+
+            .footer-note {
+                text-align: center;
+                color: #64748b;
+                font-size: 12px;
+                margin-top: 20px;
+            }
+
+            @media(max-width: 768px) {
+                .upload-wrapper {
+                    padding: 12px;
+                }
+
+                .upload-header {
+                    padding: 22px;
+                    border-radius: 18px;
+                }
+
+                .doc-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .doc-card {
+                    padding: 16px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="upload-wrapper">
+
+            <div class="upload-header">
+                <h3>Employee Document Submission</h3>
+                <p class="mb-0">Upload your required joining documents securely.</p>
+            </div>
+
+            <div class="progress-card">
+                <div class="d-flex justify-content-between mb-2">
+                    <strong>Upload Progress</strong>
+                    <span id="progressText">0 / 10 Uploaded</span>
+                </div>
+
+                <div class="progress">
+                    <div id="progressBar"
+                         class="progress-bar bg-success"
+                         style="width:0%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="doc-grid" id="documentList"></div>
+
+            <div class="footer-note">
+                Your upload link is secure and valid only for the allowed time.
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+
+            const token = new URLSearchParams(window.location.search).get("token");
+
+            const documents = [
+                ["AADHAR", "Aadhar Card"],
+                ["PAN", "PAN Card"],
+                ["PASSPORT", "Passport"],
+                ["PF_UAN", "PF / UAN Account Details"],
+                ["LOCAL_ADDRESS", "Proof of Local Address"],
+                ["HOMETOWN_ADDRESS", "Proof of Hometown Address"],
+                ["EDUCATION", "Educational Qualification Documents"],
+                ["PROFESSIONAL", "Professional Qualification Documents"],
+                ["MEDICAL", "Medical Fitness Certificate"],
+                ["EXPERIENCE", "Experience / Relieving / Salary Statements"]
+            ];
+
+            let uploadedCount = 0;
+
+            $(document).ready(function () {
+                renderDocuments();
+                loadUploadedDocuments();
+            });
+
+            function renderDocuments() {
+                let html = "";
+
+                documents.forEach(function (doc, index) {
+                    html += `
+                        <div class="doc-card" id="card_${doc[0]}">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="doc-title">${index + 1}. ${doc[1]}</div>
+                                    <div class="doc-desc">Select file and upload this document.</div>
+                                </div>
+                                <span class="badge badge-warning status-badge" id="status_${doc[0]}">
+                                    Pending
+                                </span>
+                            </div>
+
+                            <input type="file"
+                                   class="form-control file-input"
+                                   id="file_${doc[0]}"
+                                   accept=".pdf,.jpg,.jpeg,.png">
+
+                            <button class="btn btn-primary btn-block upload-btn"
+                                    onclick="uploadDocument('${doc[0]}')">
+                                Upload
+                            </button>
+                        </div>
+                    `;
+                });
+
+                $("#documentList").html(html);
+            }
+
+            function uploadDocument(documentType) {
+                let fileInput = $("#file_" + documentType)[0];
+
+                if (!token) {
+                    Swal.fire("Error", "Invalid upload link", "error");
+                    return;
+                }
+
+                if (!fileInput.files.length) {
+                    Swal.fire("Error", "Please select file", "error");
+                    return;
+                }
+
+                let formData = new FormData();
+                formData.append("token", token);
+                formData.append("documentType", documentType);
+                formData.append("file", fileInput.files[0]);
+
+                Swal.fire({
+                    title: "Uploading...",
+                    text: "Please wait",
+                    allowOutsideClick: false,
+                    didOpen: () => Swal.showLoading()
+                });
+
+                $.ajax({
+                    url: "/upload-employee-document",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+
+                    success: function (response) {
+                        Swal.fire("Success", response, "success");
+
+                        $("#status_" + documentType)
+                                .removeClass("badge-warning")
+                                .addClass("badge-success")
+                                .text("Uploaded");
+
+                        $("#card_" + documentType).css("border-color", "#22c55e");
+
+                        uploadedCount++;
+                        updateProgress();
+                    },
+
+                    error: function (xhr) {
+                        Swal.fire(
+                                "Upload Failed",
+                                xhr.responseText || "Something went wrong",
+                                "error"
+                                );
+                    }
+                });
+            }
+
+            function updateProgress() {
+                let total = documents.length;
+                let percent = Math.round((uploadedCount / total) * 100);
+
+                $("#progressText").text(uploadedCount + " / " + total + " Uploaded");
+                $("#progressBar").css("width", percent + "%");
+            }
+
+            function loadUploadedDocuments() {
+
+                $.ajax({
+                    url: "/employee-uploaded-documents",
+                    type: "GET",
+                    data: {
+                        token: token
+                    },
+
+                    success: function (response) {
+
+                        uploadedCount = 0;
+
+                        response.forEach(function (doc) {
+
+                            let documentType = doc.documentType;
+
+        //                $("#status_" + documentType)
+        //                        .removeClass("badge-warning")
+        //                        .addClass("badge-success")
+        //                        .text("Uploaded");
+        //
+        //                $("#card_" + documentType)
+        //                        .css("border-color", "#22c55e");
+                            if (doc.verificationStatus === "REJECTED") {
+
+                                $("#status_" + documentType)
+                                        .removeClass("badge-warning badge-success")
+                                        .addClass("badge-danger")
+                                        .text("Rejected - Re-upload");
+
+                                $("#card_" + documentType)
+                                        .css("border-color", "#ef4444");
+                                uploadedCount--;
+
+                            } else if (doc.verificationStatus === "VERIFIED") {
+
+                                $("#status_" + documentType)
+                                        .removeClass("badge-warning badge-danger")
+                                        .addClass("badge-success")
+                                        .text("Verified");
+
+                                $("#file_" + documentType).prop("disabled", true);
+
+                            } else {
+
+                                $("#status_" + documentType)
+                                        .removeClass("badge-warning")
+                                        .addClass("badge-info")
+                                        .text("Uploaded - Pending Verification");
+                            }
+
+                            uploadedCount++;
+                        });
+
+                        updateProgress();
+                    },
+
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        </script>
+
+    </body>
+</html>

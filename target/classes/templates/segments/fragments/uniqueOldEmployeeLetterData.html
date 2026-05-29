@@ -1,0 +1,302 @@
+<div class="row">
+
+    <div class="col-md-8 col-lg-8 col-sm-8 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <!--<h4 class="card-title">Project Status</h4>-->
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span><strong>Old Employee Details :</strong></span>
+
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="table-responsive" id="appDetails">
+
+                    <table class="table table-responsive">
+
+                        <tbody th:each="lastRec :${getAllDetails}">
+
+                        <input type="hidden" id="jappId" th:value="${lastRec.id}" />
+                        <td colspan="2">
+                            <button class="btn btn-sm btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modifyModal"
+
+                                    th:attr="
+                                    data-id=${lastRec.id},
+
+                                    data-employeeId=${lastRec.employeeId},
+                                    data-employeeName=${lastRec.employeeName},
+                                    data-gender=${lastRec.gender},
+                                    data-dateOfBirth=${lastRec.dateOfBirth},
+                                    data-dateOfJoining=${lastRec.dateOfJoining},
+                                    data-location=${lastRec.location},
+                                    data-levels=${lastRec.levels},
+                                    data-designation=${lastRec.designation},
+                                    data-education=${lastRec.education},
+                                    data-emailId=${lastRec.emailId},
+                                    data-employeeAddress=${lastRec.employeeAddress},
+                                    data-contactNumber=${lastRec.contactNumber},
+                                    data-offerLetterStatus=${lastRec.offerLetterStatus},
+                                    data-salBifurcationId=${lastRec.salBifurcationId},
+
+                                    data-city=${lastRec.city},
+                                    data-state=${lastRec.state},
+                                    data-pincode=${lastRec.pincode},
+
+                                    data-ctc=${lastRec.ctc},
+                                    data-basic=${lastRec.basic},
+                                    data-hra=${lastRec.hra},
+                                    data-conveyance=${lastRec.conveyance},
+                                    data-medical=${lastRec.medical},
+                                    data-specialAllowance=${lastRec.specialAllowance},
+
+                                    data-grossSalary=${lastRec.grossSalary},
+                                    data-employeePf=${lastRec.employeePf},
+                                    data-employerPf=${lastRec.employerPf},
+                                    data-professionalTax=${lastRec.professionalTax},
+                                    data-insuranceDeduction=${lastRec.insuranceDeduction},
+                                    data-totalDeduction=${lastRec.totalDeduction},
+                                    data-netSalary=${lastRec.netSalary}
+                                    "
+
+                                    onclick="loadData(this)">
+                                Modify
+                            </button>
+                        </td>
+                        <tr>
+                            <th>TC ID</th>
+                            <td th:text="${lastRec.employeeId}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Employee Name</th>
+                            <td th:text="${lastRec.employeeName}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Contact Number</th>
+                            <td th:text="${lastRec.contactNumber}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Email Id</th>
+                            <td th:text="${lastRec.emailId}"></td>
+                        </tr>
+                        <tr>
+                            <th>Employee Address</th>
+                            <td th:text="${lastRec.employeeAddress}"></td>
+                        </tr> 
+                        <tr>
+                            <th>City</th>
+                            <td th:text="${lastRec.city}"></td>
+                        </tr> 
+                        <tr>
+                            <th>State</th>
+                            <td th:text="${lastRec.state}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Pin Code</th>
+                            <td th:text="${lastRec.pincode}"></td>
+                        </tr> 
+
+                        <tr>
+                            <th>Date of Joining</th>
+                            <td th:text="${lastRec.dateOfJoining}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Designation</th>
+                            <td th:text="${lastRec.designation}"></td>
+                        </tr> 
+                        <tr>
+                            <th>date_of_birth</th>
+                            <td th:text="${lastRec.dateOfBirth}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Work location</th>
+                            <td th:text="${lastRec.location}"></td>
+                        </tr> 
+                        <tr>
+                            <th>levels</th>
+                            <td th:text="${lastRec.levels}"></td>
+                        </tr> 
+                        <tr>
+                        <style>
+                            .payslip-table {
+                                width: 100%;
+                                margin: 20px auto;
+                                border-collapse: collapse;
+                                font-family: Arial, sans-serif;
+                                background: #fff;
+                                border: 1px solid #999;
+                            }
+
+                            /* Title */
+                            .payslip-table thead th {
+                                background: #e6e6e6;
+                                font-size: 18px;
+                                padding: 12px;
+                                border: 1px solid #999;
+                            }
+
+                            /* Headings */
+                            .payslip-table th {
+                                background: #f2f2f2;
+                                padding: 10px;
+                                border: 1px solid #ccc;
+                                text-align: left;
+                                font-weight: 600;
+                            }
+
+                            /* Data */
+                            .payslip-table td {
+                                padding: 10px;
+                                border: 1px solid #ddd;
+                                text-align: left;
+                            }
+
+                            /* Alternate rows */
+                            .payslip-table tr:nth-child(even) td {
+                                background: #fafafa;
+                            }
+
+                            /* Highlight totals */
+                            .total-row th {
+                                background: #d9edf7;
+                                font-weight: bold;
+                            }
+
+                            .total-row td {
+                                font-weight: bold;
+                                background: #f1f8ff;
+                            }
+
+                            /* Net salary emphasis */
+                            .total-row:last-child td:last-child {
+                                color: #0a7d34;
+                                font-size: 16px;
+                            }
+                        </style>
+                        <td colspan="2">
+
+                            <!--<div >-->
+                            <table class="payslip-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">Salary Bifurcation</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <th>CTC</th>
+                                        <th>Basic</th>
+                                        <th>HRA</th>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${lastRec.ctc}"></td>
+                                        <td th:text="${lastRec.basic}"></td>
+                                        <td th:text="${lastRec.hra}"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Conveyance</th>
+                                        <th>Medical</th>
+                                        <th>Special Allowance</th>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${lastRec.conveyance}"></td>
+                                        <td th:text="${lastRec.medical}"></td>
+                                        <td th:text="${lastRec.specialAllowance}"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Gross Salary</th>
+                                        <th>Employee PF</th>
+                                        <th>Employer PF</th>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${lastRec.grossSalary}"></td>
+                                        <td th:text="${lastRec.employeePf}"></td>
+                                        <td th:text="${lastRec.employerPf}"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="2">Professional Tax</th>
+                                        <th>Insurance Deduction</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" th:text="${lastRec.professionalTax}"></td>
+                                        <td th:text="${lastRec.insuranceDeduction}"></td>
+                                    </tr>
+
+                                    <tr class="total-row">
+                                        <th colspan="2">Total Deduction</th>
+                                        <th>Net Salary</th>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td colspan="2" th:text="${lastRec.totalDeduction}"></td>
+                                        <td th:text="${lastRec.netSalary}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--</div>-->
+
+                        </td>
+                        </tr>
+
+                        <tr >
+                            <th>Offer Letter Status</th>
+                            <td > <span th:text="${lastRec.offerLetterStatus}"></span> - <button class="btn btn-outline-info btn-sm"
+                                                                                                 th:attr="data-id=${lastRec.id}"
+                                                                                                 onclick="sendOldEmpOLMail(this)">
+                                    Send
+                                </button>
+                            </td>
+                        </tr > 
+                        <!--                                                <tr th:if="${lastRec[16] == 'SELECTED'}">
+                                                                            <th>Appointment Letter Status</th>
+                                                                            <td ><span th:text="${lastRec[10]}"></span> -<button id="appointmentLetter" class="btn btn-outline-info btn-sm" onclick="getLetterType(this.id)">View</button></td>
+                                                                        </tr> -->
+
+
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!--    </div>-->
+<!--    <div class="col-md-6 col-lg-6 col-sm-6">
+
+        <div class="card" id="viewLetterDiv" style="display: none">
+
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>View Letter :</strong></span>
+                            <input type="hidden" id="lettertypemail"  />
+                            <span class="float-end"><button class="btn btn-primary btn-sm" th:id="'btn-' + ${letterType}" onclick="sendLetter(this.id)">✉ Send</button>  <button class="btn btn-secondary btn-sm" onclick="window.location.reload()">back</button></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div id="resumeDiv" style="height: 500px; overflow-y: auto;">
+                    <div id="myIframe1"></div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+        
+    </div>-->
+</div>

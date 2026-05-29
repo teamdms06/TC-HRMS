@@ -1,0 +1,40 @@
+<div id="clientList" fragment="clientList" class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <!--<h4 class="card-title">Recently Applied</h4>-->
+                <div class="table-responsive">
+                    <table class="table" id="dataTableId">
+                        <thead>
+                            <tr>
+                                <th> Client Name </th>
+                                <th> Contact Person Name </th>
+                                <th> Agreement Start Date </th>
+                                <th> Agreement End Date </th>
+                                <th>TC Contact Person Name </th>
+                                <th> Status </th>
+                                <!--<th> Last Update By</th>-->
+                                <th > Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="list : ${clientList}">
+                                <td th:text="${list[3]}">9</td>
+                                <td th:text="${list[4]}">9</td>
+                                <td th:text="${list[7]}">9</td>
+                                <td th:text="${list[10]}">9</td>
+                                <!--<td> <label th:classappend="${hrnew[6]=='FRESH' ? 'badge-gradient-info':hrnew[6]=='SELECTED'? 'badge-gradient-success' :hrnew[6]=='REJECTED'? 'badge-gradient-danger':'badge-gradient-warning'}"  class="badge "><span th:text="${hrnew[6]}">Fresh</span></label></td>-->
+                                <td th:text="${list[12]}">9</td>
+                                <td th:text="${list[16]}">9</td>
+                                <!--<td th:text="${list[15]}">9</td>-->
+                                <td > <button class="btn btn-outline-primary btn-sm" th:id="${list[0]}" onclick="getAgreementdetails(this.id)">View</button> </td>
+                               
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

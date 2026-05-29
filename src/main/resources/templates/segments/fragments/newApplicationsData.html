@@ -1,0 +1,37 @@
+<div id="trainingBatchList" fragment="newApplicationData" class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <!--<h4 class="card-title">Recently Applied</h4>-->
+                <div class="table-responsive">
+                    <table class="table" id="dataTableId">
+                        <thead>
+                            <tr>
+                                <th> Assignee </th>
+                                <th> Contact Number </th>
+                                <th> Birth Date </th>
+                                <th> Status </th>
+                                <th> Last Update </th>
+                                <th> fresher/Exp. </th>
+                                <th > Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="hrnew : ${itrdata}">
+                                <td th:text="${hrnew[1]}">9</td>
+                                <td th:text="${hrnew[2]}">9</td>
+                                <td th:text="${hrnew[3]}">9</td>
+                                <td> <label th:classappend="${hrnew[6]=='FRESH' ? 'badge-gradient-info':hrnew[6]=='SELECTED'? 'badge-gradient-success' :hrnew[6]=='REJECTED'? 'badge-gradient-danger':'badge-gradient-warning'}"  class="badge "><span th:text="${hrnew[6]}">Fresh</span></label></td>
+                                <td th:text="${hrnew[4]}">9</td>
+                                <td th:text="${hrnew[5]}">9</td>
+                                <td > <button class="btn btn-outline-primary btn-sm" th:id="${hrnew[0]}" onclick="getdetails(this.id)">View</button> </td>
+                               
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

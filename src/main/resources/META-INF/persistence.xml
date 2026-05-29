@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.cdi_crm_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <!--<class>com.cdi.crm.core.model.TemplateMaster_2</class>-->
+    <class>com.cdb.crm.core.model.FeedbackRecords</class>
+    <class>com.cdb.crm.core.model.UploadDataList</class>
+    <class>com.cdb.crm.core.model.DataList</class>
+    <class>com.cdb.crm.core.model.TemplateMapper</class>
+    <class>com.cdb.crm.core.model.Templates</class>
+    <class>com.cdb.crm.core.model.DealerList</class>
+    <class>com.cdb.crm.core.model.Quotes</class>
+    <class>com.cdb.crm.core.model.TemplateMaster</class>
+    <class>com.cdb.crm.core.model.TemplateDropdowns</class>
+    <class>com.cdb.crm.core.model.City</class>
+    <class>com.cdb.crm.core.model.DumpDataListDetails</class>
+    <class>com.cdb.crm.core.model.NoticeBoard</class>
+    <class>com.cdb.crm.core.model.State</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.ResumesMaster</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.State</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.TrainingBatches</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.ClientAgreement</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.DocumentMaster</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.MetaAddsFollowup</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.MetaAddsLead</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.LetterIssue.EmployeeSalary</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.LetterIssue.IssueletterMaster</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.LetterIssue.OldEmployeeDetails</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.LetterIssue.OfferLetter</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.LetterIssue.Loi</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.HrmsDocumentCenter</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.HrmsEmployeeMaster</class>
+    <class>com.tcInterviewform.TCInterviewForm.model.HrmsEmployeeSalary</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3308/cdi-crm?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>

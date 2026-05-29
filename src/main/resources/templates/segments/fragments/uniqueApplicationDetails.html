@@ -1,0 +1,514 @@
+<div class="row">
+    <div class="col-md-5 col-lg-5 col-sm-5 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <!--<h4 class="card-title">Project Status</h4>-->
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>Applicant Details :</strong></span>
+                        </div>
+                        <div class="col-sm" style="padding-left: 30%">
+
+                            <button id="viewCV" class="btn btn-outline-info btn-sm" onclick="divHideShow(this.id)">View CV</button>
+                            <button  id="viewDetails" class="btn btn-outline-info btn-sm" onclick="divHideShow(this.id)" style="display: none">View details</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive" id="appDetails">
+                    <table class="table table-responsive">
+
+                        <tbody th:each="lastRec :${getAllDetails}">
+                        <input type="hidden" id="jappId" th:value="${lastRec[0]}" />
+                        <!--<input type="hidden" id="roundStatus" th:value="${lastRec[16]}" />-->
+                        <tr th:if="${lastRec[16] == 'SELECTED'}">
+                            <!--<th>Update Above Details</th>-->
+                            <td ><button class="btn btn-outline-info btn-sm"
+                                         th:data-id="${lastRec[0]}"
+                                         th:data-name="${lastRec[1]}"
+                                         th:data-email="${lastRec[21]}"
+                                         th:data-post="${lastRec[20]}"
+                                         th:data-dept="${lastRec[22]}"
+                                         th:data-doj="${lastRec[9]}"
+                                         th:data-location="${lastRec[23]}"
+                                         onclick="openUpdateApplicantDetailsModal(this)">
+                                    Update Details
+                                </button></td>
+                        </tr> 
+                        <tr>
+                            <th>Post For</th>
+                            <td th:text="${lastRec[20]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Department</th>
+                            <td th:text="${lastRec[22]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Applicant Name</th>
+                            <td th:text="${lastRec[1]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Contact Number</th>
+                            <td th:text="${lastRec[2]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Mail ID</th>
+                            <td th:text="${lastRec[21]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td th:text="${lastRec[3]}"></td>
+                        </tr>
+                        <tr>
+                            <th>Fresher/Exp.</th>
+                            <td th:text="${lastRec[5]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Address</th>
+                            <td th:text="${lastRec[6]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>City</th>
+                            <td th:text="${lastRec[7]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Reffered By</th>
+                            <td th:text="${lastRec[8]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Prossess Date of joining </th>
+                            <td th:text="${lastRec[9]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Higher Qualification</th>
+                            <td th:text="${lastRec[10]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>College Name</th>
+                            <td th:text="${lastRec[11]}"></td>
+                        </tr> <tr>
+                            <th>Passed/Failed</th>
+                            <td th:text="${lastRec[12]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Passing Year</th>
+                            <td th:text="${lastRec[13]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Work Location</th>
+                            <td th:text="${lastRec[23]}"></td>
+                        </tr> 
+
+<!--                        <tr th:if="${lastRec[16] == 'SELECTED'}">
+                            <th>Salary Bifurcation</th>
+                            <td th:text="${lastRec[13]}"></td>
+
+                            <td>
+
+                                <span th:text="${lastRec[17]}"></span>
+
+                                 ADD BUTTON 
+                                <button class="btn btn-outline-info btn-sm"
+                                        th:if="${lastRec[17]} == null" th:id="${'add-'+lastRec[0]}"
+                                        onclick="openAddModal(id)">
+                                    Add Salary
+                                </button>
+
+                                 EDIT BUTTON 
+                                <button class="btn btn-primary btn-sm"
+                                        th:if="${lastRec[17]} != null" th:id="${'edit-'+lastRec[0]}"
+                                        onclick="openEditModal(id)">
+                                    View Salary
+                                </button>
+
+                            </td>
+                        </tr> -->
+                        <tr th:if="${lastRec[16] == 'SELECTED'}">
+                            <th>LOI</th>
+                            <td ><span th:text="${lastRec[19]}"></span> -<button id="loiLetterId" class="btn btn-outline-info btn-sm" onclick="sendLOIAndAppointmentLetter(this.id)" th:disabled="${lastRec[19] eq 'Send'}">Send</button></td>
+                        </tr> 
+                        <tr th:if="${lastRec[16] == 'SELECTED'}">
+                            <th>Appointment Letter</th>
+                            <td > <span th:text="${lastRec[18]}"></span> - <button id="appointmentLetter" class="btn btn-outline-info btn-sm" onclick="sendLOIAndAppointmentLetter(this.id)"th:disabled="${lastRec[18] eq 'Send'}">Send</button>
+                            </td>
+                        </tr > 
+<!--                        <tr th:if="${lastRec[16] == 'SELECTED' and lastRec[17] != null}">
+                            <th>Appointment Letter Status</th>
+                            <td > <span th:text="${lastRec[18]}"></span> - <button id="appointmentLetter" class="btn btn-outline-info btn-sm" onclick="getLetterType(this.id)">View</button>
+                            </td>
+                        </tr > -->
+
+                        <!--                            <tr>
+                                                        <th>CV</th>
+                                                        <td><iframe th:src="${lastRec[14]}"></iframe></td>
+                                                    </tr> -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="resumeDiv" style="display: none;height: 45rem">
+                    <div id="downloadLink"></div>
+                    <iframe  id="myIframe" style="width: 100%;height: 80% ;display: none;"></iframe>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    </div>-->
+    <div class="col-md-7 col-lg-7 col-sm-7">
+
+        <div class="card" id="viewLetterDiv" style="display: none">
+
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>View Letter :</strong></span>
+                            <input type="hidden" id="lettertypemail"  />
+                            <span class="float-end">
+                                <button class="btn btn-primary btn-sm" th:id="'btn-' + ${letterType}" onclick="sendLetter(this.id)">✉ Send</button>  
+                                <button class="btn btn-secondary btn-sm" onclick="window.location.reload()">back</button></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div id="resumeDiv" style="height: 500px; overflow-y: auto;">
+                    <div id="myIframe1"></div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="card" id="viewAttempts"  >
+            <div class="card-body">
+                <!--                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <span ><strong>Interview Details :</strong></span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>Interview Details :</strong></span>
+                        </div>
+                        <!--                        <div class="col-sm" style="padding-left: 30%">
+                        
+                                                    <button id="viewCV" class="btn btn-outline-info btn-sm" >Offer Letter <i class="mdi mdi-send"></i></button>
+                                                    <button  id="viewDetails" class="btn btn-outline-info btn-sm" style="display: none">View details</button>
+                        
+                                                </div>-->
+                    </div>
+                </div>
+                <div class="accordion panel-group" id="accordionExample">
+                    <div class="accordion-item"> 
+                        <!--th:if="${hrfeedbacks[0].finalStatus=='FRESH'}"-->
+                        <h4 class="accordion-header" id="headingOne">
+                            <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                New Interview Round
+                            </a>
+                        </h4>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="col-lg-12 ">
+                                    <form action="saveFeedback" method="POST">
+                                        <input type="hidden" name="applicantId" th:value="${hrfeedbacks[0].applicantId}">
+                                        <input type="hidden" name="feedbackBy" th:value="${session.actor_process}"/>
+                                        <p class="card-description">5=<code>Excellent</code>&nbsp; 4=<code>Good</code>&nbsp; 3=<code>Average</code>&nbsp; 2=<code>Below Average</code>&nbsp; 1=<code>Poor</code>&nbsp; 0=<code>Not Applicable</code>
+                                        </p>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th> # </th>
+                                                    <th> Attributes </th>
+                                                    <th> INT </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:classappend="${session.actor_process != 'HR' || status =='ClientRound'} ? 'd-none' : ''">
+                                                    <td>01</td>
+                                                    <td> Typing Test </td>
+                                                    <td>
+                                                        <input type="number" class="form-control"  id="typingTest" name="typingTest" min="0" max="5"   onkeyup="getAverage();" th:value="${session.actor_process != 'HR' || status =='ClientRound'} ? 0 : ''"
+                                                               th:attrappend="required=${session.actor_process == 'HR'}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>02</td>
+                                                    <td> Work Experience </td>
+                                                    <td>
+                                                        <input type="number" class="form-control"  id="workExperience" name="workExperience" min="0" max="5"  required onkeyup="getAverage();">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>03</td>
+                                                    <td> Job Knowledge</td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="jobKnowledge" name="jobKnowledge" min="0" max="5" required onkeyup="getAverage();">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>04</td>
+                                                    <td> Communication Skills </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="communicationSkills" name="communicationSkills" min="0" max="5" required onkeyup="getAverage();">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>05</td>
+                                                    <td> Motivation/Initiative </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="motivationInitiative" name="motivationInitiative" min="0" max="5" required onkeyup="getAverage();">
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>06</td>
+                                                    <td> Personality </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="personality" name="personality" min="0" max="5" required onkeyup="getAverage();">
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>##</td>
+                                                    <td> Average Score </td>
+                                                    <td>
+                                                        <input type="number" class="form-control btn btn-gradient-primary btn-sm" id="result"  name="count" min="0" max="5" required readonly >
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>**</td>
+                                                    <td> Education Background</td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="educationBackground" name="educationBackground"  placeholder="...."  required > 
+                                                        <!--onkeyup="getAverage();"-->
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>**</td>
+                                                    <td> Language: </td>
+                                                    <td>
+                                                        <input type="text" class="form-control"  id="language" name="language"  placeholder="...." required >
+                                                        <!--onkeyup="getAverage();"-->
+                                                    </td>
+
+                                                </tr>
+                                                <tr th:if="${session.actor_process == 'HR' && status !='ClientRound'}">
+                                                    <td>##</td>
+                                                    <td> Previous Salary <small>(if exp.)</small> </td>
+                                                    <td>
+                                                        <input type="text" class="form-control " id="previousSalary"  name="previousSalary"  th:attrappend="required=${session.actor_process == 'HR'}" >
+                                                    </td>
+
+                                                </tr>
+                                                <tr th:if="${session.actor_process == 'HR' && status !='ClientRound'}">
+                                                    <td>##</td>
+                                                    <td> Expected Salary </td>
+                                                    <td>
+                                                        <input type="number" class="form-control " id="expSal"  name="expectedSalary"  th:attrappend="required=${session.actor_process == 'HR'}"  >
+                                                    </td>
+
+                                                </tr><tr th:if="${session.actor_process == 'HR' && status !='ClientRound'}">
+                                                    <td>##</td>
+                                                    <td> Offered Salary </td>
+                                                    <td>
+                                                        <input type="number" class="form-control " id="offSal"  name="offeredSalary"   th:attrappend="required=${session.actor_process == 'HR'}">
+                                                        <p id="output" style="margin-top:5px; color:green;"></p>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr th:if="${status=='ClientRound'}">
+                                                    <td>##</td>
+                                                    <td> client Name </td>
+                                                    <td>
+                                                        <input type="text" class="form-control " id="clientName"  name="clientName"  th:attrappend="required=${status=='ClientRound'}"  >
+                                                    </td>
+
+                                                </tr>
+                                                <tr th:if="${status=='ClientRound'}">
+                                                    <td>##</td>
+                                                    <td> Process  Name </td>
+                                                    <td>
+                                                        <input type="text" class="form-control " id="processName"  name="processName"   th:attrappend="required=${status=='ClientRound'}">
+                                                    </td>
+
+                                                </tr>
+                                                <tr th:if="${status=='ClientRound'}">
+                                                    <td>##</td>
+                                                    <td> feedback received </td>
+                                                    <td>
+                                                        <select class="form-control" id="feedbackReceived"  name="feedbackReceived"  th:attrappend="required=${status=='ClientRound'}" >
+                                                            <option value="">-Select-</option>
+                                                            <option value="email">email</option>
+                                                            <option value="Verbal">Verbal</option>
+
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>##</td>
+                                                    <td> Interview Status</td>
+                                                    <td>
+                                                        <select class="form-control" id="finalStatus"  name="finalStatus"  required onchange="assignTo1(this.value)">
+                                                            <option value="">-Select-</option>
+                                                            <option value="HOLD">HOLD</option>
+                                                            <option value="NxtRound">Next Round</option>
+                                                            <option value="Selected">Selected</option>
+                                                            <option value="ClientRound">Client Round</option>
+                                                            <option value="Rejected">Rejected</option>
+
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+
+
+                                                <!--                                                <tr>
+                                                                                                    <td>##</td>
+                                                                                                    <td> Interviewer Name </td>
+                                                                                                    <td>
+                                                                                                        <input type="text" class="form-control " id="offSal"  name="interviewerName"  required >
+                                                                                                    </td>
+                                                
+                                                                                                </tr>-->
+                                                <tr id="nxtroundTR">
+                                                    <td>##</td>
+                                                    <td> Next Round </td>
+                                                    <td>
+                                                        <select class="form-control" id="nextRoundTo"  name="assignTo"  required >
+                                                            <option value="">-Select-</option>
+
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>##</td>
+                                                    <td> Remark </td>
+                                                    <td>
+                                                        <textarea  class="form-control" id="remark"  name="remark" min="0" max="5" required ></textarea>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button type="submit" class="btn btn-gradient-primary btn-rounded btn-sm">Submit</button>
+                                        <button class="btn btn-gradient-secondary btn-rounded btn-sm" type="reset">Reset</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="accordion-item" th:unless="${#lists.isEmpty(hrfeedbacks)}" th:each="hrfeedback,iterator : ${hrfeedbacks}" th:if="${hrfeedback.count !=0}"> <!--th:if="${hrfeedback.count !=0}"-->
+                        <h4 class="accordion-header" th:id="${'headingTwo'+ +iterator.index}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="${'#collapseTwo'+ + iterator.index}" aria-expanded="false" th:aria-controls="${'collapseTwo'+ + iterator.index}">
+                                <span>Interviewer : <span class="badge badge-success " th:text="${hrfeedback.clientName != null ? 'Client- '+hrfeedback.clientName : hrfeedback.interviewerName}"></span></span>
+                            </button>
+                        </h4>
+                        <div  th:id="${'collapseTwo'+ + iterator.index}" class="accordion-collapse collapse" th:aria-labelledby="${'headingTwo'+ +iterator.index}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-condensed" style="z-index: 100;">
+                                        <tbody >
+                                            <tr>
+                                                <td 
+                                                    style="font-weight:bold;font-size:14px;vertical-align:top">Interview Details
+                                                </td>
+                                                <td colspan="3" >Date & Time :- <span class="badge badge-info" th:text="${hrfeedback.updatedAt}"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Typing Test</th>
+                                                <td th:text="${hrfeedback.typingTest}" ></td>
+                                                <th>Work Experience</th>
+                                                <td th:text="${hrfeedback.workExperience}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Job Knowledge</th>
+                                                <td th:text="${hrfeedback.jobKnowledge}" ></td>
+                                                <th>Communication Skills</th>
+                                                <td th:text="${hrfeedback.communicationSkills}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Motivation Initiative</th>
+                                                <td th:text="${hrfeedback.motivationInitiative}">
+                                                    <!--                                        <span class="badge badge-warning" ></span>-->
+                                                </td>
+                                                <th>Education Background</th>
+                                                <td th:text="${hrfeedback.educationBackground}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Language</th>
+                                                <td th:text="${hrfeedback.motivationInitiative}">
+                                                    <!--                                        <span class="badge badge-warning" ></span>-->
+                                                </td>
+                                                <th>Personality</th>
+                                                <td th:text="${hrfeedback.personality}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span class="badge badge-info">Over All Score</span></th>
+                                                <td  style="width: 10%" >
+                                                    <span class="btn btn-gradient-primary btn-sm" th:text="${hrfeedback.count}"></span>
+                                                </td>
+                                                <th style="width: 30%"><span class="badge badge-info"> Interview Status</span></th>
+                                                <td style="width: 30%">
+                                                    <span class="btn btn-gradient-primary btn-sm"  th:text="${hrfeedback.finalStatus}"></span>
+                                                </td>
+                                            </tr>
+                                            <tr th:if="${hrfeedback.clientName ==null}">
+                                                <th>Expected Sal</th>
+                                                <td th:text="${hrfeedback.expectedSalary}">
+
+                                                </td>
+                                                <th >Offered Sal.</th>
+                                                <td  th:text="${hrfeedback.offeredSalary}">
+
+                                                </td>
+                                            </tr>
+                                            <tr th:if="${hrfeedback.clientName !=null}">
+                                                <th>Process Name</th>
+                                                <td th:text="${hrfeedback.processName}">
+
+                                                </td>
+                                                <th>Feedback Received</th>
+                                                <td  th:text="${hrfeedback.feedbackReceived}">
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th>Remark</th>
+                                                <td colspan="3" >
+                                                    <span th:text="${hrfeedback.remark}"></span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

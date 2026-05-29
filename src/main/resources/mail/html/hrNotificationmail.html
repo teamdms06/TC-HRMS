@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+        <title th:remove="all"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            .colwidth{
+                padding:2px;
+                border:1px #969696 solid;
+            }
+            .colwidth{
+                width:40%;
+            }
+            .colwidth-6{
+                width:80%;
+                padding:2px;
+                border: 1px #969696 solid;
+            }
+            .colwidth-3{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- / Full width container -->
+        <table class="full-width-container" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" bgcolor="#eeeeee" style="width: 100%; height: 100%; padding: 5px 0 5px 0;">
+            <tr>
+                <td align="center" valign="top">
+                    
+                    <table class="container" border="0" cellpadding="0" cellspacing="0" width="720" bgcolor="#ffffff" style="width: 720px;">
+                        <tr>
+                            <td align="center" valign="top">
+                                <table class="container hero-subheader" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                        <tr>
+                            <td class="hero-subheader__title" style="font-size: 28px; font-weight: bold; padding: 10px 0 5px 0;" align="left">Dear HR Team,</td>
+                        </tr>
+                        <tr>
+                            <td class="hero-subheader__title" style="font-size: 18px; font-weight: bold; padding: 10px 0 15px 0;" align="left">Greetings,</td>
+                        </tr>
+                        <tr>
+                            <td class="hero-subheader__content" style="font-size: 16px; line-height: 25px; padding:0 30px 15px 0;" align="left">
+                                <p>A new application has been submitted for the position of <span th:text="${applyFor}" style="font-weight: bold;">-</span>. Please find the applicant's details below:</p>
+
+
+                        </tr>
+                        <!--color: #969696;-->
+                    </table>
+                                 <table class="container title-block" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="center" valign="top">
+                                                        <table class="container" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                                                            <tr>
+                                                                <td style="border-bottom: solid 1px #eeeeee; padding: 2px 0 1px 0; font-size: 22px;" align="left">Applicant Info.</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                <table class="container  paragraph-block" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top: 5px;">
+                                    <tr  >
+                                        <td >
+                                           
+                                            <table  class="container paragraph-block" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="center" valign="top">
+                                                        <table  class="container" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                                                            <tr>
+                                                                <td class="paragraph-block__content" style="padding: 5px 0 5px 0; font-size: 16px; line-height: 20px; color: #969696;" align="left">
+
+                                                                    <!--                                                                    <tr><td class="colwidth" >Account Id:</td><td class="colwidth-6"><span th:text="${Account_Id}">-</span></td></tr>-->
+                                                                    <tr><td class="colwidth" >Date:</td><td class="colwidth-6"><span th:text="${Date}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >Applicant Name:</td><td class="colwidth-6"><span th:text="${applicantName}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >Phone No:</td><td class="colwidth-6"><span th:text="${phoneNo}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >Email Id:</td><td class="colwidth-6"><span th:text="${email}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >Gender:</td><td class="colwidth-6"><span th:text="${gender}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >Address:</td><td class="colwidth-6"><span th:text="${addr}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >City:</td><td class="colwidth-6"><span th:text="${city}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >State:</td><td class="colwidth-6"><span th:text="${state}">-</span></td></tr>
+                                                                    <tr><td class="colwidth" >Reffered By:</td><td class="colwidth-6"><span th:text="${reffBy}">-</span></td></tr>
+
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table class="container title-block" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="center" valign="top">
+                                                        <table class="container" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                                                            <tr>
+                                                                <td style="border-bottom: solid 1px #eeeeee; padding: 5px 0 5px 0; font-size: 22px;" align="left">experience Info</td>
+                                                                <tr><td class="colwidth" >Experience Level:</td><td class="colwidth-6"><span th:text="${expFresher}">-</span></td></tr>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table class="container paragraph-block" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="center" valign="top">
+                                                        <table class="container" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                                                            <tr>
+                                                                <td  class="paragraph-block__content" style="padding: 5px 0 5px 0; font-size: 16px; line-height: 20px; color: #969696;" align="left">
+                                                                    <!--<tr><td class="colwidth" >experience/Fresher:</td><td class="colwidth-6"><span th:text="${ticketNo}">-</span></td></tr>-->
+                                                                    <!--                                                                    <tr><td class="colwidth" >Issue:</td><td class="colwidth-6"><span th:text="${issue}">-</span></td></tr>
+                                                                                                                                        <tr><td class="colwidth" >Issue From:</td><td class="colwidth-6"><span th:text="${lastIssue}">-</span></td></tr>
+                                                                                                                                        <tr><td class="colwidth" >Remark</td><td class="colwidth-6"><span th:text="${remark}">-</span></td></tr>-->
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table class="container paragraph-block" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="center" valign="top">
+                                                        <table class="container" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                                                            <tr>
+                                                                <td class="hero-subheader__content" style="font-size: 16px; line-height: 25px; padding:0 30px 15px 0;" align="left">
+                                                                    <p >Kindly log in to the HR portal using your credentials to view the full profile and take the necessary action:</p>
+                                                                    <a href="http://hrm-interview.us-east-1.elasticbeanstalk.com/login">Click here for Login portal</a>
+
+                                                                </td>
+<!--                                                                <tr>
+                                                                    <td class="hero-subheader__title" style="font-size: 14px; font-weight: bold; padding: 5px 0 5px 0;" align="left">Thanks & Regards,</td>
+                                                                </tr>-->
+                                                                <tr>
+<!--                                                                    <td class="hero-subheader__content" style="font-size: 16px; line-height: 15px; color: #969696;padding: 5px 0 5px 0;" align="left">
+                                                                        <span >HR Department</span>-->
+                                                                </tr>
+                                                                <td class="hero-subheader__content" style="font-size: 16px; line-height: 25px; padding:0 30px 15px 0;" align="left">
+                                                                    <p style="color: red">Note :- This is an automatically generated email. If you have any questions or concerns, please reach out to to Developer Team.</p>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- /// Projects list -->
+                                <!--                                <table class="container hero-subheader" border="0" cellpadding="0" cellspacing="0" width="620" style="width: 620px;">
+                                                                    <br/>
+                                                                    <tr>
+                                                                        <td class="hero-subheader__title" style="font-size: 14px; font-weight: bold; padding: 20px 0 15px 0;" align="left">Thanks & Regards,</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="hero-subheader__content" style="font-size: 16px; line-height: 15px; color: #969696; padding: 0 15px 30px 0;" align="left">
+                                                                            <span th:text="${actorName}"> </span>
+                                                                    </tr>
+                                                                </table>-->
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </body>
+</html>

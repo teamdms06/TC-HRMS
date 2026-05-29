@@ -1,0 +1,351 @@
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <!--<h4 class="card-title">Project Status</h4>-->
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span ><strong>Agreement Details :</strong></span>
+                        </div>
+                        <div class="col-sm" style="padding-left: 30%">
+
+                            <button id="viewCV" class="btn btn-outline-info btn-sm" onclick="divHideShow(this.id)">View Agreement</button>
+                            <button  id="viewDetails" class="btn btn-outline-info btn-sm" onclick="divHideShow(this.id)" style="display: none">View details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive" id="appDetails">
+                    <table class="table table-responsive">
+
+                        <tbody th:each="lastRec :${agreement}">
+                        <input type="hidden" id="id" th:value="${lastRec[9]}" />
+                        <tr>
+                            <th>Client Name</th>
+                            <td th:text="${lastRec[3]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Contact Person Name</th>
+                            <td th:text="${lastRec[4]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Contact person Number</th>
+                            <td th:text="${lastRec[5]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Contact person Email Id</th>
+                            <td th:text="${lastRec[6]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Agreement Start Date</th>
+                            <td th:text="${lastRec[7]}"></td>
+                        </tr>
+                        <tr>
+                            <th>Agreement End Date</th>
+                            <td th:text="${lastRec[10]}"></td>
+                        </tr>
+                        <tr>
+                            <th>Agreement Renewal Date</th>
+                            <td th:text="${lastRec[11]}"></td>
+                        </tr>
+                        <tr>
+                            <th>TC Contact Person Name</th>
+                            <td th:text="${lastRec[12]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>TC Contact Person Number</th>
+                            <td th:text="${lastRec[13]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>TC Contact Person Email</th>
+                            <td th:text="${lastRec[14]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Last Modifed By</th>
+                            <td th:text="${lastRec[15]}"></td>
+                        </tr> 
+                        <tr>
+                            <th>Status</th>
+                            <td th:text="${lastRec[16]}"></td>
+                        </tr> 
+
+                        <!--                            <tr>
+                                                        <th>CV</th>
+                                                        <td><iframe th:src="${lastRec[14]}"></iframe></td>
+                                                    </tr> -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="resumeDiv" style="display: none;height: 45rem">
+
+                    <iframe  id="myIframe" style="width: 100%;height: 80%"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    </div>-->
+    <!--    <div class="col-md-6 col-lg-6 col-sm-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm">
+                                <span ><strong>Interview Details :</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion panel-group" id="accordionExample">
+                        <div class="accordion-item"> 
+                            th:if="${hrfeedbacks[0].finalStatus=='FRESH'}"
+                            <h4 class="accordion-header" id="headingOne">
+                                <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    New Interview Round
+                                </a>
+                            </h4>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="col-lg-12 ">
+                                        <form action="saveFeedback" method="POST">
+                                            <input type="hidden" name="applicantId" th:value="${hrfeedbacks[0].applicantId}">
+                                            <input type="hidden" name="feedbackBy" th:value="${session.actor_process}"/>
+                                            <p class="card-description">5=<code>Excellent</code>&nbsp; 4=<code>Good</code>&nbsp; 3=<code>Average</code>&nbsp; 2=<code>Below Average</code>&nbsp; 1=<code>Poor</code>&nbsp; 0=<code>Not Applicable</code>
+                                            </p>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th> # </th>
+                                                        <th> Attributes </th>
+                                                        <th> INT </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>01</td>
+                                                        <td> Typing Test </td>
+                                                        <td>
+                                                            <input type="number" class="form-control"  id="typingTest" name="typingTest" min="0" max="5" required  onkeyup="getAverage();" >
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>02</td>
+                                                        <td> Work Experience </td>
+                                                        <td>
+                                                            <input type="number" class="form-control"  id="workExperience" name="workExperience" min="0" max="5"  required onkeyup="getAverage();">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>03</td>
+                                                        <td> Job Knowledge</td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="jobKnowledge" name="jobKnowledge" min="0" max="5" required onkeyup="getAverage();">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>04</td>
+                                                        <td> Communication Skills </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="communicationSkills" name="communicationSkills" min="0" max="5" required onkeyup="getAverage();">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>05</td>
+                                                        <td> Motivation/Initiative </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="motivationInitiative" name="motivationInitiative" min="0" max="5" required onkeyup="getAverage();">
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>06</td>
+                                                        <td> Education Background</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="educationBackground" name="educationBackground" min="0" max="5" required > 
+                                                            onkeyup="getAverage();"
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>07</td>
+                                                        <td> Language: </td>
+                                                        <td>
+                                                            <input type="text" class="form-control"  id="language" name="language" min="0" max="5" required >
+                                                            onkeyup="getAverage();"
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>08</td>
+                                                        <td> Personality </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="personality" name="personality" min="0" max="5" required onkeyup="getAverage();">
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>##</td>
+                                                        <td> Average Score </td>
+                                                        <td>
+                                                            <input type="number" class="form-control btn btn-gradient-primary btn-sm" id="result"  name="count" min="0" max="5" required readonly >
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>##</td>
+                                                        <td> Expected Salary </td>
+                                                        <td>
+                                                            <input type="text" class="form-control " id="expSal"  name="expectedSalary"  required  >
+                                                        </td>
+    
+                                                    </tr><tr>
+                                                        <td>##</td>
+                                                        <td> Offered Salary </td>
+                                                        <td>
+                                                            <input type="text" class="form-control " id="offSal"  name="offeredSalary"  required >
+                                                        </td>
+    
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td>##</td>
+                                                        <td> Final Status </td>
+                                                        <td>
+                                                            <select class="form-control" id="finalStatus"  name="finalStatus"  required onchange="assignTo1(this.value)">
+                                                                <option value="">-Select-</option>
+                                                                <option value="HOLD">HOLD</option>
+                                                                <option value="NXTROUND">Next Round</option>
+                                                                <option value="Selected">Selected</option>
+                                                                <option value="ShortListed">ShortListed</option>
+                                                                <option value="Rejected">Rejected</option>
+    
+                                                            </select>
+                                                        </td>
+    
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td>##</td>
+                                                        <td> Remark </td>
+                                                        <td>
+                                                            <textarea  class="form-control" id="remark"  name="remark" min="0" max="5" required ></textarea>
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>##</td>
+                                                        <td> Interviewer Name </td>
+                                                        <td>
+                                                            <input type="text" class="form-control " id="offSal"  name="interviewerName"  required >
+                                                        </td>
+    
+                                                    </tr>
+                                                    <tr id="nxtroundTR">
+                                                        <td>##</td>
+                                                        <td> Next Round </td>
+                                                        <td>
+                                                            <select class="form-control" id="nextRoundTo"  name="assignTo"  required >
+                                                                <option value="">-Select-</option>
+    
+                                                            </select>
+                                                        </td>
+    
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button type="submit" class="btn btn-gradient-primary btn-rounded btn-sm">Submit</button>
+                                            <button class="btn btn-gradient-secondary btn-rounded btn-sm" type="reset">Reset</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+    
+                        <div class="accordion-item" th:unless="${#lists.isEmpty(hrfeedbacks)}" th:each="hrfeedback,iterator : ${hrfeedbacks}" th:if="${hrfeedback.count !=0}"> th:if="${hrfeedback.count !=0}"
+                            <h4 class="accordion-header" th:id="${'headingTwo'+ +iterator.index}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="${'#collapseTwo'+ + iterator.index}" aria-expanded="false" th:aria-controls="${'collapseTwo'+ + iterator.index}">
+                                    <span>Interviewer : <span class="badge badge-success " th:text="${hrfeedback.interviewerName}"></span></span>
+                                </button>
+                            </h4>
+                            <div  th:id="${'collapseTwo'+ + iterator.index}" class="accordion-collapse collapse" th:aria-labelledby="${'headingTwo'+ +iterator.index}" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                   <div class="table-responsive">
+                                    <table class="table table-hover table-condensed" style="z-index: 100;">
+                                        <tbody >
+                                            <tr>
+                                                <td 
+                                                    style="font-weight:bold;font-size:14px;vertical-align:top">Interview Details
+                                                </td>
+                                                <td colspan="3" >Date & Time :- <span class="badge badge-info" th:text="${hrfeedback.updatedAt}"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <th> Typing Test</th>
+                                                <td th:text="${hrfeedback.typingTest}" ></td>
+                                                <th> Work Experience</th>
+                                                <td th:text="${hrfeedback.workExperience}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th> Job Knowledge</th>
+                                                <td th:text="${hrfeedback.jobKnowledge}" ></td>
+                                                <th> Communication Skills</th>
+                                                <td th:text="${hrfeedback.communicationSkills}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th> Motivation Initiative</th>
+                                                <td th:text="${hrfeedback.motivationInitiative}">
+                                                                                            <span class="badge badge-warning" ></span>
+                                                </td>
+                                                <th> Education Background</th>
+                                                <td th:text="${hrfeedback.educationBackground}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th> Language</th>
+                                                <td th:text="${hrfeedback.motivationInitiative}">
+                                                                                            <span class="badge badge-warning" ></span>
+                                                </td>
+                                                <th> Personality</th>
+                                                <td th:text="${hrfeedback.personality}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span class="badge badge-info">Over All Score</span></th>
+                                                <td  style="width: 10%" >
+                                                    <span class="btn btn-gradient-primary btn-sm" th:text="${hrfeedback.count}"></span>
+                                                </td>
+                                               <th style="width: 30%"><span class="badge badge-info"> Final Status</span></th>
+                                                <td style="width: 30%">
+                                                    <span class="btn btn-gradient-primary btn-sm"  th:text="${hrfeedback.finalStatus}"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Expected Sal</th>
+                                                <td th:text="${hrfeedback.expectedSalary}">
+                                                   
+                                                </td>
+                                               <th > Offered Sal.</th>
+                                                <td  th:text="${hrfeedback.offeredSalary}">
+                                                  
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th>remark</th>
+                                                <td colspan="3" >
+                                                    <span th:text="${hrfeedback.remark}"></span>
+                                                </td>
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+    
+                </div>
+            </div>
+        </div>-->
+</div>

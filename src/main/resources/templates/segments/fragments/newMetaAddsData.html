@@ -1,0 +1,69 @@
+<div id="newMetaAddsData" fragment="newMetaAddsData" class="row">
+
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                    <!-- Note -->
+                    <h6 class="text-muted mb-0">
+                        <strong>Note:</strong> Click <strong>Refresh</strong> to fetch the latest data from the Google Sheet.
+                    </h6>
+
+                    <!-- Button -->
+                    <button class="btn btn-outline-info btn-sm" onclick="refreshData()">
+                        🔄 Refresh Data
+                    </button>
+
+                </div>
+                <hr>
+
+                <!--<h4 class="card-title">Recently Applied</h4>-->
+                <div class="table-responsive">
+                    <table class="table" id="dataTableId">
+
+                        <thead>
+                            <tr>
+                                <th> Lead id </th>
+                                <th> Lead Date </th>
+                                <th> Add Name </th>
+                                <th> Name </th>
+                                <!--<th> Email Id </th>-->
+                                <th> Contact Number </th>
+                                <!--<th> City</th>-->
+                                <th> Status </th>
+                                <th > Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="hrnew : ${itrdata}">
+                                <td th:text="${hrnew[0]}">9</td>
+                                <td th:text="${hrnew[1]}">9</td>
+                                <td th:text="${hrnew[8]}">9</td>
+                                <td th:text="${hrnew[2]}">9</td>
+                                <!--<td th:text="${hrnew[3]}">9</td>-->
+                                <td th:text="${hrnew[4]}">9</td>
+                                <!--<td th:text="${hrnew[5]}">9</td>-->
+                                <!--<td th:text="${hrnew[6]}">9</td>-->
+                                <!--<td th:text="${hrnew[7]}">9</td>-->
+                                <td>
+                                    <span th:text="${hrnew[7]}"
+                                          th:classappend="
+                                          ${hrnew[7]} == 'Under followUp' ? 'btn btn-warning btn-sm' :
+                                          (${hrnew[7]} == 'Interested' ? 'btn btn-success btn-sm' :
+                                          (${hrnew[7]} == 'Not Interested' ? 'btn btn-danger btn-sm' :
+                                          (${hrnew[7]} == 'NEW' ? 'btn btn-primary btn-sm' :
+                                          'btn btn-secondary btn-sm')))">
+                                    </span>
+                                </td>
+                                <td > <button class="btn btn-outline-primary btn-sm" th:id="${hrnew[0]}" th:data-status="${hrnew[7]}" onclick="getMetaAddsDeatails(this.id)">Update</button> </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

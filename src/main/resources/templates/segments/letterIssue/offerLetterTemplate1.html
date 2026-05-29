@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Increment Letter</title>
+        <style>
+            @page {
+                size: A4;
+                margin: 30px 50px 10px 50px; /* Top/Bottom, Left/Right */
+            }
+
+            body {
+                text-align: justify;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            .container {
+                width: 100%;
+                /*max-width: 495px;  A4 width (595pt) - 2x50pt margins */
+                margin: 0 auto;
+                padding: 0;
+            }
+
+
+            .header-table {
+                width: 100%;
+
+                margin-top: 10px;
+            }
+            .logo {
+                width: 100px;
+            }
+            .company-info h4, .company-info p {
+                margin: 0;
+                font-size: 12px;
+            }
+            .date {
+                text-align: right;
+                margin: 20px 0;
+                font-size: 13px;
+            }
+            .info-table {
+                width: 100%;
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            .info-table td {
+                padding: 4px 30px;
+                vertical-align: top;
+            }
+            table.info-table td:first-child {
+                padding-right: 6px; /* Reduce space between label and value */
+                white-space: nowrap; /* Prevent labels from wrapping */
+                width: 35%; /* Prevent label cell from growing too wide */
+            }
+            .title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 30px 0 20px;
+                text-decoration: underline;
+            }
+            .content {
+                font-size: 13px;
+                line-height: 1.6;
+                text-align: justify;
+            }
+            .signature {
+                margin-top: 50px;
+                font-size: 13px;
+            }
+            .signature-name {
+                margin-top: 60px;
+                font-weight: bold;
+            }
+            .header {
+                position: fixed;
+                top: -100px; /* Negative to offset margin */
+                left: 0;
+                right: 0;
+                height: 100px;
+                text-align: center;
+                padding-top: 10px;
+                background-color: #003366;
+                color: #ffffff;
+                font-size: 14px;
+            }
+            .footer {
+                position: fixed;
+                bottom: 40px;
+                left: 0;
+                right: 0;
+                height: 60px;
+                text-align: center;
+                font-size: 11px;
+                border-top: 1px solid #ccc;
+                padding-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px; text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <div class="date">Date : <span th:text="${date}"></span></div>
+
+
+                    <div style="margin-top: 10px;">
+
+                        <strong><span th:text="${getAllDetails[0][2]}"></span></strong>
+                        <div >
+                            <p><span th:text="${getAllDetails[0][12]}"></span>,<br>
+                                    <span th:text="${getAllDetails[0][13]}"></span>, <span th:text="${getAllDetails[0][14]}"></span>,<span th:text="${getAllDetails[0][15]}"></span>.</p>
+
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="title">Offer Letter for the position of - <span th:text="${getAllDetails[0][5]}"></span></div>
+                    <br></br>
+                    <div class="content">
+                        <p><strong>EMPLOYMENT AGREEMENT</strong></p>
+                        <p>
+                            This agreement lays down the terms of employment agreed upon by the Organization and Employee. Whether stated explicitly in this agreement or not, both the Organization and the Employee have the duty of mutual confidence and trust, and to make only lawful and reasonable demands on each other.
+                        </p>
+                        <p>
+                            This Employment Agreement is made and executed as of this day of <span th:text="${date}"></span> by and between the Organization named as <strong>THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED </strong>having its registered office at 5th Floor, Vega Centre, D Wing, Shankar Sheth Rd, Swargate, Pune, Maharashtra 411037.
+                        </p>
+                        <p style="text-align: center"><strong>AND</strong></p>
+                        <p>
+                            <strong><span th:text="${getAllDetails[0][2]}"></span></strong>. Each is referred to as a “Party” and collectively as “Parties.” Whereas the parties hereto desire to enter into this agreement voluntarily to define and set forth the terms and conditions of the employment of the Employee of the organization.</p>
+                        <p><strong>
+                                Now, therefore, in consideration of the mutual convention and agreed by the organization and the Employee as follows: </strong>
+                        </p>
+                        <p><strong>
+                                A) EMPLOYMENT DETAILS:  </strong>
+                        </p>
+                        <p><strong>
+                                1. Appointment of an Employee:  </strong>
+                        </p>
+                        <p>After signing and accepting the letter of offer, <strong><span th:text="${getAllDetails[0][2]}"></span></strong> is hereby appointed as <strong> <span th:text="${getAllDetails[0][5]}"></span> </strong>. The nature of employment is Regular. 
+                        </p>
+                        <p><strong>
+                                2. Commencement date: </strong>
+                        </p>
+                        <p>Your employment with the Organization shall be effective from the date of commencement, which shall be 28th June 2025. </p>
+                    </div>
+
+
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>1 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                    <p><strong>
+                            3. Documents to be provided:   </strong>
+                    </p>
+                    <p>a) Employees need to provide the Organization with a copy of all the documents provided in Annexure A.  
+                    </p><p>  b) If the Organization finds any discrepancy in the provided documents, in such instance Employee will not be eligible to get employment. 
+                    </p><p> c) All employment rights will be reserved and governed with the Organization. 
+                    </p>
+                    <p><strong>
+                            4. Probationary Appointment:</strong>
+                    </p>
+                    <p>a) After the appointment of the Employee, the initial nature of the employment will be a probationary appointment for a period of 3 months from the date of commencement. 
+                    </p><p>b) After the end of the 3 months’ probation period, the Manager/Supervisor of the Employee will have the rights/authority to extend the probationary period on grounds of non- performance.  
+                    </p><p>  c) After the end of the probationary period, the role of the Employee will be fixed by the current management of the Organization collectively after a thorough evaluation (time for evaluation and evaluation procedure will be decided by the Organization and will be conveyed to an Employee through email).  
+                    </p><p>  d) At the end of the probationary period, the Organization shall:
+                    </p><p> i. If satisfied with your performance and suitability for continued employment, the same shall be confirmed in writing; or
+                    </p><p> ii. Terminate your employment upon giving you 15 days written notice.  
+                    </p>
+                    <p><strong>
+                            5. Working Shift: </strong>
+                    </p>
+                    <p>The working shift for the Employee is full time day shift from 9:30 AM to 6:30 PM. (Rotational 
+                        shifts are subject to process requirement).
+                    </p>
+                    <p><strong>
+                            6. Office hours: </strong>
+                    </p>
+                    <p>a) The Employee will be expected to work 09 hours per day and 06 days a week. 
+                    </p><p> b) The office hours may be amended by the Organization from time to time. However, the Organization has the right to require you to work such further hours on weekdays/weekends and on other notified holidays determined by the Organization by reference to the need to enhance and/or protect the Organization's interest or business. 
+                    </p>
+                    <p><strong>
+                            7. Location of the Employment:  </strong>
+                    </p>
+                    <p>a) From the date of commencement of the employment, the Employee will be employed in Camp Branch or such other place that the Organization may require from time to time. 
+                    </p><p>b) The Organization may at its sole and absolute discretion transfer you to any other office of the Organization within India. 
+                    </p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>2 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                    <p><strong>
+                            B) TERMS OF THE EMPLOYMENT</strong>
+                    </p>
+                    <p><strong>
+                            1. Remuneration / Compensation & Benefits:</strong>
+                    </p>
+                    <p>a) As remuneration you shall be entitled to receive a CTC of INR. <span th:text="${empSal.ctc}"></span>/- per month which is transferred to your salary account</p>
+
+                    <p>b) The CTC shall comprise your total cost to the organization and includes all the payments made and benefits provided by the Organization directly and indirectly to your benefit whether as a salary or otherwise. </p>
+                    <p>c) The Organization will review the performance of the Employee annually. However, if Employee has not completed 6 months of Employment by the last date of the months in which the performance review takes place, Employee’s first review shall take place at the same time next year and on an annual thereafter. </p>
+                    <p>d) The Organization is under no obligation to increase the Employee’s CTC after the review of the performance. Any revision in CTC following a review shall be effective from and subject to such terms and conditions as the Organization shall deem fit. </p>
+
+                    <p>e) The Organization will review the performance of the Employee during the Probationary period and the continuation of employment will be conveyed to the Employee by writing through email and orally. </p>
+
+                    <p> f) For all payments or benefits provided under this agreement, the Employee is solely responsible for complying with all requirements under Indian Tax laws, including timely and proper tax compliance, and the Organization is not responsible for any taxes or other imposts incurred by the Employee. From any payments or benefits made or given in connection with the Employment, the Organization shall have the right to make such deductions that it deems necessary and appropriate, and the Organization shall provide the Employee with Form 16 evidencing the deductions made</p>
+
+                    <p> g) The Organization may undertake a third-party service for payroll and tax deductions of 
+                        Employees. </p>
+
+                    <p> h) The Organization shall be entitled, at any time during your employment, or in any event on the termination of your employment, howsoever arising, to deduct from your remuneration and any sums reimbursable to you by the Organization, any monies due from you to the Organization including, but not limited to any outstanding advances, payment for excess holiday, overpayment of salary and any other monies owed by you to the Organization pursuant to your employment with the Organization under this agreement; </p>
+
+                    <!--<p>i) While determining an increment in CTC/Salary, the Organization will evaluate the performance based on the feedback/s received from clients, managers, and colleagues. The decision of the Organization in this respect will be final and binding. </p>-->
+                    <p>i) The organization determines salary or CTC increments based on overall performance, which is evaluated through feedback received from clients, managers, and colleagues. The organization’s decision in this matter will be final and binding.</p>
+                    <p>j) Your career progression within the company will depend entirely on your performance and capabilities. Your individual performance will be reviewed regularly by both your managers and peers, and these evaluations will serve as the basis for decisions regarding your salary increments and promotions.</p>
+
+                    <p>K) Salary/Remuneration bifurcation sheet is provided in Annexure C. 
+                    </p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>3 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+                    <p><strong>
+                            2. Duties and Obligations: </strong>
+                    </p>
+                    <p>a) The Employee will be required to perform all the tasks and will be required to accept all the duties and responsibilities as reasonably requested by the Organization from time to time.</p>
+
+                    <p>b) The Employee’s duties include those duties that would be expected to fall within this job, title, or role or such duties consistent with your status, as may be assigned to you to meet the needs of the Organization.</p>
+                    <p>c) The Organization may from time to time make changes in the position description of the Employee.</p>
+                    <p> d) The Organization and Employee may from time to time agree to make changes in the Employee’s duties and position as per the demand of the situation and current scenario if the Organization shall deem fit. </p>
+
+                    <p> e) The Employee agrees to perform the duties in accordance with this agreement.</p>
+
+                    <p>f) The Employee agrees to perform the duties as per the directions, instructions, requests, and orders of the Organization and any other Organization’s guidelines, practice manuals, policies, or procedures as they exist from time to time. </p>
+
+                    <p> g)The Employee agrees to report on time to the designated working hours and if the Employee is consistently late on more than three occasions within a single salary cycle, it will be considered as a half-day absence. </p>
+
+                    <p> h)The Employee shall prevent unauthorized use of Employee’s allocated login password and access card or allowing someone else to use your access card during work hours. Unauthorized access to organizational premises is strictly prohibited and violation of this may result in termination of Employment, subject to the discretion of the management.  </p>
+
+                    <p> i) The Employee shall be subject to medical check-up at regular intervals as per the rules of 
+                        the Organization and continuance in service shall depend upon employee being medically fit. </p>
+
+                    <p> j) The Employee are expected to be careful in regards with their personal belongings as Organization will not be responsible for any loss or damage of personal belongings of the Employees. Engaging in the reading of materials or using the internet for purposes unrelated to job assignment is strictly prohibited.  
+                    </p>
+                    <p> k) The Employees are prohibited from carrying pen drives or any data transmission devices and using mobile phones on the work floor. Lockers are provided for the storage of personal belongings. Any employee found using or charging mobile phones, transferring data, or using pen drives on the work floor may have their gadgets confiscated at the discretion of the management. The management reserves the right to take appropriate action against employees engaging in such activities. 
+                    </p>
+                    <p> l) The Employee must perform all the employment duties in good faith having regard to the best interest of the Organization, and in a careful conscience. 
+                    </p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>4 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+
+                    <p> m) The Employee must perform his duties ethically, morally, and professionally as per his/her skills, the standard set by the Organization’s organization, his/her training, and experience. </p>
+
+                    <p>n)The Employee should devote his/her time, attention, and ability solely and exclusively towards the performance of the duties and responsibilities assigned to him/her by the Organization during his/her tenure.</p>
+                    <p>o)The Employee will abide by the Organization’s HR policy and internal working rules of the Organization. In the event of a conflict between the provisions of the HR Policy and this Agreement, it is hereby agreed that the provisions of this Agreement shall always prevail. </p>
+                    <p>p) The Employee will properly and faithfully serve the Organization and use his/her best endeavors to protect the interests and reputation of the Organization.  </p>
+
+                    <p> q)Except when prevented by any emergency, illness, or accident, the Employee will devote his/her full attention and skill to the affairs of the Organization and use his/her best endeavors to promote its interests. The Employee shall adhere to, execute, and fulfill all policies established by the Organization. </p>
+
+                    <p><strong>3. Holidays and Leaves: </strong></p>
+
+                    <p>a)If the Employee is absent from work without the prior permission of the Organization, the Employee must inform his/her manager of such absence with the reasons as soon as the practicable situation occurs, but not later than on the morning of the next working day otherwise it will be considered as unpaid leave. </p>
+
+                    <p> b)If the absence occurs continuously for 3 working days, the Organization has all the right to take a decision of employment of the Employee. The Organization may terminate the Employee and has a right to stop the salary from the same day onward.</p>
+
+                    <p> c)Any leaves taken for illness/ sickness or injury will be deducted from Employee’s sick leaves entitlement. </p>
+
+                    <p>d)If Employee is absent from work continuously for 1 or more days with the reason of illness/ sickness or injury, in such situation Employee must provide a medical certificate certifying the same reason to the Organization </p>
+
+                    <p> e)Detailed guidelines for the Annual Leave Policy of the Organization are provided in Annexure B. 
+                    </p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>5 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                    <p><strong>C) CONFIDENTIAL INFORMATION & TRADE SECRET </strong></p>
+
+                    <p>1. During employment, the Employee will have access to all the information of the organization whether or not recorded through emails, meetings, and data available on a computer disk or laptops which the Employee should treat as confidential. </p>
+
+                    <p>2. The Organization will be the sole owner of all confidential information. All the ownership rights on such confidential information belong to the Organization.</p>
+                    <p>3. Confidential information includes but is not limited to:</p>
+                    <p> a) Intellectual Property and Developments including technical data and any other information related to any devices and software developed or used by the Organization or its affiliates, trade, and/or business secrets of the Organization or its affiliates.</p>
+
+                    <p>b) Financial data concerning budgets, fees, costs, sales figures, financial statements, costing, profits, profit margins, profit expectations and inventories of the Organization and/or affiliates; commercial arrangements and negotiations, unpublished accounting information, business strategies, business plans, research and development projects, product formulae processes, inventions, programs, designs, specifications, discoveries, or know-how. </p>
+
+                    <p>c) Sales statistics, marketing surveys and plans, forecasts, budgets, costs, profit, or loss; names, addresses, and contact details of customers and potential customers; or suppliers, licenses, prices, and costs; Employee, customer, and supplier lists; any other information or knowledge gained from the Organization or in the course of Employment. </p>
+
+                    <p>d) Confidential and third-party information received by the third party and the identity of the Organization’s client, investor, and any data provided by the client. </p>
+
+                    <p> e) Any detail of the existing clients and potential clients, quotations provided for and by the 
+                        client.</p>
+
+                    <p> f)Information concerning the Organization or affiliates' organizational and personnel matters (including employment-related matters, contact details of any Employee of the Organization or its affiliates, training material used by the Organization or its affiliates), policies and procedures data and information relating to IT security protocols, all passwords and software used, owned leased and/or otherwise in the possession of the Organization or its affiliates. </p>
+
+                    <p>g)Business data relating to any upcoming and current project or work, promotional campaigns, plans for future development, strategies, pricing agreement between Organization and third party, fees, discount, and commission.</p>
+
+                    <p> h) Any details of the agreement for e.g., information and details related to the Employee’s salary and other benefits.   
+                    </p>
+                    <p>i) Any information about the organization’s consultants, agents, and representatives and all information provided by them.    
+                    </p>
+                    <p>j)Any information received by the Employee under an additional non-disclosure agreement</p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>6 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+
+                    <p>k) Any information derived from any of the above.</p>
+
+                    <p>4. Employees will keep secret and will not at any time either during employment or for the period of 2 years after his resignation/ termination. For whatever reason and whether directly and indirectly use, disclose, divulge, communicate, or reveal to any person (natural or artificial) for your own benefit or for anyone’s benefit. </p>
+                    <p>5. Employees will not disclose any developments or confidential, proprietary, or secret information that has come to the Employee’s knowledge during the employment, without the prior written consent of the Organization. </p>
+
+                    <p>6. The Employee should use his/her best endeavors to prevent or publish such confidential information </p>
+
+                    <p>7. As the time and project demands, the Employee will have to enter into a Non-Disclosure Agreement (NDA) and Confidentiality Agreement (CA) with an organization or its clients whenever it is necessary or as per the demand of the project</p>
+
+                    <p>8. The Employee will not directly or indirectly mention any information about the Organization on web-based portals such as Social Networking Sites, Blog, etc.</p>
+
+                    <p>9.The Employee salary is strictly confidential and he/she shall not reveal it to anyone within or outside the organization till his/her resignation or termination as the case may be</p>
+
+                    <p> 10. The above restriction shall not apply to disclosing information to such persons as may be authorized by the Organization during employment.</p>
+
+                    <p>11. Furthermore, said restrictions shall not apply to any information which is or becomes available to the public or is required to be disclosed by any applicable law, regulation, or order of the Court or by any competent authority or any governmental agency.</p>
+
+                    <p>12. For the avoidance of doubt, the termination of this agreement or variation of any of its terms or conditions for any reason shall not affect the obligations of confidentiality set out above, except that they shall cease to apply to any information or knowledge which may come into the public domain other than by way of unauthorized disclosure in breach of the above obligations by the Employee. 
+                    </p>
+                    <p>13. If the Organization discovers any such conduct, the Employee will have to face legal actions according to the Code of Civil Procedure, 1908 (CPC) and Code of Criminal Procedure, 1973 (CrPC), and the Employee alone (Not the Organization) will be liable and responsible for any costs or/and damages resulting from or related to such an act.</p>
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>7 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+
+                    <p><strong>D) TERMINATION</strong></p>
+
+                    <p>1. Employment will be terminated by either of the parties by giving 30 days / 60 days (‘Notice Period’) written notice in the format of email and/or formal letter to the other party.</p>
+                    <p>2. If an Employee wants to leave the organization during the probationary period, he/she will have to give 30 days’ / 60 days written notice in the format of email and/or letter also the Employee must pay back all the expenses incurred by the Organization for his/her skill training and development purposes (that includes soft and technical skill).</p>
+
+                    <p>3. If an Employee wishes to be released from Employment without serving a notice period, he/she must buy off the notice period of 1 month / 2 month and will have to pay the basic salary amount which was drawn by him/her in the earlier working month.</p>
+
+                    <p>4. Employees serving a notice period shall provide all the necessary training, documentation, work, and knowledge transfer (KT), and all the necessary soft skills to the new Employee or the current Employee who is replacing the Employee.</p>
+
+                    <p>5. If an Employee wants to terminate the employment without serving a notice period or prior to the completion of the notice period, the Employee hereby agrees to relinquish salary for that period if the notice period is not fulfilled.</p>
+
+                    <p>6. Once the notice of the termination has been given by either party, the Employee still requires to follow all the directions given by the Organization during the notice period;.</p>
+
+                    <p>7. Employees will have no communication with any Organization’s customer or prospective customer during the notice period.</p>
+
+                    <p>8. During the last week of the notice period, Employees need to return all office belongings, all the manuals, training material, accessories, all equipment, correspondences, records, software models, any data in any form, any copies, notes, and any other documents or any other property belonging to the Organization. The Employee will return all the passwords and all the sensitive information during this period. The Employee will delete all the data which is not stored in the Organization’s property or accessories.</p>
+
+                    <p>9. All the information, confidential information, and any Intellectual Property of the Organization acquired by or in possession of the Employee under this agreement, shall be returned to the Organization immediately in the first week of the notice period.
+                    </p>
+                    <p>10. The Employee shall be entitled to receive Full and Final Pay only after serving the Notice Period and the Full and Final Settlement will be processed after 45 days thereafter i.e. on the upcoming “Regular Salary Date”. </p>
+                    <p>11. If the Employee owns any money to the Organization, then the Organization has the right to deduct the same amount at the time of final settlement of the Employee’s salary and if the Employee spends any money for the Organization, the Organization will reimburse the same in the final settlement (only after verifying the amount and receipt if any);</p>
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>8 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+
+                    <p>12.Employees need to take the necessary “No Objection Certificate” from both the departments of the Organization i.e., the Tech Support department and the HR department.  </p>
+
+                    <p>13.After following all the above-mentioned clauses, if the Organization is satisfied a release letter will be issued to the Employee on or before the last working date.</p>
+                    <p>14. Considering the nature / confidentiality of the work involved, this assignment is intended for the long term. A termination decision either ways would have significant bearing on the business of the Firm. Accordingly, in case the contract needs to be terminated, there will need to be a minimum notice period of 1 month. It may be noted that in case of termination for cause (defined as fraud, material misrepresentation, gross negligence, etc.), the above notice period will not apply and the firm will take the decision as appropriate.</p>
+
+                    <p><strong>Absconding</strong></p>
+                    <p>15.If you are absent for more than or equal to 3 (three) consecutive working days without prior approval or intimation, post joining, it will be treated as absconding. In such cases, your employment will be terminated with immediate effect, and the company may withhold the full and final settlement until the completion of exit formalities, including the return of company property and confidential information.</p>
+                    
+                    <p><strong>E) DISMISSAL OF THE EMPLOYEE</strong></p>
+                    <br></br>
+                    <p>Notwithstanding anything contained in this agreement, employment of the Employee may be terminated by the Organization without notice or without any compensation in the following circumstances:</p>
+
+                    <p>a) If the Employee is guilty of any fraud, negligence, misconduct, or any breach of the terms of this employment agreement.</p>
+
+                    <p>b) If the Employee has committed any criminal offense which is punishable under the latest provision of the Indian Penal Code, 1860</p>
+
+                    <p>c) Any gross misconduct done by the Employee during the period of employment at the workplace is not good for the reputation of the organization. </p>
+
+                    <p>d) If the Employee willfully abuses or misuses the Organization's computer system, or any password relating to that computer system or gains access to any file or loads any information or program contrary to the Organization's interests or procedures.</p>
+
+                    <p>e) If any information relating to your suitability for employment provided to the Organization while applying for employment is found to be materially false or misleading. </p>
+
+                    <p>f) If the Employee becomes subject to any immigration crimes under all existing Immigration Laws across the World.</p>
+
+                    <p>g)Any indecent behavior, harassment or bullying of fellow Employees, clients, customers, and any workplace staff will not be tolerated by the Organization. 
+                    </p>
+                    <p>h)Any kind of sexual harassment or any act disturbing an equitable and just workplace environment as per the POSH ACT, 2013 (i.e. the Prevention of Sexual Harassment at Workplace Act, 2013).  </p>
+                    <p>i)Any kind of discrimination based on race, gender, identity, sex, place of birth, Religion, caste, disability, or sexual orientation as well as other categories as per the Indian Constitution and other Laws.</p>
+                    <p>j) If the Employee is found drinking alcohol or smoking any banned substance at the workplace.</p>
+                    <p>k) If the Employee willfully breaches any safety or health regulations policies, if any prescribed by the Organization.</p>
+                    <p>l) A serious act of insubordination or willful refusal of any reasonable request made by the Organization. </p>
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>9 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+
+                    <p>m)A serious and persistent act of refusal of duty which results into the breach of this employment agreement.</p>
+
+                    <p>n)Falsifying records of any claim or expenses</p>
+                    <p>o)Any kind of unauthorized forgeries such as the creation, addition, or alteration of any writing, record (i.e. hard copies as well as electronic), instrument, stamp, register, deed, or letterhead of the Organization and falsely using the digital signature of any Employee or Organization or any office staff with the wrong intention. It is an act to commit fraud that is fueled by the intention of deceit under the Indian Penal Code, 1860, and the Information Technology Act, 2000. </p>
+                    <p>p)If the Employee breaches and infringes any of the above-mentioned clauses, and the Organization thinks and has supportive evidence to prove the same, the Employee will be terminated immediately on the same day. After the termination, the Employee within a day or two will return all the office belongings, all the manuals, training material, accessories, all equipment, correspondences, records, software models, any data in any form, any copies, notes and any other documents or any other property belonging to the Organization. The Employee will return all the passwords and all the sensitive information during this period. The Employee will delete all the data which is not stored in the Organization’s property or accessories. </p>
+                    <p>q)The Employee will not receive any benefits from the Organization such as leave encashment on dismissal. </p>
+
+                    <p>r) During all subsequent procedures of termination, the Organization will be the one authorized to make all decisions regarding the Employee's dismissal </p>
+                    <p><strong>F) RESTRICTIVE OBLIGATIONS</strong></p>
+                    <p>1. The Employee will not during the Employment, without the prior written consent of the Organization, under any circumstances, whether directly or indirectly undertake as an Employee or otherwise or discharge (for remuneration or compensation howsoever payable) for any other person or organization in India or elsewhere any duties and responsibilities, of whatever kind.</p>
+
+                    <p>2. The Employee will not be engaged in any business activity for personal gains if such activity interferes with his/her duties and responsibilities hereunder.</p>
+
+                    <p>3.During Employment or after 1 year from the termination date the Employee will not engage directly or indirectly, in any business, employment, or any activity for and related to the Organization’s clients or customers, without the prior consent of the Organization.</p>
+
+                    <p>4. During Employment, the Employee will neither engage directly or indirectly with the competitive business (defined as under) nor perform dual employment with the competitive business. The Employee is aware that this is to safeguard any sensitive information of the Organization that may come into knowledge while in employment.</p>
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>10 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+
+                    <p>5.Competitive Business/s includes any firm, partnership, joint venture, organization, and/or any other entity and/or person that engages in the business or carries out activities similar or competitive to the business in which the Organization engages or propose to engage during the term of employment.</p>
+
+                    <p>6.The Employee shall not from his/her own account or on behalf of any other person, solicit or accept orders, products, or services from any of the Organization’s current or previous clients that are in competition with products and services of or in any way related to the business of the Organization from any of the Organization’s current or previous clients.</p>
+                    <p>7.Without the Organization's prior consent, the Employee will not engage in any activity, either directly or indirectly to solicit the employment of or advise any of the Organization’s existing Employees or advise any of the person who was employed by the Organization within six months prior to such solicitation or any person or organization providing services to or through Organization to terminate his or her contract or relationship with Organization or to accept any contract directly or indirectly or other arrangements for providing services to any other person or organization. </p>
+                    <p>8.The Employee will not contact any of the existing or prospective clients of the Organization without the Organization's prior consent, directly or indirectly, to prevent damage in any way to their business relationship with the Organization.</p>
+                    <p>9. The Employee will not contact, without the Organization's prior consent directly or indirectly, with any client of the Organization where the Employee has been taken or sent for training, deputation or secondment, or professional work by the Organization. </p>
+
+                    <p>10.The Employee acknowledges that each of the restrictions above shall be treated as a separate agreement and construed independently. It is expressively understood by the parties that although the Employee and the Organization consider the restrictions contained in this clause to be reasonable if a final judicial determination is made by the competent court within the jurisdiction that the time, territory, or any other restriction contained in this Agreement are unenforceable restriction against the Employee, the provision of this agreement will not be rendered void but shall be deemed an amendment to apply as to such maximum time and territory and to such maximum extent such court may judicially determine or indicate to be enforceable. As an alternative, if any court of competent jurisdiction finds that this agreement contains unenforceable restrictions, and such restrictions cannot be amended so that they become enforceable, such findings will not affect the enforceability of any other restrictions in this agreement. </p>
+                    <p>11. Employees expressively agree and understand that the foregoing restrictions are necessary and reasonable in scope and duration, in all circumstances for the purpose of protecting the Organization’s business.</p>
+                    <p>12. The parties agree that if any of the terms of this clause are breached or violated, damages alone may not compensate for such breach or violation. Injunctive relief is reasonable and essential to safeguard Organization interests, and an injunction can therefore be obtained by the Organization as an additional remedy to safeguard the Organization's interests. A failure to take action by the Organization in response to a breach or violation shall not be construed as a waiver of that breach or violation. </p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>11 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                    <p style="text-align: center"><strong>The provision of this clause shall survive the termination of this agreement.</strong></p>
+                    <p ><strong>G) AMENDMENTS </strong></p>
+
+                    <p>1.The Organization reserves all rights to make reasonable changes to any of the terms and conditions of employment and the Employee shall be notified of such changes by way of general notice or email</p>
+
+                    <p>2. The Organization shall give 1 month's written notice of what it considers to be any significant change, either by way of an individual notice or a general notice to all Employees.</p>
+                    <p>3. If the Employee does not send any written objection within 15 days of receiving general notice, such significant changes are deemed to be accepted by the Employee. </p>
+                    <p>4. If the Employee receives an objection within the prescribed period such objection should be considered and will be resolved within next month before making a significant change. </p>
+                    <p>5. The decision of the Organization as to what constitutes minor changes of detail of significant changes shall be final and binding. </p>
+
+                    <p>6. You shall not be entitled to make any changes or amendments to this Employment Contract.</p>
+                    <p><strong>H) NOTICES</strong></p>
+                    <p>1. Any notice given under or in connection with this Agreement must be delivered personally or sent by registered post to either party.  </p>
+                    <p>2.Employee’s all correspondence address will be updated from time to time with the Organization. As some of the important communication will be sent to Employee by Registered post only.</p>
+                    <p>3.Employee must notify Organization in writing of any change in his/her name, bank account number, addresses, marital status or next of kin within one month of such change. Also, any conviction for a criminal offence, any disciplinary action taken against you by a professional or regulatory body or in case Employee become bankrupt.</p>
+                    <p><strong>I) GOVERNING LAW & JURISDICTION </strong></p>
+                    <p>This agreement shall be governed by and construed in accordance with Indian laws. And each party to this agreement submits to the exclusive jurisdiction of District Pune, State Maharashtra, and Country India.</p>
+                    <p><strong>J) MISCELLANEOUS </strong> </p>
+                    <p> 1.This Agreement sets out the entire agreement and understanding between the Parties in connection with the Employment and supersedes any previous contract or agreement between you and the Organization. </p>
+
+
+                    <hr style="margin-top: 170px;color: #128bfc" />
+                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                        <div>| Employment Agreement with The-Connections |</div>
+                        <div>12 of 18</div>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 110px;">
+                                <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                            </td>
+                            <td>
+                                <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                <div style="font-size: 9px;;text-align: right">
+                                    Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="margin-top: 22px;color: #128bfc" />
+
+                    <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+
+                    <p>2.The Organization may hold and process, whether electronically or manually, the data it collects in relation to the Employee in the course of the employment for the Organization's management and administration of its business and of other Employees, as well as to comply with applicable laws, regulations, and procedures. Whether in India or elsewhere, the Organization or its agents can transfer, store, and process such data. </p>
+
+                    <p>3. The Employee agrees, recognizes, and acknowledges that:</p>
+                    <p>a) He/she has been provided with a copy of this agreement for review prior to signing it, that he/she has read it and that he/she understands the terms, purposes, and effects of this agreement, and that he/she has signed the same only after having the opportunity. to seek clarifications. He/she has given the signed photocopy/softcopy of this agreement for the records. He/she is not under influence of anything and anyone while signing this agreement and this agreement will not impose an undue hardship upon him/her. He/she executed and signed the same agreement under the free will of own without relying upon any statements made by the Organization or any of the representatives. This agreement is in all respects reasonable and necessary to protect the legitimate business interests of the Organization.</p>
+                    <p>b) If he/she violates any terms of this agreement, the Organization will suffer irreparable injury and damages the amount of which cannot be adequately measured in monetary terms and that an adequate remedy at law will not exists. </p>
+                    <p>c) In the view of the above, Organization shall be entitled to injunctive relief, in addition to any other remedy available at law or in equity, in the event he/she violates any of the terms or conditions of this agreement. </p>
+
+                    <p><strong>Please return a signed and scanned copy of this letter on mail to indicate your understanding and 
+                            acknowledgement of the terms and conditions contained herein. </strong></p>
+
+                    <p class="signature" ><strong> 
+                            For, 
+                            The-Connections ITES Business Services Private Limited <br><br>
+                                    <span th:text="${actorName}"></span><br/>
+                                    Human Resource Department
+                                    </strong> </p>
+
+                                    <hr style="margin-top: 170px;color: #128bfc" />
+                                    <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                                        <div>| Employment Agreement with The-Connections |</div>
+                                        <div>13 of 18</div>
+                                    </div>
+                                    </div>
+                                    <br></br>
+                                    <div>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 110px;">
+                                                    <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                                                </td>
+                                                <td>
+                                                    <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                                    <div style="font-size: 9px;;text-align: right">
+                                                        Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <hr style="margin-top: 22px;color: #128bfc" />
+
+                                        <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                                        <h2>DECLARATION </h2>
+
+
+                                        <p>I confirm that I have read and understood the aforesaid agreement fully and by signing and returning 
+                                            the copy to the Organization, I hereby accepts the terms and conditions contained therein and agree 
+                                            that the same constitutes a valid and binding contract of the employment between myself and 
+                                            Organization.</p>
+                                        <p>Signed:</p>
+                                        <p>Name:</p>
+                                        <p>Date:</p>
+
+
+                                        <hr style="margin-top: 170px;color: #128bfc" />
+                                        <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                                            <div>| Employment Agreement with The-Connections |</div>
+                                            <div>14 of 18</div>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 110px;">
+                                                    <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                                                </td>
+                                                <td>
+                                                    <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                                    <div style="font-size: 9px;;text-align: right">
+                                                        Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <hr style="margin-top: 22px;color: #128bfc" />
+
+                                        <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                                        <h2>ANNEXURE A</h2>
+
+
+                                        <p><strong>LIST OF DOCUMENTS THAT NEED TO BE PROVIDED BY THE EMPLOYEE TO THE ORGANIZATION:</strong></p>
+
+                                        <ol>
+                                            <li>Aadhar card.</li>
+                                            <li>Pan Card. </li>
+                                            <li>Passport. </li>
+                                            <li>Details of PF/UAN Account.</li>
+                                            <li>Proof of Local Address (Current light bills, rent agreement, Letter from PG/Hostel, etc.).</li>
+                                            <li>Proof of Hometown Address (Current light bills, ration card, etc.).</li>
+                                            <li>Documents supporting your Educational Qualifications</li>
+                                            <li>Documents supporting your Professional Qualifications. </li>
+                                            <li>Medical Certificate. </li>
+                                            <li>Any other necessary Documents. </li>
+                                        </ol>
+
+
+                                        <hr style="margin-top: 170px;color: #128bfc" />
+                                        <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                                            <div>| Employment Agreement with The-Connections |</div>
+                                            <div>15 of 18</div>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 110px;">
+                                                    <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                                                </td>
+                                                <td>
+                                                    <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                                    <div style="font-size: 9px;;text-align: right">
+                                                        Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <hr style="margin-top: 22px;color: #128bfc" />
+
+                                        <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                                        <h2>ANNEXURE B</h2>
+
+
+                                        <p style="text-align: center"><strong>GUIDELINES FOR THE ANNUAL LEAVE POLICY OF THE ORGANIZATION </strong></p>
+                                        <p style="text-align: center"><strong>LEAVE RULES </strong></p>
+                                        <p >1. CASUAL / SICK LEAVE</p>
+
+                                        <ol>
+                                            <li> All eligible employees are entitled to 6 days of casual/sick leave in a financial year.</li>
+                                            <li> Any unutilized leave in this category will lapse at the end of the financial year.</li>
+                                            <li> Employee avails of sick leave; a medical certificate should also be submitted within 2 
+                                                working days. </li>
+                                            <li> Request for a Casual Leave must be made and approved by the Supervisor, at least 5 days </li>
+                                            <li>advance of the leave taken to enable work planning and functioning during the period of 
+                                                absence.</li>
+                                            <li> Casual/ Sick leave cannot be clubbed with Privilege leave</li>
+                                        </ol>
+
+                                        <p>2. UNINFORMED LEAVE OR UNAPPROVED LEAVE (UL) </p>
+                                        <p>UL suspects misconduct and is on a temporary nonpaid status and absent from duty. Employees 
+                                            should be aware that UL affects entitlement to or eligibility for certain Benefits. Uninformed Leave 
+                                            will cause to Penalty described as follows: </p>
+                                        <ol>
+                                            <li>1 UL will lead to a penalty of 2 days of Salary Deduction</li>
+                                            <li>2 UL will lead to a penalty of 4 days of Salary Deduction</li>
+                                            <li>3 UL may lead to Termination however the decision will be upon the Management.</li>
+                                        </ol>
+                                        <p>3. PRIVILEGE LEAVE </p>
+                                        <p>All employees are eligible for 12 days of Privilege Leave in a financial year. The unused 
+                                            Privilege Leave can be carried forward in the next financial year while the monthly allocation 
+                                            will depend on the management. </p>
+
+                                        <p>4. ENCASHMENT OF LEAVE</p>
+                                        <p>Encashment is possible in the following case:</p>
+                                        <ol>
+                                            <li>Applicable only for Privilege Leave</li>
+                                            <li> At the time of separation/retirement.</li>
+                                            <li> Employees need to inform HR when they need their leaves to be enchased.</li>
+                                            <li>An employee compulsory needs to serve a Notice period else will not be eligible for the 
+                                                leave encashment benefit.</li>
+                                            <li> Leave encashment will be considered only on Basic Salary.</li>
+                                        </ol>
+
+
+                                        <hr style="margin-top: 170px;color: #128bfc" />
+                                        <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                                            <div>| Employment Agreement with The-Connections |</div>
+                                            <div>16 of 18</div>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 110px;">
+                                                    <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                                                </td>
+                                                <td>
+                                                    <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                                    <div style="font-size: 9px;;text-align: right">
+                                                        Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <hr style="margin-top: 22px;color: #128bfc" />
+
+                                        <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                                        <p >5. LEAVE PROCESS </p>
+
+                                        <p>All Leave must be applied by using the online mode. Your Leave Application should contain 
+                                            the following details </p>
+                                        <ol>
+                                            <li>Purpose of Leave</li>
+                                            <li>Dates for which Leave is required</li>
+                                            <li>Contact Address and Phone Number </li>
+                                        </ol>
+
+                                        <p><strong>Leave application should be sent directly to Supervisor, without the approval of the Supervisor 
+                                                application will not be valid.</strong></p>
+                                        <br></br>
+                                        <p>If approval is not received by the supervisor within 24 hours., then employees can directly consult the Assistant Manager and HR for the approval of Leave while if in any scenario the approval is not provided by AM and HR within 24hrs then Employee will have full rights to consult directly to the Higher Management.</p>
+                                        <br></br>
+                                        <p><strong>However, Leaves Approval depends on the Management’s Decision. </strong> </p>
+
+
+
+                                        <hr style="margin-top: 170px;color: #128bfc" />
+                                        <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                                            <div>| Employment Agreement with The-Connections |</div>
+                                            <div>17 of 18</div>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 110px;">
+                                                    <img src="asset/images/TClogo-final.png" alt=""style="width:150px;"/>
+                                                </td>
+                                                <td>
+                                                    <div style="font-size: 16px; font-weight: bold;color: #128bfc;text-align: right">THE-CONNECTIONS ITES BUSINESS SERVICES PRIVATE LIMITED</div>
+                                                    <div style="font-size: 9px;;text-align: right">
+                                                        Call Center Services | Software Development | Document Management Systems | Training Solutions | Security Enabled Printing
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <hr style="margin-top: 22px;color: #128bfc" />
+
+                                        <!--<div class="date">Date : <span th:text="${date}"></span></div>-->
+
+                                        <h2 style="text-align: center">ANNEXURE C </h2>
+                                        <h3 style="text-align: center">Salary Bifurcation </h3>
+                                        <br></br>
+                                        <table class="table table-bordered align-items-center">
+                                            <tr>
+                                                <th>Summary of CTC Components</th>
+                                                <th>Amount (₹)</th>
+                                            </tr>
+                                            <tr><td>Yearly CTC</td><td th:text="${'₹ '+empSal.ctc * 12}"></td></tr>
+                                            <tr><td>Monthly CTC</td><td th:text="${'₹ '+empSal.ctc}"></td></tr>
+                                            <tr><td>-</td><td>-</td></tr>
+                                            <tr><td>Component</td><td>-</td></tr>
+                                            <tr><td>Basic Salary</td><td th:text="${'₹ '+empSal.basic}"></td></tr>
+                                            <tr><td>House Rent Allowance (HRA)</td><td th:text="${'₹ '+empSal.hra}"></td></tr>
+                                            <tr><td>Conveyance Allowance</td><td th:text="${'₹ '+empSal.conveyance}"></td></tr>
+                                            <tr><td>Medical Allowance</td><td th:text="${'₹ '+empSal.medical}"></td></tr>
+                                            <tr><td>Special Allowance</td><td th:text="${'₹ '+empSal.specialAllowance}"></td></tr>
+                                            <tr><td>Gross Salary (before deductions)</td><td th:text="${'₹ '+empSal.grossSalary}"></td></tr>
+                                            <tr><td>-</td><td>-</td></tr>
+                                            <tr><td>Total Deductions</td><td  th:text="${'₹ '+empSal.totalDeduction}"></td></tr>
+                                            <tr><td style="align-items: center">Employer PF Contribution </td><td th:text="${'₹ '+empSal.employeePf}"></td></tr>
+                                            <tr><td style="align-items: center">Employee PF Deduction</td><td th:text="${'₹ '+empSal.employeePf}"></td></tr>
+                                            <tr><td style="align-items: center">Professional Tax Deduction</td><td th:text="${'₹ '+empSal.professionalTax}"></td></tr>
+                                            <tr><td style="align-items: center">Insurance Deduction</td><td th:text="${'₹ '+empSal.insuranceDeduction}"></td></tr>
+                                            <tr><td>Net In-Hand Salary</td><td th:text="${'₹ '+empSal.netSalary}"></td></tr>
+                                        </table>
+
+
+                                        <p class="signature" ><strong> 
+                                                For, 
+                                                The-Connections ITES Business Services Private Limited <br><br>
+                                                        <span th:text="${actorName}"></span><br/>
+                                                        Human Resource Department
+                                                        </strong> </p>
+                                                        <hr style="margin-top: 170px;color: #128bfc" />
+                                                        <div style="font-size: 12px; display: flex; justify-content: space-between; width: 100%;">
+                                                            <div>| Employment Agreement with The-Connections |</div>
+                                                            <div>18 of 18</div>
+                                                        </div>
+                                                        </div>
+
+                                                        </div>
+                                                        </body>
+                                                        </html>

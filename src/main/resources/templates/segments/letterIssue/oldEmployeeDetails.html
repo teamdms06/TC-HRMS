@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>TC-HRMS Meta Adds</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="asset/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="asset/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- Layout styles -->
+        <link rel="stylesheet" href="asset/css/style.css">
+        <!-- End layout styles -->
+        <link rel="shortcut icon" href="/asset/images/favicon.ico" />
+        <style>
+            .drop-zone {
+                border: 2px dashed #0d6efd;
+                border-radius: 10px;
+                padding: 30px;
+                text-align: center;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .drop-zone.dragover {
+                background-color: #e9f3ff;
+                border-color: #0a58ca;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-scroller">
+
+            <div th:replace="fragments/navbar"></div>
+            <!-- partial:partials/_navbar.html -->
+
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <div th:replace="fragments/sidebar"></div>
+                <!-- partial:partials/_sidebar.html -->
+
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+
+                            <h3 class="page-title">
+                                <span class="page-title-icon bg-gradient-info text-white me-2">
+                                    <i class="mdi mdi-new-box"></i>
+                                </span> Letter Issue Data
+                            </h3> 
+
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        <!--<span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>-->
+                                        <button class="btn btn-gradient-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Excel</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div th:replace="segments/fragments/oldEmplyeeDetailsFrag"></div>
+
+
+
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <div th:replace="fragments/footer"></div>
+                    <div class="modal fade" id="uploadModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Upload Excel File</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <form id="uploadForm" enctype="multipart/form-data">
+                                    <div class="modal-body">
+
+                                        <!-- DROP ZONE -->
+                                        <div class="drop-zone" id="dropZone">
+                                            <p>Drag & Drop Excel Here</p>
+                                            <p class="text-muted">or click to browse</p>
+                                            <input type="file" name="file" id="fileInput" hidden accept=".xlsx,.xls">
+                                        </div>
+
+                                        <p class="mt-2 text-success" id="fileName"></p>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Upload</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="asset/vendors/js/vendor.bundle.base.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="asset/vendors/chart.js/Chart.min.js"></script>
+        <script src="asset/js/jquery.cookie.js" type="text/javascript"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="asset/js/off-canvas.js"></script>
+        <script src="asset/js/hoverable-collapse.js"></script>
+        <script src="asset/js/misc.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page -->
+        <script src="asset/js/dashboard.js"></script>
+        <script src="asset/js/todolist.js"></script>
+        <!-- End custom js for this page -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dataTableOldEmplId').DataTable();
+            });
+            function getOldEmployeeDeatails(id) {
+                // alert(id);
+                window.location = "getOldEmployeeDeatails?id=" + id;
+//                $.ajax({
+//                    url: "getapplicantDetails",
+//                    type: 'GET',
+//                    data: {"japplID":id},
+//                    success: function (data) {
+//                        alert(data)
+//                    },
+//                    error: function (jqXHR, textStatus, errorThrown) {
+//                        
+//                    }
+//                })
+            }
+            $("#uploadForm").on("submit", function (e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+                let modalEl = document.getElementById("uploadModal");
+
+                let currentPercent = 0;
+                let targetPercent = 0;
+                let interval;
+
+                function startAnimation() {
+                    clearInterval(interval);
+
+                    interval = setInterval(() => {
+                        if (currentPercent < targetPercent) {
+                            currentPercent++;
+                            document.getElementById("swal-progress").innerHTML =
+                                    `<b>${currentPercent}%</b> completed`;
+                        }
+                    }, 20); // speed of animation
+                }
+
+                $.ajax({
+                    url: "uploadOldIssueLetterData",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+
+                    xhr: function () {
+                        let xhr = new window.XMLHttpRequest();
+
+                        xhr.upload.addEventListener("progress", function (e) {
+                            if (e.lengthComputable) {
+                                targetPercent = Math.round((e.loaded / e.total) * 100);
+
+                                if (Swal.isVisible()) {
+                                    startAnimation();
+                                } else {
+                                    Swal.fire({
+                                        title: "Uploading...",
+                                        html: `<div id="swal-progress"><b>0%</b> completed</div>`,
+                                        allowOutsideClick: false,
+                                        didOpen: () => {
+                                            Swal.showLoading();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                        return xhr;
+                    },
+
+                    success: function (res) {
+
+                        clearInterval(interval);
+
+                        if (res.status === "success") {
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: res.message,
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+
+                            $("#uploadForm")[0].reset();
+                            $("#fileName").text("");
+
+
+                            let modal = bootstrap.Modal.getInstance(modalEl);
+                            if (modal)
+                                modal.hide();
+                            window.location.reload();
+
+                        } else {
+
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: res.message
+                            });
+                        }
+                    },
+
+                    error: function () {
+
+                        clearInterval(interval);
+
+                        Swal.fire({
+                            icon: "error",
+                            title: "Upload Failed",
+                            text: "Something went wrong!"
+                        });
+                    }
+                });
+            });
+
+        </script>
+        <script>
+            const dropZone = document.getElementById("dropZone");
+            const fileInput = document.getElementById("fileInput");
+            const fileName = document.getElementById("fileName");
+
+// Click to open file picker
+            dropZone.addEventListener("click", () => fileInput.click());
+
+// Drag over
+            dropZone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZone.classList.add("dragover");
+            });
+
+// Drag leave
+            dropZone.addEventListener("dragleave", () => {
+                dropZone.classList.remove("dragover");
+            });
+
+// Drop file
+            dropZone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                dropZone.classList.remove("dragover");
+
+                const file = e.dataTransfer.files[0];
+                fileInput.files = e.dataTransfer.files;
+
+                fileName.textContent = "Selected: " + file.name;
+            });
+
+// Show selected file
+            fileInput.addEventListener("change", () => {
+                fileName.textContent = "Selected: " + fileInput.files[0].name;
+            });
+
+        </script>
+    </body>
+</html>

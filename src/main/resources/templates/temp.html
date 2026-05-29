@@ -1,0 +1,1224 @@
+<!--<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>            
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1f1f1;
+        }
+
+        #regForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            font-family: Raleway;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        h1 {
+            text-align: center;  
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            font-family: Raleway;
+            border: 1px solid #aaaaaa;
+        }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;  
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #04AA6D;
+        }
+        input[type=text].parsley-error,input[type=email].parsley-error,input.parsley-error, select.parsley-error, textarea.parsley-error {
+                            color: #B94A48;
+                            background-color: #F2DEDE;
+                            border: 1px solid #EED3D7;
+                        }
+                        input[type=text].parsley-success,input.parsley-success, select.parsley-success, textarea.parsley-success {
+                            color: #468847;
+                            background-color: #DFF0D8;
+                            border: 1px solid #D6E9C6;
+                        }
+                        .parsley-errors-list{
+                            display: none;
+                        }
+    </style>
+    <body>
+
+        <form onsubmit="return false" id="applicant" data-parsley-validate="" autocomplete="off" enctype="multipart/form-data">
+            <h1>TC INTERVIEW FORM:</h1>
+             One "tab" for each step in the form: 
+            <div class="tab">Contact Details:
+                <p><input placeholder="Mobile Number..." oninput="this.className = ''" name="fname" id="phoneno"></p>
+                <p><input placeholder="OTP" oninput="this.className = ''" name="lname" id="otp"></p>
+                <p><button class="btn btn-primary form-control" onclick="getOtp()" id='getotp' style='display: block;'>Get OTP</button>
+                    <button class="btn btn-primary form-control" id='verify' style='display: none;' onclick="verifyOtp()">Verify</button>
+                    <button class="btn btn-success form-control"  id='verified' style='display: none;' disabled>Verifed</button></p>
+
+            </div>
+            <div class="row tab" id="applicant1" >
+
+                <input type="text" name="" th:value="" hidden/>    
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Application for the Post</label>
+                        <input type="text" class="form-control" name="jobappConsultancyWalkinName" id="jobappConsultancyWalkinName" required/>
+                        <select class="form-control" name="jobappConsultancyWalkinName" id="jobappConsultancyWalkinName" required>
+                            <option value="">Select Post</option>
+                            <option value="BPA">BPA</option>
+                            <option value="SR. BPA">SR. BPA</option>
+                            <option  value="TEAM LEAD">TEAM LEAD</option>
+                            <option  value="QUALITY ANALYST">QUALITY ANALYST</option>
+                        </select>
+                    </div>
+                </div>   
+                <div class="col-lg-4">   
+                    <div class="form-group">
+                        <label>Inteview Venue</label>
+                        <input type="text" class="form-control" name="jobappInteviewVenue" id="jobappInteviewVenue"  required/>
+                        <select class="form-control" name="jobappInteviewVenue" id="jobappInteviewVenue" required>
+                            <option value="">Select Venue</option>
+                            <option  value="Swargate, Pune">Swargate, Pune</option>
+                            <option value="Nucleus Mall, Pune">Nucleus Mall, Pune</option>
+                            <option value="Hosur Road, Bangalore">Hosur Road, Bangalore</option>
+
+                        </select>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Reffered By Name</label>
+                        <input type="text" class="form-control" name="jobappRefferedByName" id="jobappRefferedByName"  required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Applicant Name</label>
+                        <input type="text" class="form-control" name="jobappInterviewerName" id="jobappInterviewerName"  required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Birth Date</label>
+                        <input type="date" class="form-control" name="jobappBirthdate" id="jobappBirthdate"  required onchange="getAge(this.value)"/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Birth Place</label>
+                        <input type="text" class="form-control" name="jobappBirthplace" id="jobappBirthplace"  required />
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="text" class="form-control" name="jobappAge" id="jobappAge"  required readonly/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <input type="text" class="form-control" name="jobappGender" required/>
+                        <select class="form-control" name="jobappGender" id="jobappGender" required>
+                            <option value="">Select Gender</option>
+                            <option  value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Marital Status</label>
+                        <input type="text" class="form-control" name="jobappMaritalStatus"required/>
+                        <select class="form-control" name="jobappMaritalStatus" id="jobappMaritalStatus" required>
+                            <option value="">Marital Status</option>
+                            <option  value="Single">Single</option>
+                            <option value="Married">Married</option>
+                        </select>
+                    </div>
+                </div>        
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="jobappEmail" id="jobappEmail"  required/>
+                    </div>
+                </div>   
+                                                            <div class="col-lg-4">                   
+                                                                <div class="row">
+                                                                    <div class="form-group col-lg-5">
+                                                                        <label>Phone No.</label>
+                                                                        <input type="text" class="form-control" name="jobappPhone" id="phoneno" onkeypress="return onlyNumberKey(event)" autocomplete="off"
+                                                                               pattern="^((\+91)?|91)?[6789][0-9]{9}" required/>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-3">
+                                                                        <label>OTP</label>
+                                                                        <input type="text" class="form-control" onkeypress="return onlyNumberKey(event)" name="jobappOtp" id='otp' required/>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-4" id='getotp' style='display: block;'>
+                                                                        <input type="text" class="form-control" name="jobappPhone"required/>
+                                                                        <label>&nbsp;</label>
+                                                                        <a class="btn btn-primary form-control" onclick="getOtp()">Get Otp</a>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-4" id='verify' style='display: none;'>
+                                                                        <input type="text" class="form-control" name="jobappPhone"required/>
+                                                                        <label>&nbsp;</label>
+                                                                        <a class="btn btn-primary form-control" onclick="verifyOtp()">Verify</a>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-4" id='verified' style='display: none;'>
+                                                                        <input type="text" class="form-control" name="jobappPhone"required/>
+                                                                        <label>&nbsp;</label>
+                                                                        <button class="btn btn-success form-control" disabled>Verifed</button>
+                                                                    </div>
+                                                                </div>   
+                                                            </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Alternate Phone No.</label>
+                        <input type="text" class="form-control" name="jobappAltPhone" data-parsley-pattern="^((\+91)?|91)?[6789][0-9]{9}" onkeypress="return onlyNumberKey(event)" id="jobappAltPhone"  required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Languages Known</label>
+                        <input type="text" class="form-control" name="jobappLanguagesKnown" id="jobappLanguagesKnown"  required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Nationality</label>
+                        <input type="text" class="form-control" name="jobappNationality" id="jobappNationality" value="INDIAN" required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Correspondance Address 1</label>
+                        <input type="text" class="form-control" name="jobappAddressForCorrespondance1" id="jobappAddressForCorrespondance1"  required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Correspondance Address 2</label>
+                        <input type="text" class="form-control" name="jobappAddressForCorrespondance2" id="jobappAddressForCorrespondance2"  required/>
+                    </div>
+                </div>  
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" class="form-control" name="jobappState" id="jobappState" value="test" required/>
+                        <select class="form-control" id="jobappState" name="jobappState" required onchange="getCityList(this.id)">
+                            <option value="">Select State</option>
+                            <option th:each="slist : ${slist}" th:id="${slist.id}" th:value="${slist.name}" th:text="${slist.name}"></option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control" name="jobappCity" id="jobappCity" value="test" required/>
+                        <select class="form-control" name="jobappCity" id="jobappCity"  required>
+                            <option value="">Select City</option>
+                                                                                    <option th:each="clist : ${clist}" th:value="${clist.name}" th:text="${clist.name}"></option>
+                        </select>
+                    </div>
+                </div>   
+
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Postal Code</label>
+                        <input type="text" class="form-control" name="jobappPostalCode" minlength="6" maxlength="6" pattern=".{6,}" onkeypress="return onlyNumberKey(event)" id="jobappPostalCode" required/>
+                    </div>
+                </div>   
+                <div class="col-lg-4">                     
+                    <div class="form-group">
+                        <label>Joining Time If Selected</label>
+                        <input type="date" class="form-control" name="jobappTimeRequiredForJoiningIfSelect" id="jobappTimeRequiredForJoiningIfSelect" required/>
+                    </div>
+
+                </div>  
+                </form>
+            </div>
+            <div class="tab">Applicant Qualification:
+               
+
+                                            Applicant Qualification
+
+                                            <div class="row" id="applicant2" style="display: block;">
+
+
+
+                                                <table class="table table-responsive" id="skillsTbl">
+                                                    <thead>
+                                                        <th class="form-group col-lg-2">Qualification</th>
+                                                        <th class="form-group col-lg-2">College/University Name</th>
+                                                        <th class="form-group col-lg-2">Examination</th>
+                                                        <th class="form-group col-lg-2">Marks/Percentage</th>
+                                                        <th class="form-group col-lg-2">Year Of Passing</th>
+                                                        <th class="form-group col-lg-2">Action</th>
+                                                    </thead>
+                                                    <form onsubmit="return false" modelAttribute="emp_skills" id="qualification">                     
+                                                        <tbody id="qualification-Tbl-Body">
+                                                            <tr>
+                                                                <td>
+
+                                                                    <div class="form-group ">
+                                                                        <input type="text" class="form-control skill-div q-Div" name="skillQualification" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control skill-div q-Div" name="skillCollegeUniInstituteName" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <select class="form-control skill-select-div q-s-Div" name="skillExamination" required>
+                                                                            <option value="">Select Examination</option>
+                                                                            <option value="passed">Passed</option>
+                                                                            <option value="appeared">Appeared</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control skill-div q-Div" name="skillDivisionPercentageOfMarks" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control skill-div q-Div" onkeypress="return onlyNumberKey(event)" minlength="4" maxlength="4" name="skillYearOfPassing" required/>
+                                                                    </div>                             
+                                                                </td>
+                                                                <td>
+                                                                    <div class="row" style="padding-left: 20%">
+                                                                        <a class="btn btn-primary btn-xs pull-right" style="" name="qualification" onclick="addRow(this.name)">+</a>
+                                                                    </div>                             
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </form>
+                                                </table>
+                                                                                                <div class="row" style="padding-bottom: 10px;">
+                                                                                                                        <a class="btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                                                                    <div class="col-lg-1 col-lg-offset-11">
+                                                                                                        <a class="btn btn-primary btn-xs pull-right" name="qualification" onclick="addRow(this.name)">+</a>
+                                                                                                    </div>
+
+                                                
+                                                
+                                                                                                </div>
+
+                                            </div>
+            </div>
+            <div class="tab">Applicant Experience:
+               
+
+                                                Applicant Experiance
+
+                                                <div class="row" id="applicant3" style="display: block;">
+
+                                                    <table class="table table-responsive" id="experianceTbl">
+                                                        <thead>
+                                                            <th>Company Name</th>
+                                                            <th>Designation</th>
+                                                            <th>Previous Salary</th>
+                                                            <th>Duration</th>
+                                                            <th>Reason To Leave</th>                     
+                                                            <th>Action</th>
+                                                        </thead>
+                                                        <tbody id="experiance-Tbl-Body">
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control experiance-div e-Div" name="expPreviousCompanyName" required/>
+                                                                    </div>                             
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control experiance-div e-Div" name="expDesignation" required/>
+                                                                    </div>                             
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control experiance-div e-Div" name="expSalaryOffered" required/>
+                                                                    </div>                             
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control experiance-div e-Div" name="expDuration" required/>
+                                                                    </div>                             
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control experiance-div e-Div" name="expReasonToLeaveCompany" required/>
+                                                                    </div>                             
+                                                                </td>
+                                                                <td>
+                                                                    <div class="row" style="padding-left: 20%">
+                                                                        <a class="btn btn-primary btn-xs pull-right" name="experiance" onclick="addRow(this.name)">+</a>
+                                                                    </div>                             
+                                                                </td>
+                                                            </tr>                     
+                                                        </tbody> 
+
+                                                    </table>
+
+                                                                                                        <div class="row" style="padding-bottom: 10px;">
+                                                                                                                                <a class="btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                                                                            <div class="col-lg-1 col-lg-offset-11">
+                                                                                                                <a class="btn btn-primary btn-xs pull-right" name="experiance" onclick="addRow(this.name)">+</a>
+                                                                                                            </div>
+                                                    
+                                                                                                        </div>
+
+                                                </div>
+            </div>
+            <div class="tab">Applicant Family Details
+                             
+
+                                                Applicant Family Detail
+                                                <div class="row" id="applicant4" style="display: block;">
+
+                                                    <table class="table table-responsive" id="familyDtlTbl">
+                                                        <thead>
+                                                            <th>Full Name</th>
+                                                            <th>Relation</th>
+                                                            <th>Occupation</th>
+                                                            <th>Contact Number</th>              
+                                                            <th>Action</th>
+                                                        </thead>
+                                                        <tbody id="familyDtl-Tbl-Body">
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control familyDtl-div f-Div" name="familyFullName" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control familyDtl-div f-Div" name="familyRealation" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control familyDtl-div f-Div" name="familyOccupation" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control familyDtl-div f-Div" pattern="^((\+91)?|91)?[6789][0-9]{9}" onkeypress="return onlyNumberKey(event)" name="familyPhone" data-parsley-pattern="^((\+91)?|91)?[6789][0-9]{9}" parsley-error-message="check The Number.." required/>
+                                                                    </div>         
+                                                                </td>
+                                                                <td>
+                                                                    <div class="row" style="padding-left: 20%">
+                                                                        <a class="btn btn-primary btn-xs pull-right" name="familyDetail" onclick="addRow(this.name)">+</a>
+                                                                    </div>                             
+                                                                </td>
+                                                            </tr>                     
+                                                        </tbody>   
+                                                    </table>   
+
+                                                                                                        <div class="row" style="padding-bottom: 10px;">
+                                                                                                                                <a class="btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                                                                            <div class="col-lg-1 col-lg-offset-11">
+                                                                                                                <a class="btn btn-primary btn-xs pull-right" name="familyDetail" onclick="addRow(this.name)">+</a>
+                                                                                                            </div>
+                                                                                                        </div>                    
+                                                </div>
+            </div>
+            <div class="tab">
+                <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                                    <div class="col-lg-10">
+                                                        <h4>Uplaod Resume File</h4>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <button class="btn btn-primary pull-right">Add</button>
+                                                    </div>
+                                                                    <div class="col-lg-1">
+                                                                        <button class="btn btn-primary pull-right">Edit</button>
+                                                                    </div>
+                                                </div><br>  
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>File name should be contain Candidate Name and Contact Number</label>
+                                                                <input type="file" id="fileUploader" name="resume" accept=".pdf,.doc" required onchange="validateSize(this)"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            </div>
+            <div class="tab">
+                <div class="row" style="padding-top: 5px; background: #dbdddb;">
+                                                        <div class="col-lg-10">
+                                                            <h4>Declaration</h4>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <button class="btn btn-primary pull-right">Add</button>
+                                                        </div>
+                                                                        <div class="col-lg-1">
+                                                                            <button class="btn btn-primary pull-right">Edit</button>
+                                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p>I declare that I am physically, mentally & psychologically fit for working at <strong>THE CONNECTIONS ITES BUSSINESS SERVICE PVT LTD</strong>.<br><br>
+                                                                    I declare that I have no criminal records.<br><br>
+                                                                            I hereby certify that the information provided above is to be true to the best of my knowledge and in case any information as above is found to be false or in-correct or suppressed at any stage,I understand that I liable to be terminated from the services of <strong>THE CONNECTIONS ITES BUSSINESS SERVICE PVT LTD</strong>.
+                                                                            forthwith without prejudice to any other legal and disciplinary action as deemed fit by the management.  </p>
+                                                                            </div>
+                                                                            <div class="form-group form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="agreeCheck">
+                                                                                    <label class="form-check-label" for="iAgree" style="font-weight:bold;">I agree to all Terms & Conditions.</label>
+                                                                            </div>
+            </div>
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                </div>
+            </div>
+             Circles which indicates the steps of the form: 
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+            </div>
+        </form>
+        <script src="asset/js/jquery-3.6.1.min.js" type="text/javascript"></script>
+        <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+         Latest compiled JavaScript 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+        <script src="asset/js/sweetalert2.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script src="asset/js/parsley.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js" type="text/javascript"></script>
+        <script>
+                        var currentTab = 0; // Current tab is set to be the first tab (0)
+                        showTab(currentTab); // Display the current tab
+
+                        function showTab(n) {
+                            // This function will display the specified tab of the form...
+                            var x = document.getElementsByClassName("tab");
+                            x[n].style.display = "block";
+                            //... and fix the Previous/Next buttons:
+                            if (n == 0) {
+                                document.getElementById("prevBtn").style.display = "none";
+                            } else {
+                                document.getElementById("prevBtn").style.display = "inline";
+                            }
+                            if (n == (x.length - 1)) {
+                                document.getElementById("nextBtn").innerHTML = "Submit";
+                            } else {
+                                document.getElementById("nextBtn").innerHTML = "Next";
+                            }
+                            //... and run a function that will display the correct step indicator:
+                            fixStepIndicator(n)
+                        }
+
+                        function nextPrev(n) {
+                            // This function will figure out which tab to display
+                            var x = document.getElementsByClassName("tab");
+                            // Exit the function if any field in the current tab is invalid:
+//                            if (n == 1 && !validateForm())
+//                                return false;
+                            // Hide the current tab:
+                            x[currentTab].style.display = "none";
+                            // Increase or decrease the current tab by 1:
+                            currentTab = currentTab + n;
+                            // if you have reached the end of the form...
+                            if (currentTab >= x.length) {
+                                // ... the form gets submitted:
+                                document.getElementById("regForm").submit();
+                                return false;
+                            }
+                            // Otherwise, display the correct tab:
+                            showTab(currentTab);
+                        }
+
+                        function validateForm() {
+                            // This function deals with validation of the form fields
+                            var x, y, i, valid = true;
+                            x = document.getElementsByClassName("tab");
+                            y = x[currentTab].getElementsByTagName("input");
+                            // A loop that checks every input field in the current tab:
+                            for (i = 0; i < y.length; i++) {
+                                // If a field is empty...
+                                if (y[i].value == "") {
+                                    // add an "invalid" class to the field:
+                                    y[i].className += " invalid";
+                                    // and set the current valid status to false
+                                    valid = false;
+                                }
+                            }
+                            // If the valid status is true, mark the step as finished and valid:
+                            if (valid) {
+                                document.getElementsByClassName("step")[currentTab].className += " finish";
+                            }
+                            return valid; // return the valid status
+                        }
+
+                        function fixStepIndicator(n) {
+                            // This function removes the "active" class of all steps...
+                            var i, x = document.getElementsByClassName("step");
+                            for (i = 0; i < x.length; i++) {
+                                x[i].className = x[i].className.replace(" active", "");
+                            }
+                            //... and adds the "active" class on the current step:
+                            x[n].className += " active";
+                        }
+
+
+                        function getOtp() {
+                            //                                                                      
+                            var phoneNo = $("#phoneno").val();
+                            var phonePattern = /^\d{10}$/;
+
+                            if (phoneNo.match(phonePattern)) {
+                                $("#getotp").hide();
+                                $.ajax({
+                                    url: 'getOtp',
+                                    //                    dataType: '
+                                    type: 'post',
+                                    data: {
+                                        'phoneNo': phoneNo,
+                                    },
+                                    success: function (result) {
+                                        $("#verify").show();
+                                        console.log(result);
+                                        otpIs = result;
+                                        $("#otpId").val();
+                                    }
+                                })
+                                return true;
+                            } else {
+                                $.notify("Mobile Number is Invalid", "error");
+                                return false;
+                            }
+
+
+                        }
+                        var verify = "";
+                        function verifyOtp() {
+                            var otp = $("#otp").val();
+
+                            if (otp === otpIs) {
+                                verify = "done";
+                                $("#verified").show();
+                                $("#verify").hide();
+//                                                                            $('#phoneno').attr('readonly');
+                                $('#phoneno').attr('readonly', true);
+                                $('#otp').attr('readonly', true);
+
+                                $.notify("OTP Is Correct", "success");
+                            } else {
+                                verify = "notdone";
+                                $.notify("OTP Is Incorrect", "error");
+                            }
+                        }
+        </script>
+
+    </body>
+</html>-->
+
+<!--<html>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <head>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                height: 100%;
+            }
+
+            /*Background color*/
+            #grad1 {
+                background-color: : #9C27B0;
+                background-image: linear-gradient(120deg, #FF4081, #81D4FA);
+            }
+
+            /*form styles*/
+            #msform {
+                text-align: center;
+                position: relative;
+                margin-top: 20px;
+            }
+
+            #msform fieldset .form-card {
+                background: white;
+                border: 0 none;
+                border-radius: 0px;
+                box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+                padding: 20px 40px 30px 40px;
+                box-sizing: border-box;
+                width: 94%;
+                margin: 0 3% 20px 3%;
+
+                /*stacking fieldsets above each other*/
+                position: relative;
+            }
+
+            #msform fieldset {
+                background: white;
+                border: 0 none;
+                border-radius: 0.5rem;
+                box-sizing: border-box;
+                width: 100%;
+                margin: 0;
+                padding-bottom: 20px;
+
+                /*stacking fieldsets above each other*/
+                position: relative;
+            }
+
+            /*Hide all except first fieldset*/
+            #msform fieldset:not(:first-of-type) {
+                display: none;
+            }
+
+            #msform fieldset .form-card {
+                text-align: left;
+                color: #9E9E9E;
+            }
+
+            #msform input, #msform textarea {
+                padding: 0px 8px 4px 8px;
+                border: none;
+                border-bottom: 1px solid #ccc;
+                border-radius: 0px;
+                margin-bottom: 25px;
+                margin-top: 2px;
+                width: 100%;
+                box-sizing: border-box;
+                font-family: montserrat;
+                color: #2C3E50;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            #msform input:focus, #msform textarea:focus {
+                -moz-box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: none;
+                font-weight: bold;
+                border-bottom: 2px solid skyblue;
+                outline-width: 0;
+            }
+
+            /*Blue Buttons*/
+            #msform .action-button {
+                width: 100px;
+                background: skyblue;
+                font-weight: bold;
+                color: white;
+                border: 0 none;
+                border-radius: 0px;
+                cursor: pointer;
+                padding: 10px 5px;
+                margin: 10px 5px;
+            }
+
+            #msform .action-button:hover, #msform .action-button:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue;
+            }
+
+            /*Previous Buttons*/
+            #msform .action-button-previous {
+                width: 100px;
+                background: #616161;
+                font-weight: bold;
+                color: white;
+                border: 0 none;
+                border-radius: 0px;
+                cursor: pointer;
+                padding: 10px 5px;
+                margin: 10px 5px;
+            }
+
+            #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+            }
+
+            /*Dropdown List Exp Date*/
+            select.list-dt {
+                border: none;
+                outline: 0;
+                border-bottom: 1px solid #ccc;
+                padding: 2px 5px 3px 5px;
+                margin: 2px;
+            }
+
+            select.list-dt:focus {
+                border-bottom: 2px solid skyblue;
+            }
+
+            /*The background card*/
+            .card {
+                z-index: 0;
+                border: none;
+                border-radius: 0.5rem;
+                position: relative;
+            }
+
+            /*FieldSet headings*/
+            .fs-title {
+                font-size: 25px;
+                color: #2C3E50;
+                margin-bottom: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            /*progressbar*/
+            #progressbar {
+                margin-bottom: 30px;
+                overflow: hidden;
+                color: lightgrey;
+            }
+
+            #progressbar .active {
+                color: #000000;
+            }
+
+            #progressbar li {
+                list-style-type: none;
+                font-size: 12px;
+                width: 12%;
+                float: left;
+                position: relative;
+            }
+
+            /*Icons in the ProgressBar*/
+            #progressbar #account:before {
+                font-family: FontAwesome;
+                content: "\f023";
+            }
+
+            #progressbar #personal:before {
+                font-family: FontAwesome;
+                content: "\f007";
+            }
+
+            #progressbar #payment:before {
+                font-family: FontAwesome;
+                content: "\f09d";
+            }
+
+            #progressbar #confirm:before {
+                font-family: FontAwesome;
+                content: "\f00c";
+            }
+
+            /*ProgressBar before any progress*/
+            #progressbar li:before {
+                width: 50px;
+                height: 50px;
+                line-height: 45px;
+                display: block;
+                font-size: 18px;
+                color: #ffffff;
+                background: lightgray;
+                border-radius: 50%;
+                margin: 0 auto 10px auto;
+                padding: 2px;
+            }
+
+            /*ProgressBar connectors*/
+            #progressbar li:after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: lightgray;
+                position: absolute;
+                left: 0;
+                top: 25px;
+                z-index: -1;
+            }
+
+            /*Color number of the step and the connector before it*/
+            #progressbar li.active:before, #progressbar li.active:after {
+                background: skyblue;
+            }
+
+            /*Imaged Radio Buttons*/
+            .radio-group {
+                position: relative;
+                margin-bottom: 25px;
+            }
+
+            .radio {
+                display:inline-block;
+                width: 204;
+                height: 104;
+                border-radius: 0;
+                background: lightblue;
+                box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+                box-sizing: border-box;
+                cursor:pointer;
+                margin: 8px 2px; 
+            }
+
+            .radio:hover {
+                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+            }
+
+            .radio.selected {
+                box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+            }
+
+            /*Fit image in bootstrap div*/
+            .fit-image{
+                width: 100%;
+                object-fit: cover;
+            }
+        </style>
+    </head>
+    <body>
+              <div class="container-fluid" id="grad1">
+            <div class="row justify-content-center mt-0">
+                <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                        <h2><strong>Sign Up Your User Account</strong></h2>
+                        <p>Fill all form field to go to next step</p>
+                        <div class="row">
+                            <div class="col-md-12 mx-0">
+                                <form id="msform">
+                                      
+                                    <ul id="progressbar">
+                                        <li class="active" id="account"><strong>Verify</strong></li>
+                                        <li id="personal"><strong>Apply For</strong></li>
+                                        <li id="personal"><strong>Personal</strong></li>
+                                        <li id="payment"><strong>Payment</strong></li>
+                                        <li id="confirm"><strong>Finish</strong></li>
+                                         <li id="confirm"><strong>Finish</strong></li>
+                                          <li id="confirm"><strong>Finish</strong></li>
+                                           <li id="confirm"><strong>Finish</strong></li>
+                                            <li id="confirm"><strong>Finish</strong></li>
+                                    </ul>
+                                     fieldsets 
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Verify Mobile Number</h2>
+                                            <input type="text" name="phoneno" id="phoneno"  placeholder="mobile Number"/>
+                                            <input type="text" name="otp" id="otp" placeholder="OTP"/>
+                                                                                        <input type="text" name="uname" placeholder="UserName"/>
+                                                                                        <input type="password" name="pwd" placeholder="Password"/>
+                                                                                        <input type="password" name="cpwd" placeholder="Confirm Password"/>
+                                        </div>
+                                        <input type="button" name="next" class="next action-button" value="Next Step" id='nextStep' style="display: none"/>
+                                        <input type="button" name="next" class="action-button" onclick="getOtp()" id='getotp' value="Get OTP"/>
+                                        <input type="button" name="next" class="action-button" onclick="verifyOtp()" style='display: none;'id='verify' value="Verify"/>
+                                        <input type="button" name="next" class="action-button" onclick="verifyOtp()" id='verified' value="verified" style='display: none;' disabled/>
+                                        <button class="btn btn-primary form-control" onclick="getOtp()" id='getotp' style='display: block;'>Get OTP</button>
+                                        <button class="btn btn-primary form-control" id='verify' style='display: none;' onclick="verifyOtp()">Verify</button>
+                                        <button class="btn btn-success form-control"  id='verified' style='display: none;' disabled>Verifed</button>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Job Information</h2>
+                                             <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Application for the Post</label>
+                                                    <input type="text" class="form-control" name="jobappConsultancyWalkinName" id="jobappConsultancyWalkinName" required/>
+                                                    <select class="form-control" name="jobappConsultancyWalkinName" id="jobappConsultancyWalkinName" required>
+                                                        <option value="">Select Post</option>
+                                                        <option value="BPA">BPA</option>
+                                                        <option value="SR. BPA">SR. BPA</option>
+                                                        <option  value="TEAM LEAD">TEAM LEAD</option>
+                                                        <option  value="QUALITY ANALYST">QUALITY ANALYST</option>
+                                                        <option  value="S/W. DEVELOPER">S/W. DEVELOPER</option>
+                                                        <option  value="Asst. MANAGER">Asst. MANAGER</option>
+                                                        <option  value="MANAGER">MANAGER</option>
+                                                    </select>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-12 ">   
+                                                <div class="form-group">
+                                                    <label>Inteview Venue</label>
+                                                    <input type="text" class="form-control" name="jobappInteviewVenue" id="jobappInteviewVenue"  required/>
+                                                    <select class="form-control" name="jobappInteviewVenue" id="jobappInteviewVenue" required>
+                                                        <option value="">Select Venue</option>
+                                                        <option  value="Swargate, Pune">Swargate, Pune</option>
+                                                        <option value="Nucleus Mall, Pune">Nucleus Mall, Pune</option>
+                                                        <option value="Hosur Road, Bangalore">Hosur Road, Bangalore</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Reffered By Name</label>
+                                                    <input type="text" class="form-control" name="jobappRefferedByName" id="jobappRefferedByName"  required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">                     
+                                                <div class="form-group">
+                                                    <label>Joining Time If Selected</label>
+                                                    <input type="date" class="form-control" name="jobappTimeRequiredForJoiningIfSelect" id="jobappTimeRequiredForJoiningIfSelect" required/>
+                                                </div>
+
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                        <input type="button" name="next" class="next action-button" value="Next Step"/>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Payment Information</h2>
+                                            <div class="radio-group">
+                                                <div class='radio' data-value="credit"><img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px"></div>
+                                                <div class='radio' data-value="paypal"><img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px"></div>
+                                                <br>
+                                            </div>
+                                            <label class="pay">Card Holder Name*</label>
+                                            <input type="text" name="holdername" placeholder=""/>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <label class="pay">Card Number*</label>
+                                                    <input type="text" name="cardno" placeholder=""/>
+                                                </div>
+                                                <div class="col-3">
+                                                    <label class="pay">CVC*</label>
+                                                    <input type="password" name="cvcpwd" placeholder="***"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <label class="pay">Expiry Date*</label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <select class="list-dt" id="month" name="expmonth">
+                                                        <option selected>Month</option>
+                                                        <option>January</option>
+                                                        <option>February</option>
+                                                        <option>March</option>
+                                                        <option>April</option>
+                                                        <option>May</option>
+                                                        <option>June</option>
+                                                        <option>July</option>
+                                                        <option>August</option>
+                                                        <option>September</option>
+                                                        <option>October</option>
+                                                        <option>November</option>
+                                                        <option>December</option>
+                                                    </select>
+                                                    <select class="list-dt" id="year" name="expyear">
+                                                        <option selected>Year</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                        <input type="button" name="make_payment" class="next action-button" value="Confirm"/>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title text-center">Success !</h2>
+                                            <br><br>
+                                            <div class="row justify-content-center">
+                                                <div class="col-3">
+                                                    <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <div class="row justify-content-center">
+                                                <div class="col-7 text-center">
+                                                    <h5>You Have Successfully Signed Up</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <script>
+                        $(document).ready(function () {
+
+                            var current_fs, next_fs, previous_fs; //fieldsets
+                            var opacity;
+
+                            $(".next").click(function () {
+
+                                current_fs = $(this).parent();
+                                next_fs = $(this).parent().next();
+
+                                //Add Class Active
+                                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                                //show the next fieldset
+                                next_fs.show();
+                                //hide the current fieldset with style
+                                current_fs.animate({opacity: 0}, {
+                                    step: function (now) {
+                                        // for making fielset appear animation
+                                        opacity = 1 - now;
+
+                                        current_fs.css({
+                                            'display': 'none',
+                                            'position': 'relative'
+                                        });
+                                        next_fs.css({'opacity': opacity});
+                                    },
+                                    duration: 600
+                                });
+                            });
+
+                            $(".previous").click(function () {
+
+                                current_fs = $(this).parent();
+                                previous_fs = $(this).parent().prev();
+
+                                //Remove class active
+                                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                                //show the previous fieldset
+                                previous_fs.show();
+
+                                //hide the current fieldset with style
+                                current_fs.animate({opacity: 0}, {
+                                    step: function (now) {
+                                        // for making fielset appear animation
+                                        opacity = 1 - now;
+
+                                        current_fs.css({
+                                            'display': 'none',
+                                            'position': 'relative'
+                                        });
+                                        previous_fs.css({'opacity': opacity});
+                                    },
+                                    duration: 600
+                                });
+                            });
+
+                            $('.radio-group .radio').click(function () {
+                                $(this).parent().find('.radio').removeClass('selected');
+                                $(this).addClass('selected');
+                            });
+
+                            $(".submit").click(function () {
+                                return false;
+                            })
+
+                        });
+                        
+                         function getOtp() {
+                                                                                          
+                            var phoneNo = $("#phoneno").val();
+                            var phonePattern = /^\d{10}$/;
+
+                            if (phoneNo.match(phonePattern)) {
+                                $("#getotp").hide();
+                                $.ajax({
+                                    url: 'getOtp',
+                                    //                    dataType: '
+                                    type: 'post',
+                                    data: {
+                                        'phoneNo': phoneNo,
+                                    },
+                                    success: function (result) {
+                                       
+                                        $("#verify").show();
+                                        console.log(result);
+                                        otpIs = result;
+                                        $("#otpId").val();
+                                    }
+                                })
+                                return true;
+                            } else {
+                                $.notify("Mobile Number is Invalid", "error");
+                                return false;
+                            }
+
+
+                        }
+                        var verify = "";
+                        function verifyOtp() {
+                            var otp = $("#otp").val();
+
+                            if (otp === otpIs) {
+                                verify = "done";
+                                $("#verified").show();
+                                $("#verify").hide();
+                                
+                                $("#nextStep").show();
+//                                                                            $('#phoneno').attr('readonly');
+                                $('#phoneno').attr('readonly', true);
+                                $('#otp').attr('readonly', true);
+
+                                $.notify("OTP Is Correct", "success");
+                            } else {
+                                verify = "notdone";
+                                $.notify("OTP Is Incorrect", "error");
+                            }
+                        }
+        </script>
+    </body>
+</html>-->
