@@ -17,8 +17,12 @@ public class TcInterviewFormApplication extends SpringBootServletInitializer {
         SpringApplication.run(TcInterviewFormApplication.class, args);
     }
 
+    
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(TcInterviewFormApplication.class);
     }
+
+
+    
 }
