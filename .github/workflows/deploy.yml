@@ -35,10 +35,11 @@ jobs:
           echo "VERSION_LABEL=$VERSION_LABEL" >> $GITHUB_ENV
 
           mkdir deploy
-          cp target/*.war deploy/
 
-          if [ -d "platform" ]; then
-            cp -r platform deploy/platform
+          cp target/*.war deploy/ROOT.war
+
+          if [ -d ".platform" ]; then
+            cp -r .platform deploy/.platform
           fi
 
           cd deploy
